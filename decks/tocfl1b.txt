@@ -1,0 +1,389 @@
+#separator:tab
+#html:false
+# TOCFL Band A · Level 2 · 基礎級 (A2)
+# Regenerate: python scripts/build-tocfl-deck.py
+# field 1 = character, field 2 = pinyin, field 3 = English meaning
+阿姨	ā yí	one's mother's sister, auntie; address to woman of similar age as parents
+矮	ǎi	to be short (of stature), low
+安全	ān quán	to be safe, secure
+白	bái	to be white
+辦法	bàn fǎ	method, way of doing sth
+棒	bàng	to be good; fine; excellent, great!
+幫忙	bāng máng	to help sb do sth
+包	bāo	collective measure word for the things wrapped, tied up or fixed in bundles
+抱	bào	to hug, to embrace, to hold or carry in one's arms
+必須	bì xū	must
+邊(兒)	biān ér	side
+遍	biàn	measure word for the course of an action from the beginning to the end
+錶	biǎo	watch
+別	bié	don't
+別人	bié rén	other people
+餅乾	bǐng gān	biscuit, cracker, cookie
+冰箱	bīng xiāng	refrigerator
+病	bìng	illness, disease
+病人	bìng rén	patient
+不錯	bù cuò	to be not bad, pretty good
+不但	bù dàn	not only
+不一定	bù yī dìng	uncertain, not for sure, not necessarily
+不用	bù yòng	need not, don't have to
+擦	cā	to rub, to wipe, to clean
+猜	cāi	to guess, suspect
+才	cái	not until, only then, only, merely
+菜單	cài dān	menu
+餐桌	cān zhuō	dining table
+草	cǎo	grass
+草地	cǎo dì	lawn
+叉(子)	chā zi	fork
+超級市場	chāo jí shì chǎng chāo shì	supermarket
+城市	chéng shì	city
+襯衫	chèn shān	a dress shirt or a collared blouse with buttons
+遲到	chí dào	to be late/arrive late
+窗戶	chuāng hù	window
+吹	chuī	blow, puff
+聰明	cōng míng	to be intelligent
+從前	cóng qián	formerly, in the past, used to
+帶	dài	to bring
+戴	dài	to wear (hat, watch, jewelry etc)
+袋子	dài zi	bag, sack
+蛋	dàn	egg
+但是	dàn shì	but, still, however
+刀(子)	dāo zi	knife, sword, blade
+倒	dào	to pour, to dump out
+打掃	dǎ sǎo	to sweep, to clean
+打算	dǎ suàn	to plan
+大聲	dà shēng	to be loud
+大衣	dà yī	overcoat, topcoat
+德國	Dé guó	Germany, German
+低	dī	to be low
+店	diàn	store, shop
+電燈	diàn dēng	electric lamp/light
+點(兒)	diǎn ér	partial measure word for a small quantity of things
+點(兒)	diǎn ér	dot
+點菜	diǎn cài	to order food
+點心	diǎn xīn	a snack, light refreshment
+掉	diào	to fall, to drop, to lose
+動	dòng	to move; to be moved
+動物	dòng wù	animal
+動物園	dòng wù yuán	zoo
+讀	dú	①to read; to go to; ②attend school or college
+讀書	dú shū	to study, to read
+短	duǎn	to be short
+朵	duǒ	individual measure word for cloudand flowers
+耳朵	ěr duo	ear
+法國	Fǎ guó	France, French
+飯店	fàn diàn	hotel, restaurant
+方法	fāng fǎ	method, way, means
+放假	fàng jià	to have a holiday, vacation
+放下	fàng xià	to lay down; to put down; to let sth down; to lower; to set down
+發生	fā shēng	to happen, to occur, take place
+發現	fā xiàn	to discover
+飛	fēi	to fly
+父親	fù qīn	father
+服務生	fú wù shēng	attendant, service person, waiter
+乾	gān	to be dry
+剛剛	gāng gāng	just now
+給	gěi	for, for the benefit of, by (in passive cons)
+跟	gēn	rep with
+恭喜	gōng xǐ	to congratulate
+工作	gōng zuò	to work
+夠	gòu	to be enough
+掛	guà	to hang
+乖	guāi	to be well-behaved
+關上	guān shàng	to close, to shut; to turn off
+果汁	guǒ zhī	fruit juice
+過來	guò lái	to come over/up, come here
+過年	guò nián	to celebrate the Chinese New Year
+過去	guò qù	in the past, formerly
+過去	guò qù	to go over, to pass by
+故事	gù shì	story
+還	hái	still, yet, also, too, as well, besides
+海	hǎi	ocean, sea
+害怕	hài pà	be afraid/scared
+漢堡	hàn bǎo	hamburger
+韓國	Háng u ó	the Republic of Korea
+漢語	Hàn yǔ	Chinese/Sinitic language(s)
+漢字	hàn zì	Ch character, sinograph
+好看	hǎo kàn	to be good-looking
+河	hé	river
+盒子	hé zi	box, case
+黑	hēi	①to be black; ②to be dark
+黑色	hēi sè	black
+紅	hóng	to be red
+紅包	hóng bāo	red envelope containing a money gift
+紅茶	hóng chá	black tea
+紅綠燈	hóng lǜ dēng	traffic light
+後來	hòu lái	afterwards, later on
+護士	hù shì	hospital nurse
+畫家	huà jiā	a painter (as in an artist)
+黃	huáng	to be yellow
+花園	huā yuán	flower garden
+滑雪	huá xuě	to ski
+會	huì	will
+回答	huí dá	to answer
+活	huó	to be alive
+或	huò	or, either or
+或是	huò shì	or, perhaps
+機會	jī huì	chance, opportunity
+記	jì	to record, to write, to jot down
+計程車	jì chéng chē	taxi
+計畫	jì huà	plan, project, program
+計畫	jì huà huà	to plan, to map out
+家庭	jiā tíng	family, household
+簡單	jiǎn dān	to be simple, uncomplicated
+件	jiàn	individual measure word for affairs, incidents etc
+講話	jiǎng huà	to speak, talk, address
+教	jiào	to teach
+交	jiāo	to hand over, to deliver
+餃子	jiǎo zi	Chinese dumpling
+結婚	jié hūn	to marry, to get married
+節目	jié mù	program, events (of entertainment, a program etc)
+解決	jiě jué	to resolve, settle
+借	jiè	to borrow, to lend
+斤	jīn	a unit of weight
+經過	jīng guò	to pass by, to pass through
+警察	jǐng chá	police officer
+緊張	jǐn zhāng	to be nervous, to be tense
+就要	jiù yào	soon, in no time
+決定	jué dìng	to decide
+句子	jù zi	sentence
+開始	kāi shǐ	to start
+開水	kāi shuǐ	boiling/boiled water
+開心	kāi xīn	to feel happy, rejoice
+開學	kāi xué	to start school, to begin term
+看到	kàn dào	to see
+看見	kàn jiàn	to see
+烤	kǎo	to roast, to toast, to bake
+棵	kē	individual measure word for plants and vegetable
+科學	kē xué	science
+渴	kě	to be thirsty
+可愛	kě ' ài	to be lovable, likeable, adorable, cute
+課本	kè běn	textbook
+客氣	kè qì	to be polite
+客人	kè rén	guest, visitor
+課文	kè wén	text in a school book
+空氣	kōng qì	air
+口	kǒu	①measure word for people; ②Mouthful, measure word for things kept in the mouth
+哭	kū	to cry, to weep
+苦	kǔ	to be bitter
+塊	kuài	individual measure word for a solid substance with a regular shape
+筷子	kuài zi	chopsticks
+拉	lā	to pull, to tug
+藍	lán	to be blue
+藍色	lán sè	blue
+老	lǎo	to be old, aged
+老人	lǎo rén	old man/woman
+裡	lǐ	inside
+裡邊(兒)	lǐ biān ér	interior, inside
+禮物	lǐ wù	present, gift
+臉	liǎn	face
+練習	liàn xí	to practice, to drill
+涼	liáng	to be cool
+涼快	liáng kuài	to be(pleasantly)cool
+亮	liàng	to be sunny, to be bright
+輛	liàng	measure word for any conveyance etc
+聊天(兒)	liáo tiān ér	to chat/chatting
+零	líng	zero
+留	liú	to leave (message, thing etc), to stay, to remain, to keep
+樓	lóu	floor, story
+旅遊	lǚ yóu	to travel
+綠	lǜ	to be green
+亂	luàn	to be messy
+路上	lù shàng	on the road
+麻煩	má fán	an on annoyance, troublesome
+麻煩	má fán	to be annoyed; to bother
+馬	mǎ	horse
+馬上	mǎ shàng	immediately
+慢	màn	to be slow; slowly
+毛衣	máo yī	sweater
+帽子	mào zi	hat, cap, headgear
+美	měi	to be beautiful
+美麗	měi lì	to be beautiful
+摩托車	mó tuō chē jī chē	motorcycle, motor scooter
+木頭	mù tóu	wood, log, timber
+哪	nǎ	which
+那邊	nà biān	there, over there
+那麼(樣)	nà me yàng	well, in that case
+奶奶	nǎi nai	grandma, grandmother (father's mother)
+難過	náng u ò	to be sad, to be distressed
+年紀	nián jì	age
+年輕	nián qīng	to be young
+念	niàn	to read aloud, to study
+鳥(兒)	niǎo ér	bird
+努力	nǔ lì	to make great effort, try hard
+暖和	nuǎn huo	to be warm
+爬	pá	to climb, to crawl
+爬山	pá shān	to climb a mountain, to hike on hills
+怕	pà	to fear
+拍	pāi	to clap, beat, pat
+盤	pán	container measure word for the contents of a plate
+盤子	pán zi	plate
+旁邊(兒)	páng biān ér	side, by the side of, near by
+胖	pàng	to be fat
+跑	pǎo	to run
+片	piàn	partial measure word for thin, flat pieces of sth
+蘋果	píng guǒ	apple
+瓶子	píng zi	bottle
+破	pò	to be broken
+奇怪	qí guài	to be strange, to be queer, to be unusual
+汽水	qì shuǐ	soda pop, carbonated drink
+起	qǐ	to stand up, get up, to lift, to rise
+起來	qǐ lái	to stand up, to rise
+汽車	qì chē	automobile, car
+鉛筆	qiān bǐ	pencil
+前天	qián tiān	the day before yesterday
+牆	qiáng	wall
+橋	qiáo	bridge
+巧克力	qiǎo kè lì	chocolate
+親	qīn	to kiss
+輕	qīng	to be light
+清楚	qīng chǔ	to be clear
+晴天	qíng tiān	clear day, sunny day
+請客	qǐng kè	to host, to invite, to treat sb (to dinner etc)
+慶祝	qìng zhù	to celebrate
+全部	quán bù	all, whole
+裙子	qún zi	skirt
+然後	rán hòu	afterwards, then
+讓	ràng	used in a passive sentence structure to introduce the agent; to let, to allow, to permit, to make
+認為	rèn wéi	to believe that, consider that
+認真	rèn zhēn	to be conscientious, earnest, serious
+日	rì	date
+日子	rì zi	days
+如果	rú guǒ	if, in case, in the event of
+森林	sēn lín	forest
+沙發	shā fā	sofa
+上來	shàng lái	to come up; up
+上去	shàng qù	to go up
+上學	shàng xué	to attend school, to be at school
+生活	shēng huó	life
+生活	shēng huó	to live
+生氣	shēng qì	to be angry; to take offense
+聲音	shēng yīn	sound, voice
+事	shì	affair, work
+試	shì	to try
+市場	shì chǎng	market
+世界	shì jiè	the world
+事情	shì qíng	affair; sth to do, a matter, event
+石頭	shí tóu	stone
+食物	shí wù	food, edibles
+手套	shǒu tào	gloves, mittens
+瘦	shòu	to be thin
+書桌	shū zhuō	desk
+數	shǔ	to count
+刷牙	shuā yá	to brush ones teeth
+睡	shuì	to sleep
+酸	suān	to be sour
+雖然	suī rán	though, although
+隨便	suí biàn	whatever, wherever, whenever, do as one please
+所有	suǒ yǒu	all
+談	tán	to talk about
+湯	tāng	soup
+湯匙	tāng chí	soup spoon
+討厭	tǎo yàn	to dislike, to loathe, to hate
+套	tào	collective measure word for a group of things used togather
+疼	téng	to be ache, to be in pain, to be sore
+天天	tiān tiān	every day, daily
+甜	tián	to be sweat
+條	tiáo	①Individual measure word for insects or animals; ②Individual measure word for long, narrow things; ③Individual measure word for natural things, such as mountains, rivers etc
+跳	tiào	to jump, to palpitate, to skip(over
+聽見	tīng jiàn	to hear
+聽說	tīng shuō	hear it said
+停	tíng	to stop
+停車	tíng chē	to park the car
+通知	tōng zhī	information
+通知	tōng zhī	to inform, to notify
+偷	tōu	to steal, to burglarize
+頭髮	tóu fǎ	hair (on the human head)
+推	tuī	to push forward
+腿	tuǐ	leg
+外套	wài tào	overcoat
+危險	wéi xiǎn	to be dangerous, perilous
+味道	wèi dào	taste, flavor, smell, odor
+無聊	wú liáo	to be bored; to be boring and uninteresting; to be a nuisance; to be nonsensical
+西瓜	xī guā	watermelon
+希望	xī wàng	to hope, to wish
+習慣	xí guàn	habit
+需要	xū yào	to need, to demand
+許多	xǔ duō	many, a lot of
+下來	xià lái	to come down from a higher place
+下去	xià qù	to go down; descend
+下雪	xià xuě	to snow
+香	xiāng	to be scented, to be fragrant
+鄉下	xiāng xià	countryside
+相信	xiāng xìn	to trust
+箱子	xiāng zi	box, trunk, case
+向	xiàng	rep to, towards
+消息	xiāo xí	news, information
+小說	xiǎo shuō	novel, short story
+小偷	xiǎo tōu	thief, burglar
+小學	xiǎo xué	elementary school
+笑	xiào	to smile, to laugh, to laugh at
+笑話	xiào huà	joke
+校長	xiào zhǎng	principal/head of a school, head-master
+心	xīn	heart
+辛苦	xīn kǔ	to be hard, toilsome, painstaking
+新聞	xīn wén	news
+星星	xīng xīng	stars
+興趣	xìng qù	interest
+學習	xué xí	to study; to learn
+雪	xuě	snow
+牙刷	yá shuā	toothbrush
+顏色	yán sè	color
+眼鏡	yǎn jìng	glasses, spectacles
+鑰匙	yào shi	key
+要是	yào shì	if
+羊	yáng	sheep, goat
+樣子	yàng zi	appearance, shape, model, pattern
+也許	yě xǔ	perhaps, maybe, might
+爺爺	yé ye	grandpa, grandfather (father's father); a respectful form of address for an old man
+一半(兒)	yí bàn ér	half, in part
+一邊	yī biān	at the same time, simultaneously; on the one/other hand
+一會兒	yī huì r	a moment, a short while
+飲料	yǐn liào	soft drink, beverage
+陰天	yīn tiān	overcast sky, cloudy day
+應該	yīng gāi	should, ought to
+永遠	yǒng yuǎn	always, forever
+有趣	yǒu qù	interesting, fascinating, amusing
+有用	yǒu yòng	to be useful
+又	yòu	and, in addition
+雨	yǔ	rain
+圓	yuán	to be round, to be circular
+原來	yuán lái	originally, formerly
+院(子)	yuàn zi	yard
+願意	yuàn yì	to be willing
+約	yuē	to make an appointment
+越來越	yuè lái yuè	more and more...
+月亮	yuè liàng	moon
+語法	yǔ fǎ	grammar
+語言	yǔ yán	language
+雲	yún	cloud
+髒	zāng	to be dirty
+炸雞	zhá jī	fried chicken
+張	zhāng	individual measure word for the mouth or face of a person or animal
+著急	zhāo jí	to be nervous, anxious
+著	zhe	a verbal suffix, indicating the action or the state is continuing
+這邊	zhè biān	this side, here
+這麼(樣)	zhè me yàng	so, like this
+真	zhēn	really, truly, indeed
+真	zhēn	to be real, true
+正在	zhèng zài	indicating an action in progress
+枝	zhī	individual measure word for flowers and grass
+隻	zhī	①measure word for the one of two things of the same kind; ②measure word for one of the ymetrical limbs or organs of people or animals
+只	zhǐ	only
+只好	zhǐ hǎo	cannot but, have to
+中間	zhōng jiān	between, among, in the middle of
+鐘頭	zhōng tóu	hour
+中心	zhōng xīn	center, heart, central point
+種	zhǒng	collective measure word for people or things of the same kind
+種	zhòng	to plant, cultivate, sow
+豬	zhū	pig
+煮	zhǔ	to boil, to cook
+祝	zhù	to wish (sb good health, good luck etc), to offer good wishes
+裝	zhuāng	to fill, to load
+準備	zhǔn bèi	to prepare, to intend
+注意	zhù yì	to pay attention to, to take notice of
+字	zì	character
+總是	zǒng shì	always, without exception
+租	zū	to rent
+嘴巴	zuǐ bā	mouth
+做菜	zuò cài	to cook
+作業	zuò yè	homework

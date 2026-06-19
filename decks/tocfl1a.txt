@@ -1,0 +1,512 @@
+#separator:tab
+#html:false
+# TOCFL Band A · Level 1 · 入門級 (A1)
+# Regenerate: python scripts/build-tocfl-deck.py
+# field 1 = character, field 2 = pinyin, field 3 = English meaning
+啊	ā	ah, an exclamation
+愛	ài	to love
+安靜	ān jìng	to be quiet, calm, peaceful
+吧	ba	question particle, implying probability/sentence suffix, indicating a request
+八	bā	eight
+把	bǎ	indicating pre-verbal object as thing dealt with by the action
+爸爸	bà ba	father
+百	bǎi	hundred
+百貨公司	bǎi huò gōng sī	department store
+白色	bái sè	white
+班	bān	measure word for a group of organized people
+班	bān	class
+搬	bān	to move
+半	bàn	half
+幫	bāng	to help, to assist
+辦公室	bàng ō n g shì	office
+棒球	bàng qiú	baseball
+包子	bāo zi	steamed stuffed bun
+報紙	bào zhǐ	newspaper
+杯	bēi	a cup of
+被	bèi	a passive voice indicator
+北(邊)	běi biān	north
+杯子	bēi zi	cup, glass
+本	běn	individual measure word for books or magazines etc
+本子	běn zi	book, notebook, edition
+比	bǐ	to compare; compared to, than
+筆	bǐ	pen
+別的	bié de	some other, an additional or a different one
+比較	bǐ jiào	comparatively
+比賽	bǐ sài	competition, contest, match
+比賽	bǐ sài	to compete in a game/activity/match
+不客氣	bù kè qì	you're welcome
+不	bù	don't
+不好意思	bù hǎo yì sī	to feel embarrassed; to be ill at ease
+才	cái	indicate that an action happened later than expacted
+菜	cài	food, cuisine
+參加	cān jiā	to attend, to participate, to take part in
+餐廳	cān tīng fàng u ǎn ér	restaurant
+茶	chá	tea
+長	cháng	to be long, not short
+常常	cháng cháng	often, usually, generally
+唱歌(兒)	chàng gē ér	sing
+吵	chǎo	to make a noise, to disturb, to quarrel/to be noisy
+車(子)	chē zi	car, vehicle
+車站	chē zhàn	station
+成績	chéng jī	grade (at school), academic record, achievement
+吃	chī	to eat
+吃飽	chī bǎo	satiate; full
+吃飯	chī fàn	to eat, to have a meal
+穿	chuān	to wear, to put on
+船(兒)	chuán ér	ship, boat
+窗	chuāng	window
+床	chuáng	bed
+廚房	chú fáng	kitchen
+出國	chū guó	go abroad (from one's own country)
+出來	chū lái	to come out
+出去	chū qù	to go out, to leave
+春天	chūn tiān	spring, springtime
+次	cì	measure word for the number of repetitions in a given period of time
+從	cóng	from
+錯	cuò	to be wrong
+打	dǎ	to hit, to beat, to strike
+打電話	dǎ diàn huà	make a telephone call
+打開	dǎ kāi	to open up
+大	dà	to be big, to be large
+大家	dà jiā	everyone
+大樓	dà lóu	multi-storied building
+蛋糕	dàng āo	cake
+當然	dāng rán	certainly, of course
+到	dào	①to reach, to arrive; ②up to
+大學	dà xué	university
+的	de	possessive or modifying particle
+得	dé	a particle used between a verb or adjective and its complement to indicate manner or degree
+等	děng	to wait
+第	dì	a prefix for ordinal numbers
+點(鐘)	diǎn zhōng	o'clock
+電話	diàn huà	telephone, call
+電腦	diàn nǎo	computer
+電視(機)	diàn shì jī	television set
+電影	diàn yǐng	movie
+電影院	diàn yǐng yuàn	cinema, movie(house)
+弟弟	dì dì	younger brother
+地方	dì fāng	location, place
+地上	dì shàng	on the ground, floor
+地圖	dì tú	map
+東(邊)	dōng biān	east
+冬天	dōng tiān	winter, wintertime
+東西	dōng xī	thing
+懂	dǒng	to understand
+都	dōu	all, both
+對	duì	to be correct, right
+對不起	duì bù qǐ	I'm sorry; excuse me
+對面	duì miàn	the other side, place across from
+多	duō	more than required
+多	duō	many, much, more
+多少	duō shǎo	how much, how many
+肚子	dù zǐ	stomach, belly, abdomen
+餓	è	to be hungry
+二	èr	two
+兒子	ér zi	son
+飯	fàn	food, meal, rice
+放	fàng	to put
+方便	fāng biàn	to be convenient
+房間	fáng jiān	room
+房子	fáng zi	house
+非常	fēi cháng	very, extremely
+飛機	fēi jī	airplane
+(飛)機場	fēi jī chǎng	airport
+分(鐘)	fēn zhōng	minute
+封	fēng	measure word for letters, telegrams etc
+風	fēng	wind
+風景	fēng jǐng	scenery, landscape
+附近	fù jìn	nearby
+乾淨	gān jìng	to be clean
+感冒	gǎn mào	to have a cold; cold, flu
+高	gāo	to be tall, to be high
+高興	gāo xìng	to be happy
+告訴	gào sù	to tell, to inform
+個	gè	individual measure word for persons and material things
+哥哥	gē gē	elder brother
+給	gěi	to give
+跟	gēn	and
+更	gèng	even more, still more
+公共汽車(公車)	gōng gòng qì chē gōng chē	bus
+功課	gōng kè	schoolwork, homework
+公司	gōng sī	company
+公寓	gōng yù	apartment building
+公園	gōng yuán	park
+工作	gōng zuò	work
+狗	gǒu	dog
+關	guān	to close, to shut; to turn off
+貴	guì	to be expensive
+過	guò	a suffix indicating completion of an action, or completion of an action as an experience
+過	guò	to pass
+國家	guó jiā	nation, country
+孩子	hái zi	child
+海邊	hǎi biān	seaside, beach
+還是	hái shì	or
+寒假	hán jià	winter vacation
+好	hǎo	very, quite
+好	hǎo	to be good
+好吃	hǎo chī	to be fond of eating
+好像	hǎo xiàng	to seem, to be likely, to be like
+好玩(兒)	hǎo wán ér	to be interesting, to be full of fun
+號	hào	measure word for numbers and dates
+號碼	hào mǎ	number
+喝	hē	to drink
+和	hé	and
+很	hěn	very, quite
+紅色	hóng sè	red
+後(面)	hòu miàn	back, behind
+花(兒)	huā ér	flower
+畫	huà	drawings, pictures
+畫(畫)	huà huà	to draw(picture)
+壞	huài	to be bad
+換	huàn	to change
+黃色	huáng sè	yellow
+歡迎	huān yíng	to welcome
+華語	Huá yǔ Huá wén	Chinese language
+回家	huí jiā	to return home
+回來	huí lái	to come back
+回去	huí qù	to go back
+會	huì	can, to be able to, to be good at, to be skillful in
+活動	huó dòng	activity
+火車	huǒ chē	train
+幾	jǐ	a few, several; how many
+寄	jì	to mail
+加	jiā	to add to
+家	jiā	home, family
+家人	jiā rén	family members
+間	jiān	container measure word for houses or other buildings
+件	jiàn	individual measure word for clothes etc
+健康	jiàn kāng	to be healthy
+見面	jiàn miàn	to meet sb, to see sb
+腳	jiǎo	foot
+腳踏車	jiǎo tà chē zì xíng chē	bicycle
+叫	jiào	to be called
+教室	jiào shì	classroom
+記得	jì dé	to remember
+接	jiē	to fetch, to pick up(phone)
+結束	jié shù	to end, close, conclude
+介紹	jiè shào	to introduce
+今年	jīn nián	this year
+今天	jīn tiān	today
+近	jìn	to be near
+進步	jìn bù	to progress; to improve
+進來	jìn lái	to come in
+進去	jìn qù	to go in
+九	jiǔ	nine
+久	jiǔ	to be a long time
+酒	jiǔ	wine or liquor
+就	jiù	just, exactly; then, right away; (indicating immediacy)
+舊	jiù	to be old, to be used
+覺得	jué dé	to feel, to think, to consider
+咖啡	kā fēi	coffee
+開	kāi	to drive, to open, to turn on
+開車	kāi chē	to drive a car
+開始	kāi shǐ	to start, to begin
+看	kàn	to watch, to read, to look at
+考試	kǎo shì	test, exam
+考試	kǎo shì	to take a test
+卡片	kǎ piàn	card
+可樂	kě lè	cola
+可能	kěn éng	probably, maybe
+可是	kě shì	but, however
+可以	kě yǐ	can, may, be permitted
+課	kè	subject, course, class
+客廳	kè tīng	living room
+褲子	kù zi	trousers, pants
+快	kuài	quickly
+快	kuài	to be fast
+塊	kuài	partial measure word for lumps of foodstuff; individual measure word for currency
+快樂	kuài lè	to be happy
+來	lái	to come
+籃球	lán qiú	basketball
+老師	lǎo shī	teacher
+了	le	indicates the completion of an action
+了	le	indicates new situation
+累	lèi	to be tired
+冷	lěng	to be cold
+冷氣(機)	lěng qì jī	air conditioning; air conditioner
+離	lí	to be away from, apart from, separated from
+離開	lí kāi	to leave
+裡面	lǐ miàn	inside
+兩	liǎng	two
+六	liù	six
+樓	lóu	measure word for floor or story
+樓上	lóu shàng	upstairs
+樓下	lóu xià	downstairs
+路	lù	road
+路口	lù kǒu	crossway, junction, intersection
+旅行	lǚ xíng	to travel, to take a trip
+綠色	lǜ sè	green
+嗎	ma	a question particle
+媽媽	mā ma	mother
+買	mǎi	to buy
+賣	mài	to sell
+忙	máng	to be busy
+貓	māo	cat
+毛	máo	one-tenth of a yuan
+每	měi	every
+美國	Měi guó	USA, American
+沒	méi	not (have)
+沒(有)	méi yǒu	used to ask if an action has been completed
+沒關係	méi guān xì	no problem, never mind, it doesn' t matter
+沒問題	méi wèn tí	no problem
+妹妹	mèi mei	younger sister
+門	mén	door, gate
+門口	mén kǒu	entrance, doorway
+麵	miàn	noodle
+麵包	miàn bāo	bread
+明年	míng nián	next year
+明天	míng tiān	tomorrow
+名字	míng zì	full name, given name
+拿	ná	to bring, to carry (in one's, or with one's hand)
+哪裡	nǎ lǐ ér	where
+那裡	nà lǐ ér	there, over there
+那些	nà xiē	those
+難	nán	to be difficult
+南(邊)	nán biān	south
+男孩(子	nán hái zi ér	boy
+男生	nán shēng	boy
+呢	ne	a question particle/a particle indicating the situation or state of affairs is being sustain
+能	néng	can or to be capable of
+你	nǐ	you
+你們	nǐ men	you(plural)
+年	nián	a year of
+您	nín	polite form of address you
+牛奶	niú nǎi	cow's milk
+女兒	nǚ ' ér	daughter
+女孩(子	nǚ hái zi ér	girl
+女生	nǚ shēng	girl
+跑步	pǎo bù	jogging
+朋友	péng yǒu	friend
+便宜	pián yi	to be cheap
+票	piào	ticket
+漂亮	piāo liàng	to be beautiful, to be pretty
+皮包	pí bāo	handbag, briefcase
+瓶	píng	container measure word for the contents of a bottle
+七	qī	seven
+騎	qí	to ride; to drive (a bicycle, motorcycle, horse etc)
+千	qiān	thousand
+錢	qián	money
+前(面)	qián miàn	in front
+錢包	qián bāo	wallet, purse, pouch
+起床	qǐ chuáng	to get up
+請	qǐng	to please, to invite
+請問	qǐng wèn	excuse me, may I ask?
+球	qiú	ball
+秋天	qiū tiān	autumn, fall
+去	qù	to go
+去年	qùn i án	last year
+熱	rè	to be hot
+熱狗	rè gǒu	hot dog
+熱鬧	rèn ào	to be lively, to be fun, to be bustling with noise
+人	rén	person, people
+認識	rèn shi	to recognize, to realize
+日本	Rì běn	Japan, Japanese
+容易	róng yì	to be easy
+肉	ròu	meat
+三	sān	three
+傘	sǎn	umbrella
+山	shān	mountain
+上	shàng	to ascend; get on/into (car/train/etc).
+上(面)	shàng miàn	above, on top of
+上班	shàng bān	to begin work, to start work, to go to work
+商店	shāng diàn	shop, store
+上課	shàng kè	to go to class, to attend classs
+上網	shàng wǎng	internet access
+上午	shàng wǔ	before noon, morning
+少	shǎo	few, less
+誰	shé i	who, whom
+生病	shēng bìng	to become ill, to be sick
+生日	shēng rì	birthday
+身體	shēn tǐ	body
+什麼	shén me	what
+十	shí	ten
+時候	shí hòu	time
+時間	shí jiān	time
+時鐘	shí zhōng	clock
+是	shì	to be (am, are, is)
+收到	shōu dào	to receive, get, obtain
+手	shǒu	hand
+手機	shǒu jī	cell phone; mobile phone
+書	shū	book
+書包	shū bāo	school-bag
+舒服	shū fú	to be comfortable
+暑假	shǔ jià	summer vacation
+樹	shù	tree
+雙	shuāng	measure word for two things of the same kind to be used together
+水	shuǐ	water
+水果	shuǐ guǒ	fruit
+睡覺	shuì jiào	to sleep
+說	shuō	to speak, to say
+說話	shuō huà	to speak, to say, to talk
+四	sì	four
+宿舍	sù shè	dormitory
+歲	suì	measure word for the age of people or animals
+算	suàn	to culculate, to count
+送	sòng	to escort, to deliver, to send off, to present
+所以	suǒ yǐ	therefore, so
+他	tā tā	he, she
+他們	tā men tā men	they, them
+太	tài	too
+太太	tài tài	Mrs, wife
+糖	táng	candy, sugar
+特別	tè bié	to be special
+踢	tī	to kick
+天	tiān	day
+天	tiān	day
+天氣	tiān qì	weather
+跳舞	tiào wǔ	to dance
+聽	tīng	to listen
+痛	tòng	to be painful
+同學	tóng xué	classmate
+頭	tóu	head
+圖片	tú piàn	picture
+圖書館	tú shū guǎn	library
+外面	wài miàn	outside
+完	wán	to finish, to complete(sth)
+玩(兒)	wán ér	to play, to enjoy
+碗	wǎn	bowl
+碗	wǎn	measure word for servings of food
+晚安	wǎn ' ān	good night
+晚餐	wǎn cān wǎn fàn	dinner, supper
+晚上	wǎn shàng	evening, night
+往	wǎng	to go toward
+網球	wǎng qiú	tennis, tennis ball
+網站	wǎng zhàn	website(s)
+忘	wàng	to forget
+喂	wéi	a common telephone or intercom greeting "hello"
+位	wèi	individual measure word for people
+為什麼	wèi shén me	why
+問	wèn	to ask
+問題	wèn tí	problem/question
+我	wǒ	I
+我們	wǒ men	we, us
+五	wǔ	five
+午餐	wǔ cān wǔ fàn	lunch
+洗	xǐ	to wash
+下	xià	to descend; get off/out of (car/train/etc)
+西(邊)	xī biān	west
+下(面)	xià miàn	below
+下班	xià bān	to get off from work, to go off work
+下課	xià kè	to get out of class, end of class
+夏天	xià tiān	summer, summertime
+下午	xià wǔ	afternoon
+下雨	xià yǔ	to rain
+先	xiān	first, in advance, before
+先生	xiān shēng	mister, Mr, gentleman, sir, husband
+現在	xiàn zài	now, right now
+想	xiǎng	to think, to miss
+像	xiàng	to be alike, to be like; to resemble
+小	xiǎo	to be small
+小孩(子	xiǎo hái zi ér	child
+小姐	xiǎo jiě	Miss
+小時	xiǎo shí	hour
+小心	xiǎo xīn	to be careful
+鞋子	xié zi	shoes
+寫	xiě	to write
+寫字	xiě zì	to write
+謝謝	xiè xie	to thanks, to thank you
+喜歡	xǐ huān	to like
+洗手間	xǐ shǒu jiān cè suǒ	toilet
+洗衣機	xǐ yī jī	clothes washing machine
+洗澡	xǐ zǎo	to take a bath or shower
+新	xīn	to be new
+新年	xīn nián	new year
+信	xìn	letter, mail
+信封	xìn fēng	envelope
+星期	xīng qī	week
+星期天	Xīng qí tiān Xīng qí rì	Sunday
+行	xíng	to be OK, to be permitted
+姓	xìng	surname, family name
+休息	xiū xí	to rest
+學	xué	to study
+學生	xué shēng	student
+學校	xué xiào	school
+眼睛	yǎn jīng	eyes
+要	yào	to want
+藥	yào	medicine
+也	yě	also
+一	yī	one
+醫生	yī shēng	doctor
+一點兒	yī diǎn r	some
+一定	yī dìng	certainly, indeed, surely
+衣服	yī fú	clothes, clothing
+醫院	yī yuàn	hospital
+一共	yī gòng	altogether
+以後	yǐ hòu	after, afterwards; later
+已經	yǐ jīng	already
+以前	yǐ qián	before; previously
+椅子	yǐ zi	chair
+一起	yī qǐ	together
+一些	yī xiē	some
+一樣	yī yàng	to be the same, identical
+一直	yī zhí	straight; constantly, continuously
+意思	yì sī	meaning, idea, definition
+銀行	yín háng	bank
+因為	yīn wèi	because
+音樂	yīn yuè	music
+英國	Yīng guó	UK, United Kingdom
+英文	Yīng wén	English language
+郵局	yóu jú	post office
+郵票	yóu piào	postage stamp
+游泳	yóu yǒng	to swim
+游泳池	yóu yǒng chí	swimming pool
+有	yǒu	to have; there is, there are
+有點(兒)	yǒu diǎn ér	somewhat, rather, a bit
+有空(兒)	yǒu kòng ér	to have free time, to be free
+有時候	yǒu shí hòu	sometimes, now and then
+有意思	yǒu yì sī	to be interesting
+又	yòu	again
+右(邊)	yòu biān	right(side)
+用	yòng	to use
+魚(兒)	yú ér	fish
+元	yuán	standard monetary unit in China
+遠	yuǎn	to be far from
+月	yuè	month
+運動	yùn dòng	sport, exercise
+運動	yùn dòng	to exercise
+雨天	yǔ tiān	rainy day
+再	zài	again, then
+在	zài	indicating an action in progress
+在	zài	in, at, on etc
+再見	zài jiàn	Good-bye
+早	zǎo	to be early
+早餐	zǎo cān zǎo fàn	breakfast
+早上	zǎo shàng	morning
+怎麼	zěn me	how
+怎麼辦	zěn me bàn	what now ?
+怎麼了	zěn me le	what's wrong?
+怎麼樣	zěn me yàng	how about...? how's everything ?
+站	zhàn	(train, bus) station
+站	zhàn	to stand
+張	zhāng	individual measure word for flat things, or things with a surface
+找	zhǎo	to search out; to find
+找到	zhǎo dào	to have found
+照片	zhào piàn	photo, picture
+照相	zhào xiàng	to take picture/photograph
+照相機	zhào xiàng jī	camera
+這裡	zhè lǐ ér	here
+這些	zhè xiē	these
+紙	zhǐ	paper
+枝	zhī	individual measure word for rod-shaped article
+隻	zhī	individual measure word for insects or animals
+知道	zhī dào	to know
+中國	Zhōng guó	China, Chinese
+中文	Zhōng wén	Chinese language
+中午	zhōng wǔ	noon
+重要	zhòng yào	to be important, to be vital
+週末	zhōu mò	weekend
+住	zhù	to stay, to live
+桌(子)	zhuō zi	table
+自己	zì jǐ	oneself, by oneself
+姊姊	zǐ zi jiě jie	elder sister
+走	zǒu	to walk
+走路	zǒu lù	to walk (in the road or street)
+足球	zú qiú	football, soccer
+最	zuì	the most, -est
+最近	zuì jìn	recently, lately
+昨天	zuó tiān	yesterday
+左(邊)	zuǒ biān	left(side)
+坐	zuò	to sit; travel by (plane/etc)
+做	zuò	to do, to make
+做飯	zuò fàn	to cook food
+做完	zuò wán	done

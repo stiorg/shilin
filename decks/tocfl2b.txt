@@ -1,0 +1,3460 @@
+#separator:tab
+#html:false
+# TOCFL Band B · Level 4 · 高階級 (B2)
+# Regenerate: python scripts/build-tocfl-deck.py
+# field 1 = character, field 2 = pinyin, field 3 = English meaning
+唉	āi	inj.: mild exclamation/sigh, Gosh!; My!
+愛好	ài hào	hobby, interest
+愛好	ài hào	love, like, be fond of, be keen on
+愛護	ài hù	cherish, treasure, take good care of
+愛情	ài qíng	love (between man and woman)
+愛人	ài rén	lover, sweetheart
+愛惜	ài xí	treasure
+愛心	ài xīn	mercy, benevolence, pity
+哎呀	āi ya	inj.: of wonder/admiration/shock
+哎喲	āi yāo	inj.: of surprise/pain
+安定	ān dìng	stabilize
+安慰	ān wèi	comfort, console
+安心	ān xīn	feel at ease, be relieved, keep one's mind on sth.
+按	àn	press, push down
+按	àn	according to, in accordance with
+暗	àn	dark, dim, dull, hidden, secret, unclear
+按時	àn shí	on time/schedule
+按照	àn zhào	according to, in the light of, on the basis of
+暗中	àn zhōng	in secret, surreptitiously, in the dark
+骯髒	āng zāng	dirty
+熬	áo	boil, stew, decoct, endure, hold out, stay up late or the whole night
+拔	bá	uproot, pull out, draw, lift
+把	bǎ	①measure word for a quantity of sth that can be held in one hand; ②measure word for an action done with the hand to indicate its quickness.
+把握	bǎ wò	assurance, certainty
+把握	bǎ wò	grasp firmly
+罷工	bà gōng	go on strike
+罷了	bà le	particle: elucidating a previous proposition so as to diminish its effect
+白(白)	bái bái	in vain, without results
+擺	bǎi	①sway, swing, wave; ②place, put, arrange; ③set up for show; lay bare, display, assume
+擺脫	bǎi tuō	break away from, cast away (old ideas etc), get rid of, to break out(of)
+敗	bài	lose, be defeated, beat, ruin
+拜	bài	do obeisance, salute, make courtesy call
+拜訪	bài fǎng	pay visit, call on
+拜年	bài nián	pay New Year's call, wish sb. Happy New Year
+拜託	bài tuō	request sb. to do sth.
+般	bān	sort, kind, way
+班	bān	①measure word for scheduled means of transport; ②measure word for the work in shifts.
+班機	bān jī	airliner, regular air service, scheduled flight
+搬運	bān yùn	move, transport
+班長	bān zhǎng	class monitor, squad leader, (work)team leader
+拌	bàn	mix
+辦公	bàng ō n g	handle official business, work (usu. in an office)
+辦理	bàn lǐ	handle, conduct, transact
+半路	bàn lù	halfway, midway
+辦事	bàn shì	handle affairs, work
+半數	bàn shù	half
+扮演	bàn yǎn	play part of
+半夜	bàn yè	midnight, (in)the middle of the night, half a night
+傍晚	bāng wǎn	dusk, nightfall
+榜樣	bǎng yàng	example, model
+磅	bàng	pound
+棒	bàng	measure word for hitting sth with a stick-like stuff.
+棒子	bàng zi	stick, club, cudgel
+包括	bāo kuò	include, consist of, comprise, incorporate
+包裹	bāo guǒ	bundle, parcel, package
+包含	bāo hán	contain, embody, include
+包裝	bāo zhuāng	pack, dress up
+包裝	bāo zhuāng	packing, packaging, package
+保	bǎo	keep, protect
+寶寶	bǎo bǎo	precious/darling baby
+寶貝	bǎo bèi	treasured object, treasure, darling, baby, cowry
+保持	bǎo chí	keep, maintain, preserve
+保存	bǎo cún	preserve, conserve, keep
+寶貴	bǎo guì	valuable, precious
+保護	bǎo hù	protect, safeguard
+保留	bǎo liú	continue to have, retain, hold back, reserve
+保守	bǎo shǒu	conservative
+保衛	bǎo wèi	defend, safeguard
+保險	bǎo xiǎn	insurance
+保養	bǎo yǎng	take good care of one's health, maintain, keep in good repair
+保障	bǎo zhàng	ensure, safeguard
+保障	bǎo zhàng	protection, safeguard, indemnification
+保證	bǎo zhèng	guarantee
+保證	bǎo zhèng	guarantee
+抱	bào	hold (a particular opinion or belief)
+報	bào	①report, reply; ②to hit back (at sb. or sth.), recompense
+報仇	bào chóu	revenge, avenge
+報答	bào dá	repay, requite
+報導	bào dǎo	report
+報到	bào dào	report for duty, check in, register
+報告	bào gào	report, speech, (student)term paper
+報告	bào gào	report, make known
+報警	bào jǐng	report (an incident)to the police
+暴力	bào lì	violence, force
+報名	bào míng	enter one's name, sign up
+報社	bào shè	newspaper office
+抱怨	bào yuàn	complain, grumble
+爆炸	bào zhà	explode, blow up
+暴躁	bào zào	petulant, irascible, explosive
+悲劇	bēi jù	tragedy
+悲痛	bēi tòng	grieve, sorrow, painfully sad
+背包	bēi bāo	knapsack, rucksack, field pack, shoulder bag, blanket roll
+北部	běi bù	northern part
+北方	běi fāng	north, northern part of country
+倍	bèi	times, -fold
+備	bèi	prepare, get ready, be equipped with, have
+被動	bèi dòng	passive
+背後	bèi hòu	behind, in the rear, behind/at the back
+背景	bèi jǐng	background, backdrop
+背面	bèi miàn	the reverse side, the wrong side, rear, the back
+輩子	bèi zi	all one's life, lifetime
+奔	bēn	go straight towards, head for, approach, be getting close to
+奔跑	bēn pǎo	run
+本	běn	[formal] this, one's own
+本來	běn lái	original
+本領	běn lǐng	capability, skill, ability
+本人	běn rén	I, me, myself, oneself, in person
+本土	běn tǔ	one's native country, metropolitan territory
+笨重	bèn zhòng	awkward
+逼	bī	force, press for, press on towards
+比	bǐ	gesticulate
+筆	bǐ	measure word for: ①handwriting or painting; ②a sum of money or an account etc
+彼此	bǐ cǐ	each other, one another
+比方	bǐ fāng	for instance
+比方	bǐ fāng	analogy, instance, supposition, illustration by example
+比方說	bǐ fāng shuō	for instance
+筆記	bǐ jì	notes, short sketches
+比較	bǐ jiào	contrast, comparasion
+比較	bǐ jiào	compare, contrast
+比例	bǐ lì	proportion, scale
+比如	bǐ rú	for example
+比如說	bǐ rú shuō	for instance
+筆試	bǐ shì	take a written test
+閉	bì	shut, close, stop up, obstruct
+畢竟	bì jìng	after all, when all is said and done
+避免	bì miǎn	avoid, refrain from, avert
+必須	bì xū	necessary, required
+必要	bì yào	necessary, indispensable
+必要	bì yào	need
+編	biān	weave, plait, organize, group, edit, compile, write, compose, fabricate
+邊	biān	two or more bi1n used before verbs to express the simultaneous progression or development of two or more actions
+鞭炮	biān pào	firecrackers, string of small firecrackers
+扁	biǎn	flat
+便	biàn	then, in that case, as early/little as, as soon as
+變動	biàn dòng	change, alternation
+變動	biàn dòng	change, fluctuate
+變更	biàn gēng	change, modify
+便利	biàn lì	facilitate
+便條	biàn tiáo	[informal] note
+標題	biāo tí	title, heading, headline, caption
+標誌	biāo zhì	sign, mark, symbol
+標準	biāo zhǔn	standard
+標準	biāo zhǔn	standard, criterion
+表達	biǎo dá	express, convey ,voice
+表弟	biǎo dì	younger male cousin of different surname
+表哥	biǎo gē	older male cousin of different surname
+表格	biǎo gé	form, table
+表妹	biǎo mèi	younger female cousin of different surname
+表面	biǎo miàn	surface, face, outside, appearance
+表情	biǎo qíng	a facial expression, countenance
+表示	biǎo shì	show, express, indicate
+表揚	biǎo yáng	praise, commend
+冰	bīng	feel cold, put on ice
+冰淇淋	bīng qí lín	ice cream
+丙	bǐng	third, third of the ten Heavenly Stems
+並	bìng	[formal] and
+並	bìng	actually, truly
+病毒	bìng dú	virus
+病房	bìng fáng	hospital ward, sickroom
+並且	bìng qiě	and, besides, moreover
+撥	bō	turn, stir, poke, move with hand/foot/stick/etc
+菠菜	bō cài	spinach
+波動	bō dòng	undulate, fluctuate
+玻璃	bō lí	glass
+薄	bó	thin, flimsy, weak, light, lacking in warmth, cold, infertile
+伯伯	bó bo	father's elder brother, uncle
+伯父	bó fù	father's older brother, uncle (address to male of father's generation)
+伯母	bó mǔ	wife of father's elder brother, aunt
+薄弱	bó ruò	frail, weak
+博士	bó shì	Ph.D., court academician, master of any trade/craft
+博物館	bó wù guǎn	museum
+脖子	bó zi	neck
+播	bò	broadcast
+不大	bù dà	not very, not too
+不當	bù dàng	unsuitable, inappropriate
+不到	bù dào	be less than
+不斷	bù duàn	unceasing, continuous
+不斷	bù duàn	unceasingly, continuously
+不顧	bù gù	ignore
+不過	bù guò	only, merely
+不過	bù guò	no more than
+不見得	bù jiàn dé	not necessarily/likely
+不利	bù lì	unfavorable, detrimental, unsuccessful
+不論	bù lùn	no matter how/who/what/etc
+不幸	bù xìng	unfortunate
+不用說	bù yòng shuō	it goes without saying; needless to say; as a matter of course
+不再	bù zài	no more/longer
+捕	bǔ	catch, seize, arrest
+補	bǔ	mend, patch, supplementary
+補償	bǔ cháng	compensate
+補充	bǔ chōng	replenish, supplement
+補課	bǔ kè	give students an special class or tutori, supplement a lesson, make up a missed lesson
+補習	bǔ xí	take lessons after school/work
+補助	bǔ zhù	subsidization
+補助	bǔ zhù	subsidize
+步	bù	stages in a process
+不安	bù ' ān	be anxious, be uneasy, be restless
+不成	bù chéng	cannot, should not, must not
+不得不	bù dé bù	cannot but, have to
+不得已	bù dé yǐ	have no alternative
+部隊	bù duì	army, troops
+不敢當	bù gǎn dāng	not be deserving of
+布	bù gào	notice, bulletin
+布	bù gào lán	bulletin board
+不合	bù hé	conflict with (opinioon, rules etc)
+不僅	bù jǐn	not only
+不良	bù liáng	bad, harmful
+不滿	bù mǎn	resentful, dissatisfied
+部門	bù mén	department, branch, classification
+不平	bù píng	dissatisfied, unfair, uneven
+不然	bù rán	otherwise, if not, or else
+不如	bù rú	it would be better to
+不如	bù rú	be unequal/inferior to
+不停	bù tíng	continuously
+不許	bù xǔ	forbid, do not permit
+不許	bù xǔ	disallow
+不宜	bù yí	be unsuitable
+不由得	bù yóu de	can't help
+部長	bù zhǎng	minister, head of a section
+不止	bù zhǐ	not be limited(to), endless
+不只	bù zhǐ	not only, not merely
+布	bù zhì	arrange, fix up, assign
+不准	bù zhǔn	disallow
+不足	bù zú	not be enough, not be worth (doing sth.), cannot, should not
+財產	cái chǎn	property
+財富	cái fù	wealth, fortune, riches
+材料	cái liào	material, data, stuff, ingredients
+才能	cái néng	ability, talent
+裁判	cái pàn	judge, referee, umpire
+踩	cǎi	step on, trample
+採	cǎi	pick, gather
+採購	cǎi gòu	purchase
+彩色	cǎi sè	colorful
+採用	cǎi yòng	select for use, employ, adopt
+參考	cān kǎo	consult, refer to
+倉庫	cāng kù	warehouse, godown, granary, treasury vault
+蠶	cán	silkworm
+慚愧	cán kuì	ashamed
+慘	cǎn	miserable, pitiful, tragic, cruel, savage
+藏	cáng	hide, conceal, store, lay by
+操場	cāo chǎng	playground, sportsground ,drill ground
+操心	cāo xīn	trouble about, take pains, worry, care, take trouble, wrack one's brains, worry about
+操作	cāo zuò	operate, manipulate
+冊	cè	volume
+測量	cè liáng	measure, survey
+策略	cè lüè	tactics
+測試	cè shì	survey, measure and test
+測驗	cè yàn	test
+測驗	cè yàn	test, quiz
+層	céng	partial measure word for: ①the storeys of a building; ②an outer covering.
+曾	céng	once, ever, before
+曾經	céng jīng	once, ever
+插	chā	insert, interpose
+差	chā	difference
+差別	chā bié	difference
+差錯	chā cuò	mistake, error, mishap
+插花	chā huā	decorate with flowers, insert/arrange flowers
+差距	chā jù	spatial difference
+插圖	chā tú	book illustrations/pictures
+差異	chā yì	difference, divergence, discrepancy, diversity
+茶館(兒)	chá guǎn er	teahouse
+茶會	chá huì	tea party
+茶葉	chá yè	tea leaves
+拆	chāi	tear open, take apart, pull down, dismantle
+產	chǎn	produced
+產量	chǎn liàng	output, yield
+產生	chǎn shēng	come into being, produce, engender, emerge
+產業	chǎn yè	estate, property, industry
+嚐	cháng	to taste
+嘗	cháng	taste, experience, come to know
+長處	cháng chù	forte, strong/good points
+長度	cháng dù	length
+長方形	cháng fāng xíng	rectangle
+長久	cháng jiǔ	for a long time, permanently
+長期	cháng qí	long period of time, long-term
+常識	cháng shì	general knowledge, common sense
+嘗	cháng shì	try
+嘗	cháng shì	attempt, try
+長途	cháng tú	long distance
+場	chǎng	measure word for the course of an event or certain action.
+場地	chǎng dì	space, place, site
+場合	chǎng hé	occasion, situation
+廠商	chǎng shāng	firm, business
+場所	chǎng suǒ	place, arena
+抄	chāo	copy, transcribe, plagiarize, lift, search and confiscate, go off with, take shortcut, fold (one's arms), grab, take up
+超出	chāo chū	exceed, go beyond, overstep
+超過	chāo guò	outstrip, surpass, exceed
+超級	chāo jí	super
+鈔票	chāo piào	bank note, paper money, bill
+超人	chāo rén	superman
+抄寫	chāo xiě	copy, transcribe
+超越	chāo yuè	exceed
+超重	chāo zhòng	be overweight, overweight
+朝	cháo	facing, towards
+潮流	cháo liú	trend
+潮溼	cháo shī	moist, damp
+炒	chǎo	stir-fry, fry
+吵架	chǎo jià	quarrel, have a row/spat
+吵鬧	chǎo nào	wrangle, kick up a row
+車禍	chē huò	traffic accident
+車票	chē piào	ticket (for train/bus)
+扯	chě	pull, tear
+徹底	chè dǐ	complete, thorough
+沉	chén	sink, keep down, lower
+陳列	chén liè	display, exhibit
+趁	chèn	while
+撐	chēng	prop up, brace, push/move with a pole, maintain, keep up
+稱	chēng	call
+乘	chéng	ride
+成	chéng	accomplish, succeed
+成	chéng	a tenth of
+成本	chéng běn	cost
+成分	chéng fèn	composition, component part, ingredient, class/economic status
+成果	chéng guǒ	achievement, gain, positive result
+成交	chéng jiāo	close a deal
+成就	chéng jiù	achievement, accomplishment, success
+乘客	chéng kè	passenger
+誠懇	chéng kěn	sincere
+成立	chéng lì	found, establish
+承認	chéng rèn	admit, acknowledge, recognize, give diplomatic recognition
+成熟	chéng shú	ripe, mature
+成天	chéng tiān	all day long, all the time
+成為	chéng wéi	become, turn into
+呈現	chéng xiàn	present, appear, emerge
+程序	chéng xù	procedure, order, course, sequence, program
+誠意	chéng yì	good faith, sincerity
+成語	chéng yǔ	set phrase, idiom
+成長	chéng zhǎng	grow up, mature
+吃喝玩樂	chī hē wán lè	idle away one's time in pleasure-seeking ,eat
+吃虧	chī kuī	suffer loss, come to grief
+遲	chí	late
+遲早	chí zǎo	sooner or later
+尺	chǐ	rule, ruler, ruler-like instrument
+尺寸	chǐ cùn	dimension, measurement
+翅膀	chì bǎng	wing
+沖	chōng	pour boiling water on, rinse, flush, charge, rush, dash, clash, collide, develop(film)
+充分	chōng fèn	full, ample, abundant
+充滿	chōng mǎn	be brimming/permeated with
+充實	chōng shí	substantiate, enrich, replenish
+充足	chōng zú	adequate; sufficient; abundant; ample
+蟲(子)	chóng zi	worm, insect
+重	chóng	again, once more
+崇拜	chóng bài	worship, adore
+崇高	chóng gāo	lofty, sublime
+重新	chóng xīn	again, anew, afresh
+抽屜	chōu tì	drawer
+抽煙	chōu yān	smoke (pipe/etc)
+愁	chóu	worry, be anxious/grieved
+醜	chǒu	ugly, unsightly
+初	chū	at the beginning of, in the early part of
+初	chū	first, just
+出	chū	go/come out, exit
+出	chū	exceed, go beyond
+出版	chū bǎn	come off the press, publish, come out
+初步	chū bù	initial, preliminary, tentative
+初步	chū bù	initially, preliminarily, tentatively
+出差	chū chāi	be away on official business or on a bus, be on a business trip, be away on official business
+出產	chū chǎn	produce, manufacture
+初級	chū jí	elementary, primary
+出境	chū jìng	leave country, leave the country
+出口	chū kǒu	exit
+出門	chū mén	be away from home, go on journey, go out
+出色	chū sè	outstanding, remarkable, splendid
+出身	chū shēn	class origin, family background; one's previous experience/occupation
+出生	chū shēng	be born
+出事	chū shì	meet with mishap, have accident, meet with a mishap, have an accident
+出售	chū shòu	offer for sale, sell
+出席	chū xí	attend, be present
+出院	chū yuàn	leave hospital
+出租	chū zū	hire, let, rent
+除	chú	except
+除	chú	get rid of, eliminate, remove
+除	chú	(Math.)to divide
+儲存	chú cún	lay in/up, store, stockpile
+除非	chú fēi	only if/when, unless
+廚師	chú shī	cook, chef
+除夕	Chú xì	New Year's Eve
+儲蓄	chú xù	save, deposit
+處	chǔ	be situated in, be in a certain condition, dwell, live
+處罰	chǔ fá	punish, penalize
+處理	chǔ lǐ	handle, deal with, dispose of, process
+處	chù	①measure word for a particular landscape or location; ②measure word for a part of human body; ③Individual measure word for a quilt, padded mattress, sheet etc
+處處	chù chù	everywhere, in all respects
+傳	chuán	pass(on), hand down, impart, teach, spread, transmit
+傳播	chuán bò	disseminate, propagate, spread
+傳達	chuán dá	pass on, transmit, communicate
+傳單	chuán dān	leaflet, handbill
+幢	chuáng	individual measure word for buildings.
+床	chuáng	individual measure word for a quilt, padded mattress, sheet etc
+床單	chuáng dān	bedclothes, bedcover, counterpane, bedsheet, bedspread, bed linen
+傳染	chuán rǎn	infect, be contagious
+傳說	chuán shuō	it is said, they say
+傳說	chuán shuō	legend
+傳送	chuán sòng	transmit, deliver
+傳統	chuán tǒng	tradition
+傳統	chuán tǒng	traditional
+傳真	chuán zhēn	fax
+傳真	chuán zhēn	fax, facsimile
+窗口	chuāng kǒu	window, wicket, ticket window
+闖	chuǎng	rush, dash, charge, temper oneself (by battling difficulties)
+創造	chuàng zào	create, produce, bring about
+創作	chuàng zuò	creative work, creation
+春季	chūn jì	spring, springtime
+春假	chūn jià	spring vacation/holidays
+純	chún	pure, simple
+磁帶	cí dài	magnetic tape
+詞典	cí diǎn	dictionary
+此	cǐ	[formal] this
+此外	cǐ wài	besides, in addition, moreover
+刺	cì	thorn, splinter
+刺激	cì jī	provoking, exciting
+刺激	cì jī	stimulate, provoke, irritate, upset
+刺激	cì jī	stimulation
+次數	cì shù	number of times, frequency
+從	cóng	usually
+從不	cóng bù	never
+從此	cóng cǐ	henceforth, thereupon
+從沒	cóng méi	not yet
+從事	cóng shì	be engaged in, deal with, go in for
+從小	cóng xiǎo	from childhood, as a child
+湊	còu	gather together, pool, collect, happen by chance, take advantage of, move close to, press near
+粗	cū	wide (in diameter), thick
+催	cuī	urge, hurry, press, hasten, expedite
+粗心	cū xīn	careless
+存	cún	store, deposit(money)
+存款	cún kuǎn	deposit, bank saving
+存在	cún zài	exist, be
+促進	cù jìn	promote, accelerate
+寸	cùn	a unit of length equal to one-third decimeter
+搓	cuō	rub with hand
+錯過	cuò guò	miss, let slip
+錯字	cuò zì	wrongly written characters, misprint
+挫折	cuò zhé	frustration, setback
+搭	dā	travel by or take (a conveyance)
+答	dá	answer, reply, return (a call/etc), reciprocate
+答案	dá ' àn	answer, solution, key
+達成	dá chéng	reach (an agreement)
+達到	dá dào	achieve, reach, attain
+打	dǎ	a dozen of
+打扮	dǎ bàn	dress/make up, deck out, pose as
+打包	dǎ bāo	pack, bale, unpack, package, box, load down
+打斷	dǎ duàn	break
+打工	dǎ gōng	work part-time while studying in college/etc
+打架	dǎ jià	fight, scuffle, come to blows
+打擾	dǎ rǎo	disturb, trouble
+打算	dǎ suàn	plan
+打聽	dǎ tīng	inquire/ask about
+打仗	dǎ zhàng	wage war, fight battle
+打招呼	dǎ zhāo hū	say hello, greet sb.
+打折	dǎ zhé	tuck, sell at a discount
+打針	dǎ zhēn	give an injection, have an injection
+打字	dǎ zì	do typing work, typewritten, typewrite, type
+大半	dà bàn	more than half
+大大	dà dà	great, greatly
+大膽	dà dǎn	audacious, bold, daring
+大地	dà dì	earth, mother earth
+大都	dà dōu	for the most part, mostly
+大多數	dà duō shù	most of, the majority of
+大方	dà fāng	①generous; ②elegant and composed, natural and poised
+大哥	dà gē	eldest brother, gang leader
+大哥大	dà gē dà	portable/cellular telephone
+大會	dà huì	rally, plenary meeting, conference
+大街	dà jiē	main street
+大力	dà lì	with great exertion
+大量	dà liàng	large quantity, a great deal, considerable, mass
+大門	dà mén	main entrance/door/gate
+大腦	dàn ǎo	cerebrum
+大清早	dà qīng zǎo	very early morning
+大嫂	dà sǎo	wife of eldest brother, polite name for woman about one's own age
+大腿	dà tuǐ	thigh
+大小	dà xiǎo	size
+大型	dà xíng	large-size (machines/factories/etc)
+大意	dà yì	careless
+大有	dà yǒu	have
+大約	dà yuē	about, around, probably, likely
+大自然	dà zì rán	nature
+大眾	dà zhòng	the people/masses
+大致	dà zhì	roughly
+代	dài	take the place of
+代	dài	period, generation
+代表	dài biǎo	represent, indicate
+帶動	dài dòng	drive, spur on, bring along
+大夫	dài fū	doctor, physician
+代溝	dài gōu	generation gap
+待會(兒)	dài huǐ er	shortly, in a little while
+代價	dài jià	price, cost (of doing sth.)
+貸款	dài kuǎn	loan
+貸款	dài kuǎn	grant a loan, credit
+帶來	dài lái	bring, bring about
+代理	dài lǐ	act as agent/proxy
+帶領	dài lǐng	lead (army/party/etc), guide
+帶路	dài lù	show the way, lead way, lead the way, show way, act as a guide
+代替	dài tì	take the place of, substitute for
+待遇	dài yù	treatment (salary/etc)
+帶子	dài zi	belt
+單	dān	singly, alone
+擔保	dān bǎo	pledge, guaranty, assurance, security, sponsion, surety, wager, cover, warranty, guarantee
+單純	dān chún	simple, pure, plain, artless
+單調	dān diào	monotonous, dull, drab, boring
+擔任	dān rèn	assume office of, take charge of
+單身	dān shēn	unmarried, single
+單位	dān wèi	unit of measurement
+耽誤	dān wù	delay, hold up
+單子	dān zi	list, bill, form, bed sheet
+膽量	dǎn liàng	courage, guts
+但	dàn	but, yet, still, nevertheless, only, merely
+蛋白質	dàn bái zhí	protein
+誕生	dàn shēng	be born, come into being, emerge
+當場	dāng chǎng	on the spot, then and there
+當初	dāng chū	at that time
+當地	dāng dì	locality, the place (named/mentioned/etc)
+當面	dāng miàn	face to face, in one's presence
+當年	dāng nián	that year, those years, bygone years, prime of life
+當時	dāng shí	at that time, then
+當天	dāng tiān	same day, that very day
+當選	dāng xuǎn	get elected
+當中	dāng zhōng	[aspect] in the course of
+當做	dāng zuò	consider/treat as
+當作	dāng zuò	consider/treat as
+擋	dǎng	ward off, block, get in the way of
+檔案	dǎng ' àn	file, record, dossier, archives
+當	dàng	to pawn
+島	dǎo	island, isle
+導演	dǎo yǎn	direct( film/play/etc)
+導演	dǎo yǎn	director
+倒	dào	pour
+倒	dào	①actually ②back, in reverse order
+道	dào	individual measure word for: ①fences, doors, walls etc; ②strip-shaped things; ③orders, procedures, questions etc
+到達	dào dá	reach, arrive
+道德	dào dé	morality, ethics, morals
+到底	dào dǐ	to the end
+道教	Dào jiào	Daoism (as a religion)
+道路	dào lù	road, way, path
+道歉	dào qiàn	apologize
+倒是	dào shì	actually, contrariwise
+得分	dé fēn	score
+得獎	dé jiǎng	win a prize
+得了	dé le	well! well!; it's enough!; have done with it!
+得意	dé yì	be proud of, be exalted, be complacent
+得罪	dé zuì	offend, displease
+登	dēng	publish, record
+登	dēng	ascend, climb, mount, step on
+燈光	dēng guāng	lamplight
+登記	dēng jì	register, check in
+登山	dēng shān	mountaineering
+等不及	děng bù jí	be too late to wait
+等待	děng dài	wait for, await
+等到	děng dào	until
+等等	děng děng	and so on etc
+等級	děng jí	grade, rank, order and degree, social status
+等於	děng yú	be equal/tantamount to
+凳子	dèng zi	stool, bench
+滴	dī	partial measure word for a small round or pear-shaped blob of liquid, usually falling.
+的確	dí què	certainly, surely
+敵人	dí rén	enemy
+抵	dǐ	①resist, prop up; ②balance, be equal to
+抵達	dǐ dá	reach, arrive at
+抵抗	dǐ kàng	resist, stand up to
+遞	dì	forward, transmit, alternate
+地板	dì bǎn	floorboard, floor
+地帶	dì dài	zone, belt, district, region
+地點	dì diǎn	place, site, locale
+地理	dì lǐ	geography, geographical features of a place
+地面	dì miàn	(earth's)surface, ground, floor, region
+地球	dì qiú	the earth/globe
+地攤	dì tān	stall with goods spread out on ground for sale
+地毯	dì tǎn	carpet, rug
+地鐵	dì tiě	subway, underground(railway)
+地位	dì wèi	position, status
+地下	dì xià	underground, secret activity
+地形	dì xíng	topography, terrain
+地震	dì zhèn	earthquake
+典禮	diǎn lǐ	ceremony, celebration
+點	diǎn	partial measure word for suggestion, explanation etc
+點燃	diǎn rán	light, kindle, ignite
+點頭	diǎn tóu	nod one's head
+典型	diǎn xíng	typical, representative
+墊	diàn	put sth. under sth. else, fill up, advance money
+電報	diàn bào	telegram, cable
+電池	diàn chí	(electric)cell, battery
+電動	diàn dòng	electric
+電扇	diàn shàn	electric fan
+電視台	diàn shì tái	TV station
+電台	diàn tái	broadcasting station
+電梯	diàn tī	elevator
+電線	diàn xiàn	(electric)wire
+店員	diàn yuán	shop assistant, (sales)clerk
+電子	diàn zǐ	electron
+雕刻	diāo kè	carve, engrave
+雕刻	diāo kè	statue
+吊	diào	hang, lift up or let down with rope/etc., mourn, put in a fur lining, revoke, withdraw
+釣	diào	fish with hook and line, angle
+調查	diào chá	investigate, look into, survey
+跌	dié	fall, tumble
+跌	dié	drop, fall
+跌倒	dié dǎo	fall, tumble
+丁	dīng	fourth, fourth of the ten Heavenly Stems
+盯	dīng	gaze/stare at
+訂	dìng	subscribe to, book(seats)
+訂婚	dìng hūn	be betrothed, be engaged, troth, betroth, plight
+定期	dìng qí	periodical, regular
+定期	dìng qí	fixed (of time), periodically, regularly
+訂位	dìng wèi	engage, book, reserve
+丟臉	diū liǎn	lose face, reflect, be disgraced, humiliate
+丟人	diū rén	lose face, be disgraced
+東北	dōng běi	the northeast
+東部	dōng bù	east
+東方	dōng fāng	east
+冬季	dōng jì	winter
+東南	dōng nán	southeast
+懂得	dǒng de	understand, know
+懂事	dǒng shì	sensible
+洞	dòng	hole, cavity
+凍	dòng	freeze, feel very cold, be frostbitten
+棟	dòng	individual measure word for buildings.
+動不動	dòng bù dòng	easily, at the slightest provocation, frequently, at every turn
+動詞	dòng cí	verb
+動人	dòng rén	moving, touching
+動身	dòng shēn	set out on a journey
+動手	dòng shǒu	strike, hit
+動作	dòng zuò	demeanor, motion, behavior, performance, operation, looseness, agency, gesticulation, movement, comportment, business, action
+逗	dòu	tease, play with, amuse
+豆腐	dòu fǔ	beancurd
+豆漿	dòu jiāng	soybean milk
+鬥爭	dòu zhēng	battle, fight
+都市	dū shì	city
+毒	dú	poison, toxin, narcotics
+毒	dú	①poisonous; ②malicious, murderous, with hate or intention to harm; ③cruel, ruthless
+獨立	dú lì	stand alone
+毒品	dú pǐn	narcotics, drugs
+獨特	dú tè	unique, distinctive
+獨自	dú zì	alone, by oneself
+讀者	dú zhě	reader
+賭	dǔ	gamble, bet
+度	dù	spend(holidays), pass(time)
+端	duān	hold sth. level, carry
+斷	duàn	break, cut off, break off
+鍛鍊	duàn liàn	engage in physical exercise, temper, steel, toughen
+堆	duī	collective measure word for: ①a large number of people gathering together; ②a mass of things in piles.
+堆	duī	pile/heap up
+隊	duì	collective measure word for people or fowls in orderly ranks.
+對岸	duì ' àn	other side of river
+對策	duì cè	way to deal with a situation
+對待	duì dài	treat, approach, handle
+對付	duì fù	deal/cope with, counter, tackle, make do
+對話	duì huà	dialogue
+對抗	duì kàng	resist, oppose
+對立	duì lì	oppose, set sth. against, be antagonist to
+對象	duì xiàng	target, object
+對於	duì yú	(in regard)to, toward, at, for
+隊員	duì yuán	team member
+蹲	dūn	squat on heels, stay
+頓	dùn	measure word for reprimanding or criticizing.
+噸	dùn	ton
+多半(兒)	duō bàn er	probably, most likely
+多多	duō duō	
+多多少少	duō duō shǎo shǎo	somewhat, to some extent, more or less
+多少	duō shǎo	somewhat, to some extent, more or less
+多數	duō shù	majority
+多謝	duō xiè	thank you very much
+奪	duó	take by force, seize, wrest, force one's way, contend for, deprive
+躲	duǒ	hide(oneself), avoid, dodge
+哦	é	inj.: softly chant(poem); recite(poem)with cadence
+惡劣	è liè	vile, nasty
+而	ér	and yet
+而且	ér qiě	furthermore, besides ,moreover
+而已	ér yǐ	particle: imparting finality (that's all)
+發	fā	send out, deliver, start, set out, begin
+發	fā	develop, expand, open up, discover, expose, show one's feeling
+發表	fā biǎo	publish, issue
+發財	fā cái	get rich, make a pile
+發出	fā chū	issue, send/give out
+發達	fā dá	developed, flourishing
+發動	fā dòng	mobilize, arouse
+發抖	fā dǒu	shiver, shake, quiver, tremble
+發揮	fā huī	bring into play, give free rein to, develop (idea/etc), elaborate
+發覺	fā jué	find, detect, discover
+發明	fā míng	invention
+發明	fā míng	invent, expound
+發脾氣	fā pí qì	lose temper, get angry
+發起	fā qǐ	initiate, sponsor, start, launch
+發射	fā shè	launch, project, discharge, shoot, transmit, emit
+發行	fā xíng	issue, publish, distribute, put on sale
+發言	fā yán	speak, make statement/speech
+發揚	fā yáng	develop, carry on, make most of
+發音	fā yīn	pronounce
+發展	fā zhǎn	develop, expand, grow
+罰	fá	punish, penalize
+法子	fá zi	way, method
+法律	fǎ lǜ	law, statute
+髮型	fǎ xíng	haircut
+法院	fǎ yuàn	court of justice, (law)court
+番	fān	①measure word for the process of certain actions; ②Individual measure word for the course of any action which takes time and energy; ③measure word for kindness, flavour etc
+翻	fān	turn over, turn around, reverse
+翻	fān	flip over, translate
+翻譯	fān yì	translate, interpret
+煩	fán	trouble
+煩惱	fán nǎo	vexation
+煩惱	fán nǎo	vexed, worried
+繁榮	fán róng	flourishing, prosperous, booming
+繁殖	fán zhí	breed, reproduce, propagate
+反	fǎn	to oppose, turn against, criticize, counter, revolt, rebel, combat
+反	fǎn	opposite
+反對	fǎn duì	oppose, be against, combat, dispute
+反而	fǎn ' ér	on the contrary, instead
+反覆	fǎn fù	repeatedly, over and over(again), again and again
+返回	fǎn huí	return, come/go back
+反抗	fǎn kàng	revolt, resist
+反面	fǎn miàn	reverse/wrong side, back, opposite, negative side
+反問	fǎn wèn	ask (a question)in reply
+反映	fǎn yìng	reflect, mirror
+反應	fǎn yìng	react, respond
+反應	fǎn yìng	reaction, response, repercussion
+反正	fǎn zhèng	anyway, anyhow, in any case
+犯	fàn	criminal
+犯法	fàn fǎ	violate law, break law, offend, violate the law, criminal, transgress, break the law
+飯館(兒)	fàng u ǎn er	restaurant
+犯人	fàn rén	criminal, prisoner, convict
+範圍	fàn wéi	scope, range, extent, parameter
+犯罪	fàn zuì	commit crime/offense
+方	fāng	square
+方案	fāng ' àn	scheme, plan, program
+防	fáng	prevent, resist
+房客	fáng kè	tenant
+防守	fáng shǒu	defend, guard
+房屋	fáng wū	houses, buildings
+防止	fáng zhǐ	prevent, guard against, avoid
+放大	fàng dà	enlarge, magnify, amplify
+放棄	fàng qì	abandon, give up, renounce
+放手	fàng shǒu	let_go
+放學	fàng xué	finish classes (for the day)
+非	fēi	not
+非	fēi	not be, run counter to, not conform to
+非法	fēi fǎ	illegal, unlawful, illicit
+肥	féi	fat, fertile, rich
+肥胖	féi pàng	fat, corpulent
+肥皂	féi zào	soap
+費	fèi	cost, spend, expend
+肺	fèi	lungs
+廢話	fèi huà	superfluous words, nonsense, rubbish
+廢氣	fèi qì	waste gas/steam, fume
+廢水	fèi shuǐ	waste water, effluent
+廢物	fèi wù	a good-for-nothing
+分別	fēn bié	difference
+分別	fēn bié	distinguish, differentiate
+分別	fēn bié	leave each other
+分別	fēn bié	separately, respectively
+分布	fēn bù	be distributed (over an area), be scattered
+紛紛	fēn fēn	in droves, numerous and in great confusion
+吩咐	fēn fù	tell, bid, order, instruct, enjoin, say
+分工	fēng ō n g	divide the work, to work together on a project but doing different things
+分開	fēn kāi	separate, part, break up
+分明	fēn míng	clear, evident
+分配	fēn pèi	distribute, allot, assign
+分散	fēn sàn	disperse, scatter, decentralize
+分手	fēn shǒu	part company, say good-bye, break up
+分數	fēn shù	a mark, a grade, a score
+分析	fēn xī	analysis
+分析	fēn xī	analyze
+粉筆	fěn bǐ	chalk
+份(兒)	fèn er	share, portion
+奮鬥	fèn dòu	struggle, fight, strive
+憤怒	fèn nù	indignant, angry
+瘋	fēng	spindle (of plants)
+封	fēng	seal
+風格	fēng gé	style
+封建	fēng jiàn	feudal, feudalistic
+瘋狂	fēng kuáng	insane, frenzied, unbridled
+蜂蜜	fēng mì	honey
+風氣	fēng qì	general mood, atmosphere, common practice
+風趣	fēng qù	humourous
+風俗	fēng sú	custom
+風險	fēng xiǎn	risk, hazard
+瘋子	fēng zi	lunatic, madman
+逢	féng	meet, come upon
+縫	féng	stitch, sew
+諷刺	fèng cì	satirize, mock
+佛教	Fó jiào	Buddhism
+否定	fǒu dìng	negate, deny
+否認	fǒu rèn	deny, repudiate
+否則	fǒu zé	otherwise, if not, or else
+夫婦	fū fù	husband and wife
+夫妻	fū qī	husband and wife
+夫人	fū rén	Lady, Madame, Mrs.
+扶	fú	support with hand
+浮	fú	float
+服	fú	①take(medicine); ②obey, submit(oneself)to
+服	fú	serve
+符號	fú hào	symbol, mark ,insignia
+符合	fú hé	accord/tally with, conform to
+福利	fú lì	material benefits, well-being, welfare
+服裝	fú zhuāng	dress, clothing, costume
+腐敗	fǔ bài	corrupt
+輔導	fǔ dǎo	coach, tutor
+富	fù	wealthy, abundant
+赴	fù	go to, attend
+副	fù	measure word for: ①two things seen together or associated; ②facial expressions.
+付出	fù chū	pay, expend
+負擔	fù dān	bear, shoulder
+負擔	fù dān	burden, load, encumbrance
+附加	fù jiā	add, attach
+父母	fù mǔ	father and mother, parents
+婦女	fù nǚ	women
+富裕	fù yù	plentiful, abundant, rich
+複雜	fù zá	complicated, complex
+複製	fù zhì	duplicate, reproduce
+該	gāi	[formal] that
+改革	gǎi gé	reform
+改進	gǎi jìn	improve
+改善	gǎi shàn	improve, perfect
+改天	gǎi tiān	on some other day
+改造	gǎi zào	transform, reform, remold, remake
+改正	gǎi zhèng	correct, amend
+蓋	gài	build, construct
+概念	gài niàn	concept, conception, notion, idea
+蓋子	gài zi	lid, cover, cap, top, shell (of tortoise/etc)
+肝	gān	liver
+乾杯	gān bēi	pledge, wassail, toast
+乾脆	gān cuì	direct, forthright
+趕	gǎn	①run after, pursue; ②drive, drive away, expel
+趕	gǎn	make dash for, rush for
+感到	gǎn dào	feel, sense
+感動	gǎn dòng	move, touch
+感激	gǎn jī	feel grateful/indebted
+趕緊	gǎn jǐn	hurriedly, losing no time
+感情	gǎn qíng	emotion, feeling, sentiment
+感染	gǎn rǎn	infect, influence, affect
+趕上	gǎn shàng	overtake, run into(situation), be in time for
+感受	gǎn shòu	be affected by, experience, feel
+感想	gǎn xiǎng	impression, reflections, thoughts
+感興趣	gǎn xìng qù	be interested in
+幹	gàn	do, work, fight
+幹	gàn	be engaged in
+幹部	gàn bù	cadre, staff
+幹嘛	gàn má	do what
+幹嘛	gàn má	why on earth, whatever for
+幹什麼	gàn shén me	why
+鋼	gāng	steel
+鋼筆	gāng bǐ	fountain pen
+剛好	gāng hǎo	exact, just right
+鋼琴	gāng qín	piano
+港幣	Gǎng bì	Hong_Kong_dollar
+港口	gǎng kǒu	port, harbor
+高潮	gāo cháo	upsurge, climax
+高大	gāo dà	tall and big, great, massive
+高度	gāo dù	highly, greatly
+高度	gāo dù	altitude, height, high degree
+高峰	gāo fēng	peak, height
+高貴	gāo guì	noble, high
+高級	gāo jí	high-level, high-class, quality
+高明	gāo míng	brilliant, wise
+高速	gāo sù	high-speed
+高手	gāo shǒu	expert, ace
+高原	gāo yuán	plateau, tableland
+高中	gāo zhōng	senior high school
+搞	gǎo	generalized doing: do/work/manage/etc
+告	gào	accuse, go to law against
+告辭	gào cí	take leave
+擱	gē	bear, stand, endure
+割	gē	cut
+歌劇	gē jù	opera
+歌曲	gē qǔ	song
+歌星	gē xīng	singing star
+隔	gé	separate, cut off, impede
+隔壁	gé bì	next door
+革命	gé mìng	revoloution
+革命	gé mìng	revolt
+各	gè	separately, differently
+個	gè	between a verb and its object to indicate momentum
+個別	gè bié	individual, specific
+個兒	gè r	stature
+各行各業	gè háng gè yè	all professions/trades
+各式各樣	gè shì gè yàng	all sorts/kinds, various
+個性	gè xìng	individual character, personality, specific property, particularity
+個子	gè zi	height, stature, build
+根本	gēn běn	at all, utterly
+根本	gēn běn	essence, foundation
+根據	gēn jù	basis, grounds, foundation
+根據	gēn jù	on the basis of, according to
+更加	gèng jiā	(even)more
+供	gōng	supply, feed, be for (the use/convenience of)
+公布	gōng bù	promulgate, announce, publish
+工廠	gōng chǎng	factory, mill, plant, works
+工程	gōng chéng	engineering project
+工夫	gōng fu	time
+功夫	gōng fu	time, kung fu
+工會	gōng huì	trade/labor union
+工具	gōng jù	tool, instrument, implement
+公開	gōng kāi	make public, make known to public
+公立	gōng lì	public, established and maintained by the government
+功能	gōng néng	function, competence
+公平	gōng píng	fair, just, impartial
+工錢	gōng qián	pay
+公式	gōng shì	formula, form
+工業	gōng yè	industry
+供應	gōng yìng	supply
+公用	gōng yòng	be for public use
+公用電話	gōng yòng diàn huà	pay phone
+公元	gōng yuán	Christian era
+工資	gōng zī	wages, pay
+共	gòng	together
+共	gòng	share with
+共同	gòng tóng	together, jointly
+共同	gòng tóng	common, joint
+貢獻	gòng xiàn	contribution
+貢獻	gòng xiàn	contribute, dedicate, devote
+溝通	gōu tōng	communicate, link up
+構成	gòu chéng	constitute, form, compose, make up
+購買	gòu mǎi	purchase, buy
+構造	gòu zào	structure, construction
+孤單	gū dān	alone, friendless
+姑姑	gū gū	father's sister
+估計	gū jì	estimate, appraise, reckon
+姑娘	gūn i áng	girl, daughter
+鼓	gǔ	drum
+古	gǔ	ancient, age-old, not following current customs/practice
+古代	gǔ dài	antiquity
+古典	gǔ diǎn	classical
+古蹟	gǔ jī	antiquity, high spot, national monument
+古老	gǔ lǎo	ancient, old
+鼓勵	gǔ lì	encouragement
+鼓勵	gǔ lì	encourage, urge
+骨頭	gǔ tou	bone, strong character, person of a certain character
+鼓舞	gǔ wǔ	inspire, hearten, dance for joy, rejoice
+鼓掌	gǔ zhǎng	clap one's hands, applaud
+顧	gù	attend to, look after, take into consideration, visit, call on
+固定	gù dìng	flat, stabile, regular
+顧客	gù kè	customer, shopper, c lient
+顧問	gù wèn	adviser, consultant
+故鄉	gù xiāng	native place, hometown, birthplace
+故意	gù yì	intentional, willful
+瓜	guā	melon, gourd
+瓜子	guā zi	melon seed, melon seeds
+掛號	guà hào	register, registered
+掛號信	guà hào xìn	registered letter/mail
+怪	guài	quite, very
+怪	guài	blame
+關	guān	partial measure word for levels of activity, such as games.
+觀察	guān chá	observe, survey, inspect
+觀點	guān diǎn	point of view, standpoint
+官方	guān fāng	government, official
+觀光	guāng u āng	go sightseeing, visit, tour
+關鍵	guān jiàn	key, crux
+觀念	guān niàn	sense, idea, conception
+關上	guān shàng	shut, steek, close
+關於	guān yú	about, with regard to, concerning
+官員	guān yuán	official
+觀眾	guān zhòng	spectator, audience
+管	guǎn	run, manage, administer ,have charge of, subject to discipline, bother about
+管道	guǎn dào	pipeline, conduit, piping
+管理	guǎn lǐ	manage, supervise, take care of
+管制	guǎn zhì	control, put under surveillance
+慣	guàn	habitual, customary
+冠軍	guàn jūn	champion
+慣例	guàn lì	usual practice
+罐頭	guàn tóu	tin, can, canned goods
+罐子	guàn zi	jug, jar, can
+光	guāng	bright, brilliant, shining
+光	guāng	naked, nude
+光	guāng	solely, merely, only
+光亮	guāng liàng	bright
+光臨	guāng lín	be present
+光明	guāng míng	bright, promising, openhearted, guileless
+光榮	guāng róng	honor, glory, c redit
+光是	guāng shì	
+光線	guāng xiàn	light, ray
+廣	guǎng	wide, vast, numerous
+廣場	guǎng chǎng	public square
+廣大	guǎng dà	vast, wide, large-scale, wide-spread, numerous
+廣泛	guǎng fàn	extensive, wide-ranging
+廣告	guǎng gào	advertise
+廣告	guǎng gào	advertisement
+廣闊	guǎng kuò	vast, broad
+逛	guàng	stroll, ramble, roam
+逛街	guàng jiē	window-shop
+規定	guī dìng	provide, formulate, fix, set
+規定	guī dìng	rules, disciplines, regulations
+規畫	guī huà	plan, program
+規畫	guī huà	program, plan
+規矩	guī jǔ	rule, custom
+規律	guī lǜ	law, regular pattern
+規模	guī mó	scale, scope
+規則	guī zé	rule, regulation
+鬼	guǐ	ghost, spirit
+跪	guì	kneel (on both knees)
+櫃臺	guì tái	counter
+櫃子	guì zi	cupboard, cabinet
+貴族	guì zú	noble, aristocrat
+滾	gǔn	roll, trundle, get away, beat it
+鍋(子)	guō zi	a cooking-pot, saucepan
+國會	Guó huì	parliament, congress
+國籍	guó jí	nationality
+國際	guó jì	international
+國立	guó lì	state/national maintained/run
+國內	guó nèi	interior (of country), internal, domestic
+國旗	guó qí	national flag
+國外	guó wài	overseas
+國王	guó wáng	king
+國語	Guó yǔ	national language written and spoken, textbook for primary/middle school students
+國小	guó xiǎo	primary school
+國中	guó zhōng	middle school, junior high school
+裹	guǒ	bind, wrap
+果然	guǒ rán	really, as expected, sure enough
+過	guò	too, excessively
+過程	guò chéng	course, process
+過渡	guò dù	ferry stream
+過度	guò dù	excessive
+過分	guò fèn	excessive, undue
+過節	guò jié	celebrate a festival
+過濾	guò lǜ	filtrate
+過期	guò qí	overdue, be overdue, exceed the time limit, stale
+過日子	guò rì zi	live, get along, practice economy
+過世	guò shì	die, pass away
+嗨	hāi	inj.: hi, hey
+還	hái	even/still more, in addition, passably, fairly, even
+還不如	hái bù rú	it would be better to
+還好	hái hǎo	fortunately
+還要	hái yào	even/still more
+還有	hái yǒu	furthermore, in addition
+海報	hǎi bào	a playbill, a placard, a poster
+海關	hǎi guān	customhouse, customs
+海軍	hǎi jūn	navy
+海灘	hǎi tān	beach
+海外	hǎi wài	overseas, abroad
+海峽	hǎi xiá	strait, channel
+海鮮	hǎi xiān	seafood
+害處	hài chù	harm
+含	hán	include
+含	hán	keep in mouth
+寒冷	hán lěng	cold, frigid
+含量	hán liàng	content
+喊	hǎn	cry out, yell
+汗	hàn	sweat, perspiration
+航空	háng kōng	aviation
+行業	háng yè	trade, profession, industry
+毫無	háo wú	completely lack
+好	hǎo	so as to, so that
+好多	hǎo duō	many, much
+好意思	hǎo yì si	have the nerve
+好在	hǎo zài	fortunately, luckily
+耗	hào	waste time, dawdle
+好	hǎo	be fond of
+好客	hào kè	hospitable
+好奇	hào qí	curious, full of curiosity
+號召	hào zhào	call, appeal (for supporters)
+合	hé	pool (efforts/etc), join, combine
+合	hé	be equal to, amount to
+合	hé	be fitting, accord with, conform to
+合	hé	to agree, suit(purpose), match
+何必	hé bì	why must...?, there is no need
+合不來	hé bù lái	not get along well
+合唱	hé chàng	sing in a chorus
+合成	hé chéng	compose, compound, synthesize
+合得來	hé de lái	get along well
+合法	hé fǎ	lawful, legitimate, rightful
+合格	hé gé	qualify, reach standard, pass
+和好	hé hǎo	become reconciled
+合乎	hé hū	conform with/to, accord/tally with
+何況	hé kuàng	much less, let alone, all the more
+合理	hé lǐ	rational, reasonable, equitable
+河流	hé liú	river
+和平	hé píng	mild, peaceful
+和氣	hé qì	friendly
+合算	hé suàn	reckon up, total
+合適	hé shì	suitable, appropriate, becoming, right
+嘿	hēi	inj.: hey!
+黑暗	hēi ' àn	dark
+黑夜	hēi yè	dark night
+痕跡	hén jī	mark, trace, vestige
+恨	hèn	hatred
+恨	hèn	hate, regret, be exasperated
+恨不得	hèn bù dé	very anxious to, itch to
+橫	héng	horizontal, transverse, across, sideways
+喉嚨	hóu lóng	throat
+猴子	hóu zi	monkey, clever/glib/sharp-tongued person
+厚	hòu	thick, deep, profound, kind, magnanimous, large, generous, rich/strong in flavor
+後代	hòu dài	later periods/ages/generations, descendants, posterity, progeny
+後方	hòu fāng	rear
+後果	hòu guǒ	consequence, aftermath
+後悔	hòu huǐ	regret, repent
+後年	hòu nián	year after next
+後頭	hòu tóu	rear, behind
+後退	hòu tuì	draw back
+後院	hòu yuàn	backyard
+紅豆	hóng dòu	red bean, azuki bean, love pea
+呼	hū	①exhale; ②call
+忽略	hū lüè	neglect, overlook ,lose sight of
+忽視	hū shì	ignore, overlook, neglect
+呼吸	hū xī	breathe, respire
+糊塗	hú tú	muddled, confused, thoughtless, slipshod
+鬍子	hú zi	beard, moustache, whiskers
+虎	hǔ	tiger
+戶	hù	collective measure word for a household.
+戶外	hù wài	outdoor
+互助	hù zhù	help each other
+花	huā	flowery, florid, profligate, blurred, false
+花草	huā cǎo	flowers and plants
+花費	huā fèi	expenditure, expenses
+花費	huā fèi	spend, expend
+花盆	huā pén	flowerpot, pot, planter
+花瓶	huā píng	flower vase, secretary kept for her good looks rather than ability
+花色	huā sè	design and color, variety of designs/sizes/colors/etc
+花生	huā shēng	peanut
+划	huá	delimit, differentiate, transfer, assign, plan, draw, mark
+滑	huá	slip, slide
+滑	huá	slippery, smooth, cunning, crafty
+華僑	Huá qiáo	overseas Chinese
+化	huà	to transform physically, to disguise
+化	huà	to change, to convert, to transform, to influence
+話說回來	huà shuō huí lái	but then again
+話題	huà tí	subject of a talk, topic of conversation, topic
+化學	huà xué	chemistry
+化裝	huà zhuāng	disguise oneself
+化妝	huà zhuāng	apply make-up
+化妝品	huà zhuāng pǐn	cosmetics
+懷孕	huái yùn	be pregnant
+壞處	huài chù	harm, disadvantage, defect
+壞蛋	huài dàn	scoundrel, bastard
+歡呼	huān hū	hail, acclaim
+歡樂	huān lè	happy, joyous, gay
+歡喜	huān xǐ	like, be fond of
+環保	huán bǎo	environmental protection
+緩和	huǎn hé	relax, ease up, mitigate, appease
+緩慢	huǎn màn	slow
+幻想	huàn xiǎng	imagination, fantasy, daydream
+幻想	huàn xiǎng	imagine, daydream, fantasticate, fancify, dream, fancy, fantasize
+慌	huāng	lose self-possession, panic
+皇帝	huáng dì	emperor
+黃豆	huáng dòu	soya bean, soybean
+黃昏	huáng hūn	dusk
+揮	huī	wave, brandish, wipe off/away, command (an army), squander (money/etc)
+灰	huī	gray
+恢復	huī fù	resume, renew, recover, regain, restore, reinstate, rehabilitate
+灰色	huī sè	gray ,ashy, pessimistic, gloomy
+灰心	huī xīn	lose heart, be discouraged
+回	huí	reply, answer
+回電	huí diàn	wire back
+回教	Huí jiào	Islam
+回收	huí shōu	recycle
+回頭	huí tóu	turn one's head, turn round
+回想	huí xiǎng	think back, recollect, recall
+回信	huí xìn	reply(letter)
+回憶	huí yì	recollect, recall
+會	huì	meeting, gathering, party, get-together, conference
+會場	huì chǎng	meeting place, conference/assembly hall
+匯款	huì kuǎn	make a remittence, remit
+會員	huì yuán	member
+昏倒	hūn dǎo	faint
+婚禮	hūn lǐ	wedding ceremony
+昏迷	hūn mí	remain unconscious
+婚姻	hūn yīn	marriage, matrimony
+混	hùn	mix
+混合	hùn hé	mix, blend, mingle
+混亂	hùn luàn	confused, chaotic
+活該	huó gāi	serve sb. right, deservedly be, be destined to, ought, should
+活力	huó lì	vigor, vitality, energy
+活潑	huó pō	lively, vivacious, vivid
+活躍	huó yuè	enliven, animate, invigorate
+火柴	huǒ chái	match
+火腿	huǒ tuǐ	ham
+火災	huǒ zāi	a fire(accident), a conflagration, a blaze
+禍	huò	disaster, misfortune
+獲得	huò dé	gain, acquire, win, a chieve
+或多或少	huò duō huò shǎo	somewhat, to some extent
+貨物	huò wù	goods, commodity, merchandise
+或許	huò xǔ	perhaps, maybe
+或者	huò zhě	or, either or
+基本	jī běn	fundamental, essential, main
+基本	jī běn	basic, elementary
+基本上	jī běn shàng	basically
+基礎	jī chǔ	base, foundation
+激動	jī dòng	stirred, agitated
+基督教	Jī dū jiào	Christianity
+機構	jī gòu	organization, internal structure of an organization
+機關	jī guān	①office, organ; ②mechanism, stratagem, scheme, intrigue
+幾乎	jī hū	almost, nearly
+積極	jī jí	positive, active, energetic, vigorous
+基金	jī jīn	fund, endowment
+激烈	jī liè	intense, sharp, fierce, acute
+機票	jī piào	plane ticket
+肌肉	jī ròu	muscle
+機械	jī xiè	machine, machinery, mechanism
+極	jí	utmost, extremely
+級	jí	①Individual measure word for stairs or steps; ②Individual measure word for the quality of goods, services; ③Individual measure word for natural disasters.
+集	jí	gather, collect
+及	jí	and
+疾病	jí bìng	disease, illness
+及格	jí gé	pass ,nail, make it
+集合	jí hé	gather, assemble, muster
+即將	jí jiāng	about to, on the point of, soon
+急忙	jí máng	in haste, hurriedly
+寂寞	jí mò	be lonely
+極其	jí qí	extremely, exceedingly
+及時	jí shí	timely, in time, promptly
+即使	jí shǐ	even, even if/though
+集郵	jí yóu	collect stamps
+集中	jí zhōng	focus, concentrate
+集中	jí zhōng	centralize, put together
+既	jì	both A and B
+計較	jì jiào	haggle over, dispute, discuss in minute detail, mind, care
+記錄	jì lù	record, note
+記錄	jì lù	record
+紀念	jìn i àn	commemorate, mark
+紀念	jìn i àn	commemoration, souvenir
+技巧	jì qiǎo	technique, skill, craftsmanship, dexterity
+既然	jì rán	since, as, now that
+計算	jì suàn	count, calculate, compute
+技術	jì shù	technique, art
+記性	jì xìng	memory capability
+記憶	jì yì	memory
+記憶	jì yì	remember, recall
+記載	jì zǎi	put down in writing, record
+記者	jì zhě	reporter, correspondent
+記住	jì zhù	remember, learn by heart, bear in mind
+佳	jiā	fine, beautiful, distinguished
+加班	jiā bān	work overtime, work extra shift
+加工	jiā gōng	process
+加強	jiā qiáng	strengthen, augment, reinforce
+加入	jiā rù	add, mix, put in
+加速	jiā sù	speed up, accelerate, haste
+加上	jiā shàng	add into
+家事	jiā shì	housework, family matters
+家鄉	jiā xiāng	hometown, native place
+加以	jiā yǐ	handle, treat (used before polysyllabic verbs or verbal nouns)
+加油	jiā yóu	refuel
+加油站	jiā yóu zhàn	gas station
+家長	jiā zhǎng	head of household, parent of schoolchildren
+夾	jiá	pincers, folder
+甲	jiǎ	first, first of the ten Heavenly Stems
+假如	jiǎ rú	if, supposing, in case
+假裝	jiǎ zhuāng	pretend, feign, simulate
+嫁	jià	marry (of a woman)
+價格	jià gé	price
+價錢	jià qián	price
+假日	jià rì	holiday, day off
+駕駛	jià shǐ	driver, pilot
+駕駛	jià shǐ	drive(vehicle), pilot (ship/plane)
+價值	jià zhí	be worth
+價值	jià zhí	value, worth
+兼	jiān	do concurrently
+間	jiān	occasion
+尖	jiān	penetrating ,incisive, piercing, intense, acute, sharp, shrill
+肩	jiān	shoulder
+肩膀	jiān bǎng	shoulder
+堅持	jiān chí	persist in, insist on
+堅定	jiān dìng	firm, staunch, steadfast
+堅決	jiān jué	firm, determined
+堅強	jiān qiáng	staunch, steadfast
+尖銳	jiān ruì	sharp-pointed
+監獄	jiān yù	prison, jail
+揀	jiǎn	select, pick out, pick up, collect, gather
+撿	jiǎn	pick up, collect, gather
+剪	jiǎn	wipe out, exterminate, cut (with scissors), clip, trim
+減	jiǎn	subtract, reduce, decrease, cut, lessen, diminish, deduct
+剪刀	jiǎn dāo	scissors, shears
+減輕	jiǎn qīng	lighten, ease, mitigate
+減少	jiǎn shǎo	reduce, decrease
+檢驗	jiǎn yàn	test, examine, inspect
+簡直	jiǎn zhí	simply, really
+箭	jiàn	arrow
+建	jiàn	build, construct, erect, establish, set up, found
+漸漸	jiàn jiàn	gradually, by degrees, little by little
+間接	jiàn jiē	indirect, at indirect, roundabout
+建立	jiàn lì	establish, set up, found
+鍵盤	jiàn pán	keyboard
+健全	jiàn quán	sound, perfect
+建議	jiàn yì	proposal, suggestion
+建議	jiàn yì	propose, suggest, recommend
+建築	jiàn zhú	build, construct, erect
+建築	jiàn zhú	building, structure, edifice, architecture
+江	jiāng	river
+將	jiāng	be about to
+將要	jiāng yào	going to, will, shall
+講價	jiǎng jià	bargain
+講究	jiǎng jiù	tasteful, exquisite
+獎金	jiǎng jīn	money award, bonus, premium
+獎品	jiǎng pǐn	prize, award, trophy
+獎學金	jiǎng xué jīn	scholarship
+降	jiàng	surrender, capitulate, subdue, tame
+降低	jiàng dī	reduce, cut down, drop, lower
+降價	jiàng jià	lower prices
+澆	jiāo	pour liquid on, sprinkle water on, irrigate, water, cast
+驕傲	jiāo ' ào	be proud, take pride in
+交代	jiāo dài	explain, make clear, brief, tell, account for, justify oneself, confess
+交換	jiāo huàn	exchange, swap
+交際	jiāo jì	assort, converse, social intercourse, intercommunicate, gam, socialize
+交流	jiāo liú	exchange, interflow, interchange
+交通	jiāo tōng	traffic, communications, transportation
+郊外	jiāo wài	countryside around a city, outskirts
+交往	jiāo wǎng	associate, contact
+交易	jiāo yì	deal, trade
+交易	jiāo yì	deal, trade, transaction
+交友	jiāo yǒu	make friends
+角	jiǎo	parts, angle, role, horn
+繳	jiǎo	pay, hand over/in
+腳步	jiǎo bù	step, pace
+角度	jiǎo dù	angle
+角落	jiǎo luò	corner, nook
+較	jiào	compare
+教	jiào	cause/ask to
+教材	jiào cái	teaching material
+教導	jiào dǎo	instruct, give guidance
+教法	jiào fǎ	teaching methods, pedagogy
+叫喊	jiào hǎn	shout, howl, scream
+教會	jiào huì	(Christian)church
+教練	jiào liàn	coach, instructor
+教師	jiào shī	teacher, instructor
+教授	jiào shòu	professor
+教授	jiào shòu	instruct, teach
+教堂	jiào táng	church, cathedral
+教學	jiào xué	teach and study
+教訓	jiào xùn	chide, lecture sb.
+教訓	jiào xùn	lesson, moral
+接	jiē	connect, join, put together, come in contact with, come close to
+接觸	jiē chù	come into contact with, get in touch with, engage, contact
+接待	jiē dài	receive(guests), serve(customers)
+接到	jiē dào	receive
+街道	jiē dào	street, residential district, neighborhood
+階段	jiē duàn	stage, phase, level
+接見	jiē jiàn	receive sb., grant interview to
+接近	jiē jìn	intimate, close
+接近	jiē jìn	approach, near, be close to
+街頭	jiē tóu	street(corner)
+節	jié	①Partial measure word for things with joints, or things that are usually joined; ②Partial measure word for plants with joints; ③Partial measure word for vehicles with several sections joined together.
+結	jié	junction, node
+結	jié	①congeal, coagulate; ②unite, connect, join, tie, knit, knot, weave; ③to bear(fruit)
+結構	jié gòu	structure, composition, construction, texture
+結果	jié guǒ	result, outcome, consequence
+結果	jié guǒ	to bear fruit
+結合	jié hé	combine, unite, I ntegrate, link, be joined in wedlock
+結局	jié jú	final result, outcome, ending
+結論	jié lùn	conclusion (of a syllogism), conclusion
+結算	jié suàn	close an account, to reckon sth. up
+節省	jié shěng	save, thriftiness, stint, penny-pinching
+節約	jié yuē	economize, save
+結帳	jié zhàng	settle accounts, square accounts, balance the books, square_up
+截止	jié zhǐ	end, close, cut off
+解	jiě	separate, divide, cut apart, untie, undo
+解除	jiě chú	remove, relieve, get rid of
+解答	jiě dá	answer, explain
+屆	jiè	①measure word for regular conferences, sports meets etc; ②measure word for students, graduate students etc
+界線	jiè xiàn	boundary/dividing line, limits, bounds
+戒指	jiè zhǐ	ring (for the finger)
+金額	jīn ' é	amount/sum of money
+今後	jīn hòu	henceforth, henceforward, from now on
+金融	jīn róng	finance, banking
+金屬	jīn shǔ	metals in general
+僅	jǐn	only, merely, barely
+儘管	jǐng u ǎn	feel free to, not hesitate to
+儘管	jǐng u ǎn	even though, despite
+緊急	jǐn jí	urgent, critical
+僅僅	jǐn jǐn	only, merely, barely
+儘量	jǐn liàng	to the best of one's ability
+盡	jìn	try one's best, put to best use
+浸	jìn	soak, steep, immerse
+近	jìn	approach/reach (a particular level or state)
+進	jìn	receive, eat, drink ,take, introduce
+進口	jìn kǒu	import
+近來	jìn lái	recently, lately
+進入	jìn rù	enter, get into
+近視	jìn shì	short-sighted
+進一步	jìn yī bù	go step further
+禁止	jìn zhǐ	prohibit, ban
+精彩	jīng cǎi	brilliant, splendid
+經費	jīng fèi	funds, outlay, expenses
+經過	jīng guò	process, course
+經理	jīng lǐ	manager, director
+經歷	jīng lì	a person's past career
+經歷	jīng lì	go through, undergo, experience
+精力	jīng lì	energy, vigor
+經濟	jīng jì	economy, financial condition
+驚人	jīng rén	astonishing, amazing, alarming
+精細	jīng xì	meticulous, fine, careful and attentive, thorough
+驚訝	jīng yà	amazed, astounded
+經驗	jīng yàn	go through, experience
+經驗	jīng yàn	experience
+經營	jīng yíng	manage, run, engage in
+警告	jǐng gào	(disciplinary)warning
+警告	jǐng gào	warn, put on guard, caution, admonish
+景色	jǐng sè	view, scene, landscape
+靜	jìng	still, quiet, calm
+敬愛	jìng ' ài	respect and love
+淨化	jìng huà	purify
+敬酒	jìng jiǔ	propose a toast
+敬禮	jìng lǐ	salute, give a salute, extend one's greetings, respectfully yours (letter closure)
+鏡子	jìng zi	mirror
+競爭	jìng zhēng	compete
+糾正	jiū zhèng	correct, redress
+酒吧	jiǔ bā	bar
+酒會	jiǔ huì	cocktail party
+就	jiù	with regard to, concerning
+救火	jiù huǒ	fire fighting, fightfire
+究竟	jiù jìng	actually, exactly, after all, in the end
+舅舅	jiù jiu	mother's brother, uncle
+救命	jiù mìng	save sb.'s life, Help!, Save me!
+就算	jiù suàn	even if, granted that
+就是	jiù shì	even if, even
+就是	jiù shì	quite right, exactly, precisely
+就是說	jiù shì shuō	that is to say, in other words, namely
+就業	jiù yè	get or take up a job
+居民	jū mín	resident, inhabitant
+居然	jū rán	unexpectedly, to one's surprise, going so far as to
+居住	jū zhù	live, reside
+局	jú	measure word for the competitions of balls, chesses etc
+鞠躬	jú gōng	bow (to sb.)
+舉辦	jǔ bàn	conduct, hold, run
+舉手	jǔ shǒu	raise one's hand(s)
+聚	jù	assemble, gather, get together
+具	jù	possess, have, provide, furnish
+具	jù	measure word for corpses.
+具備	jù bèi	possess, have, be provided with
+劇本	jù běn	drama, play, script
+劇場	jù chǎng	theater
+巨大	jù dà	huge, gigantic
+聚集	jù jí	gather, assemble, collect
+拒絕	jù jué	refuse, reject, decline
+俱樂部	jù lè bù	(social)club
+距離	jù lí	distance
+距離	jù lí	be apart/away from
+劇烈	jù liè	violent, fierce
+劇情	jù qíng	story line, plot
+據說	jù shuō	it is said that...
+具體	jù tǐ	concrete, specific, particular
+具有	jù yǒu	possess, have, be provided with
+劇院	jù yuàn	theater
+捐	juān	contribute, subscribe
+捐款	juān kuǎn	contribute money
+捐款	juān kuǎn	contribution, donation, subscription
+捲	juǎn	roll up, gather, snatch, scold, rebuke
+卷	juàn	measure word for things in rolls.
+決	jué	certainly
+絕不	jué bù	never
+絕大部分	jué dà bù fèn	most of, the majority of
+絕對	jué duì	absolutely, definitely
+絕對	jué duì	absolute, perfect, definite
+角色	jiǎo sè	role, part
+覺悟	jué wù	come to understand, realize
+決心	jué xīn	determination, resolution
+決心	jué xīn	decide, make up one's mind
+軍	jūn	army
+軍隊	jūn duì	armed forces, army, troops
+軍人	jūn rén	soldier, serviceman, armyman
+軍事	jūn shì	military affairs
+卡	kǎ	to wedge in, to choke, be choked
+卡	kǎ	calorie
+開	kāi	①blossom; ②boil
+開除	kāi chú	expel, discharge
+開刀	kāi dāo	perform/have operation, make sb. first target of attack
+開發	kāi fā	develop, open up, exploit
+開放	kāi fàng	set free, open (park, garden)to public, trade with foreign nations
+開戶	kāi hù	open an account, establish an account
+開課	kāi kè	give a course, teach a subject
+開朗	kāi lǎng	open and clear, clear up
+開明	kāi míng	enlightened, open-minded
+開設	kāi shè	①open (shop/etc); ②offer (course/etc)
+開拓	kāi tuò	open up, develop, enlarge/expand (territory/etc)
+開演	kāi yǎn	begin (movie/business/etc)
+看家	kān jiā	look after the house, mind house, mind the house
+砍	kǎn	cut, chop, hack, throw sth. at
+看	kàn	[aspect]
+看不起	kàn bù qǐ	scorn, despise
+看得起	kàn de qǐ	think highly of
+看看	kàn kan	
+看來	kàn lái	it seems, it looks as if
+看起來	kàn qǐ lái	it seems, it looks as if
+看樣子	kàn yàng zi	it looks as if, it appears, it seems
+抗議	kàng yì	protest
+考察	kǎo chá	inspect, make on-the-spot investigation, observe and study
+考卷	kǎo juàn	examination paper
+考慮	kǎo lǜ	think over, consider
+考取	kǎo qǔ	pass entrance examination
+靠	kào	depend/rely on
+靠近	kào jìn	be nearby, be close to
+刻	kè	carve, engrave, cut
+科技	kē jì	science and technology
+科目	kē mù	school subject/course, headings in account book, category of subjects
+可	kě	passable, pretty good, not bad
+可靠	kě kào	reliable, trustworthy
+可憐	kě lián	have pity on, pity
+可怕	kě pà	fearful, terrible
+可是	kě shì	be indeed
+渴望	kě wàng	thirst/long for
+可惡	kě wù	hateful, abominable
+可惜	kě xí	unfortunate
+可喜	kě xǐ	gratifying, heartening
+可笑	kě xiào	ridiculous, funny
+課程	kè chéng	course, curriculum
+客房	kè fáng	guest room
+克服	kè fú	surmount, conquer, put up with (hardship/etc)
+客觀	kè guān	objective
+客戶	kè hù	client, customer
+客滿	kè mǎn	sold out, full house
+課堂	kè táng	classroom
+課外	kè wài	extracurricular, outside class, after school
+肯定	kěn dìng	affirm, approve, regard as positive
+口	kǒu	①Individual measure word for languages. ②Mouthful, measure word for things kept in the mouth.
+口才	kǒu cái	eloquence
+口袋(兒)	kǒu dài er	pocket
+口號	kǒu hào	slogan, watchword
+口紅	kǒu hóng	lipstick
+口氣	kǒu qì	tone, note, manner of speaking, implication
+口試	kǒu shì	oral examination
+口試	kǒu shì	take an oral test
+口水	kǒu shuǐ	saliva
+口味	kǒu wèi	a person's taste, flavor of food
+口音	kǒu yīn	voice, local/regional accent
+口語	kǒu yǔ	spoken/vernacular language, gossip, slander
+扣	kòu	button/buckle/tie up, cover with concave object, detain, arrest, deduct, discount
+空	kōng	in vain, for nothing
+空軍	kōng jūn	air force
+空前	kōng qián	unprecedented
+空中	kōng zhōng	open air/sky
+恐怖	kǒng bù	fearful, horrible
+恐怕	kǒng pà	perhaps
+空	kòng	free, with spare time
+空(兒)	kòng er	a cleft, fissure, a blank, unoccupied space or time
+控制	kòng zhì	control, dominate, command
+誇獎	kuā jiǎng	crack_up, praise, resound, applaud
+誇張	kuā zhāng	exaggerate, overstate
+跨	kuà	stride, bestride, straddle, cut across, go beyond
+會計	kuài jì	accounting
+寬	kuān	wide, broad, generous, lenient, comfortably off, well-off, relax, relieve, extend
+寬度	kuān dù	width, breadth
+況且	kuàng qiě	moreover, besides, in addition
+擴大	kuò dà	enlarge, extend, swell, dilate
+拉肚子	lā dù zi	suffer from diarrhoea, have diarrhea, have loose bowels
+喇叭	lǎ ba	brass wind instrument, trumpet
+辣	là	sharp, spicy, biting (of smell/taste)
+辣椒	là jiāo	hot pepper, chili
+蠟燭	là zhú	candle
+來	lái	to
+來	lái	particle: used to denote the beginning of an action
+來不及	lái bù jí	be too late to do sth.
+來得及	lái de jí	there's still time to do sth., be in time
+來回	lái huí	make a round trip, go to and fro
+來臨	lái lín	arrive, come, approach
+來往	lái wǎng	associate, contact
+來往	lái wǎng	come and go
+來信	lái xìn	incoming letter
+來源	lái yuán	source, origin
+來自	lái zì	come/stem/originate from
+籃子	lán zi	basket
+懶	lǎn	indolent
+懶得	lǎn de	not feel like (doing sth.), lethargic
+爛	làn	mushy, sodden, mashed, rotten, decayed, fester, worn-out
+狼	láng	wolf, greedy and cruel person
+浪	làng	wave, billow, breaker
+浪費	làng fèi	waste, squander
+浪漫	làng màn	dissolute, debauched, romantic
+撈	lāo	drag for, dredge up, get by improper means
+牢	láo	firm, durable
+嘮叨	láo dāo	chatter, be garrulous
+勞動	láo dòng	do physical labor, do manual work
+勞工	láo gōng	laborer, worker
+勞力	láo lì	labor(force)
+牢騷	láo sāo	discontent, complaint, grumble
+老	lǎo	always (doing sth.), for a long time, very
+老百姓	lǎo bǎi xìng	common people, civilians
+老闆娘	lǎo bǎn niáng	boss wife
+老大	lǎo dà	eldest child (in a family)
+老公	lǎo gōng	husband
+老虎	lǎo hǔ	tiger
+老家	lǎo jiā	native place, old home, one's original home
+老婆	lǎo pó	wife
+老實	lǎo shí	honest, frank, well-behaved, good, simple-minded, naive
+老實說	lǎo shí shuō	honestly
+老是	lǎo shì	always
+老太太	lǎo tài tai	old lady, your (my/his/etc)mother
+樂	lè	happy, cheerful, be glad to, enjoy, be amused
+樂觀	lè guān	be optimistic, be hopeful
+樂趣	lè qù	delight, pleasure, joy
+垃圾	lè sè	rubbish, garbage, junk, crap
+樂意	lè yì	be willing, be ready to
+淚	lèi	tear, teardrop
+類	lèi	collective measure word for a class of persons who have similar characteristics, or things which are alike in some way.
+類似	lèi sì	similar
+冷淡	lěng dàn	treat coldly, cold-shoulder, slight
+冷靜	lěng jìng	sober, calm
+冷飲	lěng yǐn	cold drink
+梨(子)	lí zi	pear
+離婚	lí hūn	divorce
+禮	lǐ	gift, present
+理	lǐ	manage, run, put in order, tidy up, take notice, acknowledge, administer, govern, operate
+理	lǐ	take notice of, pay attention to
+理髮	lǐ fǎ	have a haircut
+理解	lǐ jiě	understand, comprehend
+理論	lǐ lùn	theory
+禮貌	lǐ mào	courtesy, politeness, manners
+禮品	lǐ pǐn	gift, present
+禮堂	lǐ táng	assembly hall, auditorium
+裡	lǐ tou	inside, interior
+理想	lǐ xiǎng	perfect, ideal
+理想	lǐ xiǎng	ideal
+理由	lǐ yóu	reason, grounds, argument
+粒	lì	individual measure word for small, hard things, such as sand, grain, and medicine.
+利	lì	①do good to, benefit; ②sharp, keen
+立	lì	set up, erect
+立場	lì chǎng	position, stand(point)
+厲害	lì hài	great
+立即	lì jí	immediately, at once, promptly
+力量	lì liàng	physical strength, power, force, ability
+力氣	lì qì	physical strength
+利潤	lì rùn	profit
+歷史	lì shǐ	history, past records
+利息	lì xí	interest
+利益	lì yì	interest, benefit, profit
+例子	lì zi	example, case, instance
+連	lián	join, link, connect
+連	lián	in succession, one after another
+聯合	lián hé	to unite, ally
+聯合國	Lián hé guó	United Nations
+連接	lián jiē	join, link, connect
+聯絡	lián luò	contact
+連絡	lián luò	contact
+連忙	lián máng	promptly, at once
+連續	lián xù	continuous, successive, running
+連續劇	lián xù jù	TV series
+臉色	liǎn sè	complexion, look, facial expression
+練	liàn	practice, train, drill, boil and scour raw silk
+戀愛	liàn ' ài	love, romantic attachment
+量	liáng	estimate, measure
+良好	liáng hǎo	good, well
+糧食	liáng shí	grain, cereals, food
+倆	liǎng	two
+亮	liàng	show, shine
+諒解	liàng jiě	understand, make allowance for
+了	liǎo	to understand, end, finish
+了不起	liǎo bù qǐ	amazing, terrific, extraordinary, marvelous
+列	liè	collective measure word for a line of vehicles or people.
+裂	liè	split, crack, divide up(profits), rend, rip open, sever(relationship)
+淋	lín	pour, drench
+臨	lín	be present
+臨時	lín shí	fill-in
+凌晨	líng chén	before dawn
+靈魂	líng hún	soul, spirit
+靈活	líng huó	nimble, agile, flexible, elastic
+零件	líng jiàn	spare parts, spares, components
+零售	líng shòu	(sell)retail
+零下	líng xià	subzero
+零用錢	líng yòng qián	pocket money
+領帶	lǐng dài	necktie, tie
+領導	lǐng dǎo	leader
+領導	lǐng dǎo	lead, exercise leadership
+領土	lǐng tǔ	territory
+領先	lǐng xiān	be in lead, lead (in competition)
+領袖	lǐng xiù	leader
+領域	lǐng yù	territory, domain, realm, field, sphere
+令	lìng	make, cause
+另	lìng	another
+另外	lìng wài	in addition, besides, moreover
+另外	lìng wài	another
+溜	liū	slide, glide, sneak off, slip away
+流動	liú dòng	flow, go from place to place
+流汗	liú hàn	perspire, sweat
+流利	liú lì	be reluctant to leave or part with, fluent
+留念	liú niàn	accept/keep as a souvenir
+流血	liú xiě	bleed, shed blood
+流行	liú xíng	prevalent, popular, fashionable, in vogue, spread, rage (of contagious disease)
+留學	liú xué	study abroad
+留學生	liú xué shēng	student studying abroad, returned student
+龍	lóng	dragon, dinosaur
+嘍	lóu	particle: calling attention to, or mildly warning of, a situation
+摟	lǒu	gather up, rake together, hold/tuck up, (squeeze money)extort, pull
+旅客	lǚ kè	traveler, passenger
+旅行社	lǚ xíng shè	a travel/tourist agency
+綠豆	lǜ dòu	mung bean, green gram
+律師	lǜ shī	lawyer, attorney
+略	lüè	to ignore
+露	lù	show, reveal, appear
+路燈	lù dēng	street/road lamp
+陸軍	lù jūn	ground/land force, army
+路口	lù kǒu	crossing, intersection
+錄取	lù qǔ	enroll, recruit, admit
+路線	lù xiàn	route, itinerary, line
+陸續	lù xù	one after another, in succession
+露營	lù yíng	camp out, encamp, bivouac
+錄用	lù yòng	employ
+輪船	lún chuán	steamer, steamship
+輪流	lún liú	by turns, in turn
+輪胎	lún tāi	tire
+輪子	lún zi	wheel
+論	lùn	discuss, talk about, consider, regard, mention ,determine, decide on, discourse
+論文	lùn wén	thesis, dissertation, treatise, paper
+落	luò	fall, drop, go down, decline, set (of sun), ebb (of tide), remain where one is, stay behind, turn over to, belong to, rest with, obtain, receive
+落後	luò hòu	fall/lay behind
+落實	luò shí	fix/decide in advance, ascertain, make sure, fulfill, implement, put into effect
+落伍	luò wǔ	straggle, drop out, be outdated
+麻	má	benumbed, having tingling feeling, have pins and needles
+麻雀	má què	sparrow
+馬虎	mǎ hū	be careless/casual
+馬桶	mǎ tǒng	nightstool, commode
+碼頭	mǎ tóu	wharf, dock, port city, commercial/transportation center
+螞蟻	mǎ yǐ	ant
+埋	mái	bury
+買單	mǎi dān	pay restaurant bill
+買賣	mǎi mài	do business, carry on trade
+饅頭	mán tóu	steamed bun
+滿	mǎn	reach limit, expire, be over
+滿	mǎn	entirely, wholly
+滿	mǎn	quite, very
+滿足	mǎn zú	be satisfied/contented, satisfy, meet
+漫畫	màn huà	caricature, cartoon
+慢跑	màn pǎo	canter, jog, trot, lope
+忙碌	máng lù	be busy, bustle about
+盲目	máng mù	blind
+毛筆	máo bǐ	writing brush
+矛盾	máo dùn	contradictory
+毛巾	máo jīn	towel
+冒	mào	risk, brave
+貿易	mào yì	trade
+煤	méi	coal
+沒辦法	méi bàn fǎ	can do nothing about it, can't help it
+沒法子	méi fá zi	[informal] can do nothing about it, can't help it, helpless
+玫瑰	méi guī	rose
+梅花	méi huā	plum blossom, clubs (on playing cards), wintersweet
+沒想到	méi xiǎng dào	unexpected
+每	měi	every, each, often, frequent
+美觀	měi guān	pleasing to the eye
+美好	měi hǎo	fine, happy, glorious
+美妙	měi miào	beautiful, splendid, wonderful
+美術	měi shù	art, beaux arts, fineart
+魅力	mèi lì	glamor, charm, enchantment
+門	mén	individual measure word for discipline, branch of learning etc
+門票	mén piào	entrance/admission ticket
+門診	mén zhěn	outpatient service
+猛	měng	fierce, valiant, fearsome, severe
+夢	mèng	dream
+夢到	mèng dào	to dream
+夢想	mèng xiǎng	fond dream
+迷	mí	enchant, lose one's bearings
+迷糊	mí hú	confused, besotted, dazed
+迷路	mí lù	stray, estray, lose one's way, wilder, get lost
+迷人	mí rén	charming, enchanting
+迷失	mí shī	lose (one's way etc)
+迷信	mí xìn	have blind faith in, make fetish of
+迷信	mí xìn	superstition
+米粉	mǐ fěn	rice flour, rice-flour noodles
+密	mì	secret, tight
+蜜蜂	mì fēng	honeybee, bee
+秘	mì mì	secret
+密切	mì qiè	close, intimate
+秘	mì shū	secretary
+棉	mián	cotton
+棉被	mián bèi	quilt with cotton wadding
+棉花	mián huā	cotton
+免得	miǎn de	so as not to, so as to avoid
+免費	miǎn fèi	be free of charge, gratis
+勉強	miǎn qiǎng	do with difficulty
+面	miàn	individual measure word for the times of meeting between two persons.
+面對	miàn duì	face, confront
+麵粉	miàn fěn	flour, wheat flour
+面積	miàn jī	surface area
+面臨	miàn lín	be faced with, be up against
+面貌	miàn mào	face ,features, appearance, look, aspect
+面前	miàn qián	in the face of, in front of, before
+面子	miàn zi	reputation, face, prestige
+描寫	miáo xiě	describe, depict, portray
+廟	miào	temple, shrine
+妙	miào	wonderful, excellent, fine, ingenious, clever, subtle
+滅亡	miè wáng	be destroyed, die out
+民國	Míng u ó	Republic of China
+民間	mín jiān	among the people, folk, nongovernmental, people-to-people
+民主	mín zhǔ	democratic
+民主	mín zhǔ	democracy, democratic rights
+民族	mín zú	ethnic minority/group, nation, nationality
+名	míng	name, describe
+名	míng	individual measure word for people.
+明	míng	bright, clear, distinct, open, obvious, overt
+明白	míng bái	clear, obvious
+名稱	míng chēng	name (of a thing or an organization)
+名單	míng dān	name list
+明亮	míng liàng	well-lit, bright, shining
+明明	míng míng	obviously, plainly
+名牌	míng pái	nameplate, name tag
+名片	míng piàn	visiting/calling card, namecard
+明確	míng què	make clear/definite
+明星	míng xīng	(movie/etc)star
+明顯	míng xiǎn	clear, obvious
+命	mìng	order, command, assign (title/etc)
+命	mìng	life, lot, fate, destiny
+命令	mìng lìng	commend, order
+命令	mìng lìng	commend, order
+命運	mìng yùn	destiny, fate, lot
+摸	mō	feel, touch, grope for, feel/sound out
+磨	mó	①grind, mill, turn round/about; ②obliterate; ③worry
+模仿	mó fǎng	imitate, follow example of
+模糊	mó hú	blur, obscure, confuse
+模型	mó xíng	model, mold, matrix, pattern
+模樣	mó yàng	appearance, look
+抹	mǒ	①brush/wipe off, exclude; ②put on, apply, smear, plaster
+陌生	mò shēng	strange, unfamiliar
+某	mǒu	certain person
+目標	mù biāo	objective, target, goal
+目的地	mù dì dì	destination
+目錄	mù lù	catalogue, list, table of contents, directory
+拿手	ná shǒu	good at
+哪怕	nǎ pà	no matter how
+奶粉	nǎi fěn	powdered milk
+耐心	nài xīn	patienly, persistently
+耐心	nài xīn	patience, endurance
+耐用	nài yòng	wear, lasting long, durable
+南部	nán bù	southern part, the south
+難道	nán dào	Do you really mean to say that...
+難得	nán dé	hard to come by, rare, seldom
+南方	nán fāng	south, southern part of country
+難怪	náng u ài	no wonder
+南面	nán miàn	southern face, the south, the emperor
+難受	nán shòu	feel bad/ill/unwell/unhappy, suffer pain
+男子	nán zǐ	man, male
+腦	nǎo	brain
+腦袋	nǎo dài	head
+腦筋	nǎo jīn	brain, mind, head
+腦子	nǎo zi	brain, mind, head
+鬧	nào	make a noise, stir up trouble, give vent to anger, go in for, suffer from, be troubled by
+鬧區	nào qū	downtown
+鬧鐘	nào zhōng	alarm clock
+內部	nèi bù	inside, interior
+內行	nèi háng	adept, professional
+內科	nèi kē	internal medicine
+內衣	nèi yī	underwear
+能	néng	can, be able to, be capable of
+能幹	néng gàn	able-minded, competent
+能源	néng yuán	the sources of energy, energy resources, power sources
+泥	ní	ball of mud
+泥土	ní tǔ	earth, soil, clay
+黏	nián	glue, stick, paste
+黏	nián	sticky, glutinous
+粘	nián	glue, stick, paste
+年初	nián chū	beginning of year
+年代	nián dài	age, years, time, decade
+年齡	nián líng	age
+尿	niào	to urinate
+尿	niào	urine
+捏	niē	hold between fingers, pinch, knead with the fingers, mold, fabricate, trump up
+寧可	níng kě	(would)rather, better
+寧願	níng yuàn	(would)rather, better
+牛排	niú pái	beefsteak
+牛仔褲	niú zǐ kù	jean
+鈕扣	niǔ kòu	button
+濃	nóng	dense, thick, concentrated
+農產品	nóng chǎn pǐn	agricultural products, farm produce
+農村	nóng cūn	rural area, countryside, village
+濃厚	nóng hòu	dense, thick, strong, pronounced
+農民	nóng mín nóng fū	peasant, peasantry
+農藥	nóng yào	agricultural/farm chemical, pesticide
+農業	nóng yè	agriculture, farming
+女士	nǚ shì	educated girl/woman, Ms., Miss
+女子	nǚ zǐ	woman, female
+暖	nuǎn	warm, warm up
+暖和	nuǎn huo	warm, mild, sunny
+暖氣	nuǎn qì	central heating
+喔	ō	inj.: of surprise
+哦	ó	particle: used when informing sb. of st. (to draw people's attention); indicating mild imperative/suggestion/exclamation/guess/etc
+噢	òu	inj.: of surprised understanding
+怕	pà	perhaps, be afraid
+排	pái	be arranged/located/situated
+排	pái	stand in line, arrange, put in order, sequence
+排	pái	collective measure word for teeth, things in a row and bulidings in a line.
+排斥	pái chì	repel, exclude, reject
+排隊	pái duì	stand in line
+排列	pái liè	arrange, put in order
+排球	pái qiú	volleyball
+牌子	pái zi	plaque, sign, brand, trademark, tune, person's reputation
+派	pài	send, dispatch, assign, appoint
+攀	pān	climb, clamber, seek connections in high places, involve, implicate
+盤	pán	individual measure word for a chess or any board game etc
+判斷	pàn duàn	judge, determine
+盼望	pàn wàng	long for, look forward to
+跑步	pǎo bù	jog, march at/on the double
+炮	pào	cannon, cannon chess piece, firecracker
+砲	pào	cannon, firecracker, big gun
+泡	pào	①brew, souse; ②steep, soak, immerse
+泡茶	pào chá	make tea
+賠	péi	compensate, pay for, stand a loss
+賠償	péi cháng	compensate, pay for
+陪同	péi tóng	accompany
+培養	péi yǎng	foster, train, develop, culture
+配	pèi	match, find sth. to fit/replace sth. else, compound, mix
+配合	pèi hé	coordinate, cooperate
+噴	pēn	spurt, spout, gush, spray, sprinkle
+盆	pén	Cotainer measure word for the things in a basin.
+膨脹	péng zhàng	expand, swell, inflate
+捧	pěng	hold/carry sth. level in both hands, boost ,boast, exalt, flatter
+碰	pèng	①touch, knock against; ②take one's chance, explore ③meet, encounter, run into
+碰到	pèng dào	run into, encounter, meet
+碰見	pèng jiàn	meet unexpectedly, run into
+碰上	pèng shàng	come across, encounter
+披	pī	drape/hang over one's shoulders
+匹	pī	measure word for horses, mules, camels etc
+批	pī	comment, criticize, refute, write comments on document, slap (sb.'s face)
+批	pī	collective measure word for people or goods.
+批判	pī pàn	appraise, judge
+批評	pī píng	criticize
+皮	pí	naughty, mischievous
+皮帶	pí dài	leather belt
+皮膚	pí fū	skin
+疲倦	pí juàn	tired and sleepy
+疲勞	pí láo	tired, weary
+脾氣	pí qì	disposition, temperament, temper
+皮鞋	pí xié	leather shoes
+屁股	pì gu	buttocks, backside, end, butt
+篇	piān	Partial measure for a sheet of paper or a leaf (two pages)of a book.
+偏(偏)	piān piān	just, but, only
+偏食	piān shí	be particular with food
+偏向	piān xiàng	be partial to
+騙	piàn	deceive, fool, hoodwink
+片面	piàn miàn	unilateral, one-sided
+片子	piàn zi	a roll of film, film, movie
+騙子	piàn zi	swindler, cheat
+飄	piāo	blow/drift about, flutter
+拼命	pīn mìng	risk life, make death-defying effort
+貧窮	pín qióng	poor, needy
+品德	pǐn dé	moral character
+品質	pǐn zhí	character, quality
+聘請	pìn qǐng	engage, invite
+坪	píng	An area measure equal to 3.3057 square meter or 36 square feet.
+憑	píng	based on, according to
+平常	píng cháng	ordinary, common
+平等	píng děng	equal
+平衡	píng héng	balance
+平靜	píng jìng	calm, quiet, tranquil
+平均	píng jūn	average
+平時	píng shí	peacetime, at ordinary times, in peacetime, in normal times
+平原	píng yuán	plain, flatlands
+婆婆	pó pó	husband's mother, mother-in-law, maternal grandmother
+頗	pǒ	quite, very, considerably
+破壞	pò huài	violate, destroy
+破爛	pò làn	rubbishy, ragged, frazzle, broken
+破裂	pò liè	burst, split, rupture
+迫切	pò qiè	urgent, pressing, imperative
+鋪	pū	spread, extend, unfold, pave, lay
+撲	pū	fling self at
+撲滅	pū miè	extirpation, extermination, eradication
+普遍	pǔ biàn	universal, general, widespread, common
+普及	pǔ jí	popularize, disseminate, spread
+普通	pǔ tōng	ordinary, common, average
+普通話	pǔ tōng huà	putonghua, Mandarin Chinese, common speech, standard language
+瀑布	pù bù	waterfall, cataract
+欺負	qī fù	browbeat, take advantage of, pick on
+欺騙	qī piàn	cheat, dupe
+妻子	qī zǐ	wife
+棋	qí	chess/chess-like game, any piece used in a board game
+齊	qí	①even, equal in length/height; ②complete, prepared, together
+其	qí	[formal] its, his, her, their, it, this, that
+期	qí	measure word for newspapers or periodicals, or things that appear by stages.
+其次	qí cì	next, second
+期間	qí jiān	time, period
+旗袍	qí páo	cheongsam, a sheath with a slit skirt
+齊全	qí quán	complete, all in readiness
+其實	qí shí	as a matter of fact, actually, in fact
+歧視	qí shì	treat with bias, despise
+期限	qí xiàn	time limit, deadline
+其餘	qí yú	others, the rest
+旗子	qí zi	flag, banner, pennant
+期中	qí zhōng	mid-term
+起	qǐ	measure word for unexpected accidents or events.
+起	qǐ	from... on (used after nouns of time and place)
+起	qǐ	start, rise, cause to rise
+起	qǐ	run up, build a house, unload, remove, t ake up from a vault
+起	qǐ	[aspect] used after a verb to indicate sth. happening right after the action
+起初	qǐ chū	at first, originally
+起飛	qǐ fēi	take off (of planes/etc)
+起火	qǐ huǒ	fire breaking out
+起來	qǐ lái	[aspect] used after a verb to indicate: ①an upward movement ②the beginning or continuation of an action ③the completion of an action or attainment of a goal
+氣	qì	air, gas, smell, atmosphere, spirit
+器材	qì cái	equipment, materials
+氣氛	qì fēn	atmosphere, ambience
+氣憤	qì fèn	angry, furious
+器官	qì guān	organ, apparatus
+氣候	qì hòu	climate
+企圖	qì tú	attempt
+企圖	qì tú	attempt, intend
+氣味	qì wèi	flavor, smell
+氣溫	qì wēn	air temperature
+氣息	qì xí	smell, breath
+氣象	qì xiàng	climatic phenomenon, prevailing spirit/atmosphere
+企業	qì yè	enterprise, business
+汽油	qì yóu	gasoline
+遷	qiān	move, change
+牽	qiān	pull, lead along (by holding hand/halter/etc)
+簽	qiān	sign, autograph
+簽訂	qiān dìng	conclude and sign (treaty/contract/etc)
+簽名	qiān míng	sign one's name, autograph
+千萬	qiān wàn	by all means, absolutely
+謙虛	qiān xū	modest, unassuming
+簽約	qiān yuē	sign a contract
+簽字	qiān zì	initial, sign, affix one's signature, ratify
+簽證	qiān zhèng	visa
+前方	qián fāng	ahead ,front direction, (war)front
+前進	qián jìn	go forward
+前頭	qián tóu	in the front, at the head, ahead, above, preceding
+前途	qián tú	future, career, prospects
+前往	qián wǎng	go, leave for, proceed to
+欠	qiàn	owe
+歉意	qiàn yì	apology, regret
+槍	qiāng	rifle, gun
+強	qiáng	strong, powerful, vigorous, better, slightly more than, plus
+牆壁	qiáng bì	wall
+強大	qiáng dà	big and powerful, formidable
+強盜	qiáng dào	robber, bandit
+強調	qiáng diào	stress, underline
+強度	qiáng dù	intensity
+強烈	qiáng liè	strong, intense, violent
+強迫	qiáng pò	force (sb. to do sth.)
+強人	qiáng rén	powerful person
+搶救	qiǎng jiù	rush to save
+敲	qiāo	strike, beat (drum/etc)
+瞧	qiáo	see, look at
+巧	qiǎo	clever, intelligent, skillful, ingenious, artful, deceiving, pretty, cute
+巧妙	qiǎo miào	ingenious, skillful, clever, shrewd
+悄悄	qiǎo qiǎo	quietly, stealthily
+切	qiē	cut, slice
+且	qiě	[formal] even, moreover, further
+親口	qīn kǒu	(from sb.'s)own mouth
+親戚	qīn qī	relatives
+親切	qīn qiè	cordial, genial, warm
+親人	qīn rén	close relatives
+侵入	qīn rù	invade, intrude into
+親手	qīn shǒu	with one's own hands
+親眼	qīn yǎn	with one's own eyes, personally
+親自	qīn zì	personally, in person, firsthand
+勤勞	qín láo	industrious, hardworking
+青	qīng	nature's color, green, blue, greenish black
+清	qīng	clear up, settle
+清晨	qīng chén	early morning
+清除	qīng chú	eliminate, get rid of
+清楚	qīng chǔ	understand clearly
+輕鬆	qīng sōng	light, relaxed
+輕傷	qīng shāng	minor wound
+青少年	qīng shào nián	young people and teenagers, youths
+清晰	qīng xī	distinct, clear (of sound/view)
+清醒	qīng xǐng	be sober/wide-awake
+傾向	qīng xiàng	be inclined to, side with, prefer
+情	qíng	sentiment, sensibility, inclination, interest, affection, love, passion
+情人	qíng rén	lover, sweetheart
+情書	qíng shū	love letter
+請教	qǐng jiào	seek advice, Please enlighten me.
+請求	qǐng qiú	ask, request, entreat
+窮	qióng	poor, impoverished, exhausted, hard-pressed
+窮人	qióng rén	poor people, the poor
+秋季	qiū jì	autumn season
+球場	qiú chǎng	ball field
+球隊	qiú duì	ball game team
+求婚	qiú hūn	make an offer of marriage, propose
+球賽	qiú sài	ball game/tournament
+球鞋	qiú xié	gym/tennis shoes, sneakers
+球員	qiú yuán	ball team member
+區別	qū bié	distinction, difference
+區別	qū bié	distinguish, differentiate
+區域	qū yù	region, zone, district
+曲折	qū zhé	tortuous, complicated
+取	qǔ	take, get, obtain
+娶	qǔ	take a wife
+取代	qǔ dài	replace, supersede
+取得	qǔ dé	gain, acquire, obtain
+取消	qǔ xiāo	cancel, abolish, nullify
+取笑	qǔ xiào	ridicule, make fun of
+去	qù	in order to
+去	qù	particle: used to denote an action away from the speaker or to denote the direction of the action
+去	qù	get rid of, remove, cast out
+去世	qù shì	die, pass away
+圈	quān	①Collective measure word for people or things in a circle; ②measure word for certain actions of revolving.
+全家	quán jiā	whole family
+權利	quán lì	right, privilege
+全面	quán miàn	omnibearing
+全面	quán miàn	overall, comprehensive, all-round, all-out
+全球	quán qiú	whole world
+全體	quán tǐ	whole body, plenary assembly
+拳頭	quán tóu	fist
+勸	quàn	persuade, urge, exhort
+缺	quē	be short of, lack
+缺點	quē diǎn	defect, drawback, fault, shortcoming
+缺乏	quē fá	be short of, lack
+缺少	quē shǎo	lack, be short of
+缺席	quē xí	be absent (from meeting/etc)
+確定	què dìng	decide firmly, settle, determine, fix, define
+確認	què rèn	affirm, confirm, identify with certainty
+確實	què shí	definitely true/real/certain/reliable
+群	qún	collective measure word for a number of people or animals gathering together, or a number of close islands.
+群眾	qún zhòng	the masses/People
+然而	rán ' ér	even so, but
+燃料	rán liào	fuel
+燃燒	rán shāo	burn
+染	rǎn	dye, soil, pollute, make strokes (in painting/etc)
+讓	ràng	yield, transfer possession of sth.
+讓步	ràng bù	yield, compromise
+繞	rào	wind, coil, entwine, revolve around sth., detour, go around, become entangled
+惹	rě	cause (sth.)to happen
+惹	rě	provoke
+熱愛	rè ' ài	love ardently
+熱烈	rè liè	ardent
+熱門	rè mén	in great demand, popular
+熱情	rè qíng	enthusiasm, passion
+熱情	rè qíng	enthusiastic
+熱心	rè xīn	warm-heartedness
+人才	rén cái	capable person
+人格	réng é	character
+人工	réng ō n g	manual work, manpower
+人間	rén jiān	the human world
+人類	rén lèi	human beings/species
+人力	rén lì	manual labor, manpower
+人情味(兒)	rén qíng wèi er	human touch/interest
+人權	rén quán	human rights
+人人	rén rén	everybody
+人生	rén shēng	human life
+人事	rén shì	human affairs, personnel matters
+人數	rén shù	number of people
+人體	rén tǐ	human body
+人物	rén wù	character, personage, character in literature
+人心	rén xīn	popular feeling, human heart
+人行道	rén xíng dào	sidewalk
+人員	rén yuán	personnel, staff
+忍	rěn	bear, endure, hold back, forbear
+忍不住	rěn bù zhù	can't bear, can't help but do sth
+忍耐	rěn nài	endure, put up with
+忍受	rěn shòu	endure, bear
+忍心	rěn xīn	have the heart to
+任	rèn	allow
+任	rèn	serve in a position, appoint to a position
+任務	rèn wù	assignment, job
+任性	rèn xìng	self-willed
+仍	réng	still, yet
+仍然	réng rán	still, yet
+日常	rì cháng	usual, ordinary, daily
+日出	rì chū	sunrise
+日後	rì hòu	in the future
+日用品	rì yòng pǐn	articles for daily use
+容	róng	contain
+融化	róng huà	melt (of snow/ice/etc)
+榮幸	róng xìng	pleasure
+如	rú	be like, measure up to
+如	rú	if, supposing
+如	rú	according to, in accordance with, such as, as if, like, for example
+如此	rú cǐ	thus, like this, such
+如果說	rú guǒ shuō	[informal] if, in case
+如何	rú hé	how
+如何	rú hé	how about it
+如今	rú jīn	nowadays
+如同	rú tóng	like, similar to
+如下	rú xià	as follows
+如意	rú yì	as one wishes
+入	rù	enter, take in, receive, conform with, descend, set (of sun)
+入口	rù kǒu	in door
+入學	rù xué	start school, enter school/college
+軟	ruǎn	soft, weak, pliant, poor in quality
+弱	ruò	weak, feeble, inferior, young, a bit less than
+塞	sāi	fill/stuff in
+賽跑	sài pǎo	race (on foot)
+三角形	sān jiǎo xíng	triangle
+三明治	sān míng zhì	sandwich
+散	sàn	distribute, let out, discharge
+散	sàn	break up
+喪失	sàng shī	lose
+艘	sāo	measure word for vessels of considerable size.
+掃	sǎo	sweep, sweep away
+掃地	sǎo dì	sweep floor, reach nadir ,sweep the floor, make clean sweep
+色彩	sè cǎi	color, hue, shade
+沙	shā	sand, sth. granulated
+沙漠	shā mò	desert
+沙灘	shā tān	sandy beach
+沙子	shā zi	sand, grit, small grains, pellets
+傻	shǎ	stupid, muddleheaded, stunned, silly
+曬	shài	dry in the sun, bask, sun, shine upon
+曬太陽	shài tài yáng	sunbathe, bask, sun
+山地	shān dì	mountainous/hilly country, hillside field
+山區	shān qū	mountain area
+閃	shǎn	dodge, get out of the way
+善於	shàn yú	be good at, be adept in
+傷	shāng	injury, wound
+傷	shāng	injure, wound, fall ill from, damage, harm
+傷	shāng	to hurt, wound, harm
+商標	shāng biāo	trademark
+商場	shāng chǎng	market, bazaar
+傷害	shāng hài	injure, harm
+商量	shāng liáng	consult, talk over
+傷腦筋	shāng nǎo jīn	troublesome, bothersome, knotty
+商品	shāng pǐn	commodity, goods, merchandise
+商人	shāng rén	businessman, merchant, trader
+傷心	shāng xīn	be sad/grieved
+商業	shāng yè	commerce, trade, business
+上	shàng	[aspect] used as a complement to a verb: ①indicating that an action has started and is in progress ②indicating the attainment of an objective ③up, upward
+上	shàng	to present, to affix, apply, place sth. in position
+上當	shàng dàng	be taken in, be fooled
+上帝	Shàng dì	God
+上級	shàng jí	superior, higher level/authority
+上升	shàng shēng	go up, rise, ascend
+上市	shàng shì	go/appear on market
+臺	shàng tái	mount platform, appear on the stage
+上頭	shàng tóu	above, on top/surface of, higher authorities
+上下	shàng xià	above and below, up and down, high and low, superior and inferior, old and young, ruler and subject, heaven and earth
+上衣	shàng yī	upper outer garment, jacket
+上游	shàng yóu	upper reaches of river, advanced position
+稍	shāo	slightly
+稍微	shāo wéi	slightly, a bit
+少數	shǎo shù	a few
+少年	shào nián	young boy, early youth(10-16)
+少女	shào nǚ	young girl
+蛇	shé	snake, serpent
+舌頭	shé tou	tongue
+捨不得	shě bù dé	hate to use or part with, grudge, begrudge
+捨得	shě dé	be willing to give up or away
+射	shè	shoot, fire, emit, discharge, allude to, insinuate
+設備	shè bèi	equipment, facilities
+社會	shè huì	society
+設計	shè jì	design, plan
+設計	shè jì	plan, design
+設立	shè lì	establish, found
+攝影	shè yǐng	take a photograph, shoot a film, film
+伸	shēn	stretch, extend
+身邊	shēn biān	at hand, nearby
+身材	shēn cái	stature, figure
+身分	shēn fèn	identity, status, capacity
+身分	shēn fèn zhèng	identity/identification card
+身高	shēng āo	height (of person)
+深刻	shēn kè	deep, profound
+深淺	shēn qiǎn	depth, seriousness
+申請	shēn qǐng	apply for
+深入	shēn rù	thorough, deep-going
+伸手	shēn shǒu	stretch/hold out one's hand, ask for help
+深夜	shēn yè	late at night
+神	shén	god, deity, divinity
+神話	shén huà	mythology, myth, fairy tale
+神經	shén jīng	nerve
+神秘	shén mì	mysterious, mystical
+神奇	shén qí	magical, mystical, miraculous
+神氣	shén qì	spirited, vigorous, cocky, overweening, triumphant
+神聖	shén shèng	sacred, holy
+神仙	shén xiān	immortals, spirits, gods, the deities, supernatural beings
+審查	shěn chá	examine, investigate
+甚至	shèn zhì	even
+甚至	shèn zhì	even (to the point of), so much so that
+慎重	shèn zhòng	cautious, discreet
+聲	shēng	measure word for the sounds such as speaking and shouting that can be heard.
+升	shēng	to rise, to hoist, to ascend, to promote
+生	shēng	unripe, green, raw, uncooked, unprocessed, crude, unfamiliar, strange, stiff, mechanical
+生產	shēng chǎn	produce, manufacture
+生存	shēng cún	live, exist
+生動	shēng dòng	lively, vivid
+升高	shēng gāo	go up, ascend, rise
+升級	shēng jí	upgrade, go up (in grade/etc), escalate
+生命	shēng mìng	life
+生肖	shēng xiào	year of the animal in which one was born
+升學	shēng xué	enter higher school
+生長	shēng zhǎng	grow, develop
+繩子	shéng zi	rope, string
+省	shěng	thrifty, frugal, economical
+省	shěng	save, economize, omit, leave
+省得	shěng de	lest
+省錢	shěng qián	save money, be economical
+勝	shèng	win victory, succeed, surpass, excel
+勝利	shèng lì	win victory/success
+剩下	shèng xià	be left(over), remain
+溼	shī	wet
+濕	shī	wet
+詩	shī	poetry, verse, poem
+失敗	shī bài	be defeated, fail, lose
+失掉	shī diào	lose, miss
+師父	shī fu	honorific term of address for a Buddhist monk or nun, or a Taoist priest or nun
+師傅	shī fù	master worker, tutor of king/emperor, general term of address in late 70s and 80s, address for service workers
+施工	shī gōng	work on (of construction)
+失戀	shī liàn	lovelorn, be jilted, lose one's love
+失眠	shī mián	sleepless, suffer from insomnia
+師母	shī mǔ	wife of one's teacher/master
+失去	shī qù	lose
+詩人	shī rén	poet
+失望	shī wàng	become disappointed, lose (hope/faith)
+失業	shī yè	lose one's job, be out of work
+獅子	shī zi	lion
+時	shí	at the time of, while
+時常	shí cháng	often, frequently
+實話	shí huà	truth, truthful statement
+時機	shí jī	an occasion, a suitable (or right)time, opportune moment
+實際	shí jì	practical, literal
+時刻	shí kè	time, moment
+實力	shí lì	actual strength
+食品	shí pǐn	foodstuff, food
+時期	shí qí	period (of time)
+實施	shí shī	put into effect, implement
+時時	shí shí	often, constantly
+實現	shí xiàn	realize, achieve, bring about
+實行	shí xíng	put into practice/effect, practice
+實驗	shí yàn	experiment, test
+實驗	shí yàn	test, experiment
+實用	shí yòng	practical, pragmatic, functional
+實在	shí zài	indeed, really, honestly, in fact, as a matter of fact
+實在	shí zài	true, real, honest, dependable
+使	shǐ	have sb. do sth., make, cause, e nable
+使得	shǐ de	make, cause
+始終	shǐ zhōng	always, from beginning to end
+視	shì	depend
+世	shì	generation, era, epoch, life, lifetime, age
+適當	shì dàng	suitable, proper
+是非	shì fēi	right and wrong, quarrel, dispute
+是否	shì fǒu	whether or not, is it so or not
+適合	shì hé	suit, fit
+世紀	shì jì	century
+勢力	shì lì	power, force, influence
+市立	shì lì	city-established, municipal
+市民	shì mín	citizenry, townspeople
+市區	shì qū	city proper, urban district
+事實上	shì shí shàng	as a matter of fact, factually
+示威	shì wēi	put on show of force, demonstrate, march
+事物	shì wù	thing, object
+事先	shì xiān	in advance, beforehand
+試驗	shì yàn	attempt, experiment, test
+式樣	shì yàng	style, type, model
+視野	shì yě	field of vision
+事業	shì yè	undertaking, enterprise, facilities
+適應	shì yìng	suit, adapt, fit, get used to
+適用	shì yòng	suit, be applicable
+市長	shì zhǎng	mayor
+收穫	shōu huò	harvest, gains, results
+收據	shōu jù	receipt
+收看	shōu kàn	tune into, watch (e.g., TV)
+收入	shōu rù	income
+收拾	shōu shí	put in order, tidy up
+收音機	shōu yīn jī	radio set
+首	shǒu	[formal] first
+手電筒	shǒu diàn tǒng	torch
+首都	shǒu dū	capital (of country)
+手段	shǒu duàn	means, method, trick, artifice
+手工	shǒu gōng	handwork
+手術	shǒu shù	operation
+首先	shǒu xiān	first
+手續	shǒu xù	procedure
+手指(頭)	shǒu zhǐ tou	finger
+售	shòu	sell, get (plan/etc)accepted
+受	shòu	passive signifier
+受	shòu	experience, be subjected to
+受不了	shòu bù liǎo	be unable to endure
+受到	shòu dào	be given
+受得了	shòu de liǎo	stand up to
+壽命	shòu mìng	life
+受傷	shòu shāng	be injured/wounded
+蔬菜	shū cài	vegetables, greens
+書法	shū fǎ	calligraphy, penmanship
+書房	shū fáng	study, studio
+疏忽	shū hū	ignore, neglect
+書籍	shū jí	books
+輸入	shū rù	import, input
+舒適	shū shì	comfortable, cozy
+熟	shú	familiar, skilled, experienced
+熟練	shú liàn	skilled, practiced, proficient
+熟人	shú rén	acquaintance, friend
+叔叔	shú shu	father's younger brother, uncle, uncle (child's address for young males)
+熟悉	shú xī	know sth./sb. well
+屬	shǔ	be subordinate to, belong to
+暑期	shǔ qí	summer vacation time
+屬於	shǔ yú	belong to, be part of
+束	shù	collective measure word for things of the same kind fastened together.
+數	shù	[formal] several
+數量	shù liàng	quantity, amount
+樹林	shù lín	woods, grove
+樹木	shù mù	trees
+數目	shù mù	number, amount
+樹葉	shù yè	leaves (of trees)
+數字	shù zì	numeral, figure, digit, quantity, amount
+刷	shuā	scrub, brush
+刷卡	shuā kǎ	pay by credit card
+刷子	shuā zi	brush
+耍	shuǎ	flourish
+摔	shuāi	fall, tumble, move backward and forward, swing
+摔倒	shuāi dǎo	fall down, fell an opponent
+甩	shuǎi	move backward and forward, throw, leave sb. behind, throw off
+帥	shuài	command(army)
+率領	shuài lǐng	lead, head
+雙	shuāng	two, twin, both, dual
+雙	shuāng	collective measure word for people in pairs.
+雙方	shuāng fāng	both sides, two parties
+水分	shuǐ fèn	moisture content
+水平	shuǐ píng	standard, level
+水災	shuǐ zāi	flood, inundation
+水準	shuǐ zhǔn	level, standard
+稅	shuì	tax, duty
+說服	shuì fú	persuade, talk sb. over
+睡著	shuì zháo	fall asleep
+順	shùn	obey, follow, submit to
+順	shùn	smooth-going, plain sailing, arrange, put in order
+順	shùn	along
+順便	shùn biàn	conveniently, in passing
+順利	shùn lì	smooth, successful, without a hitch
+順手	shùn shǒu	smoothly, easily, without extra trouble
+順序	shùn xù	sequence, order
+說不定	shuō bù dìng	perhaps, maybe
+說法	shuō fǎ	way of saying sth., wording, formulation, statement, version, argument
+說起來	shuō qǐ lái	now that it is mentioned, in regard to
+絲	sī	silk, threadlike thing, tiny bit, trace
+撕	sī	tear, rip
+司機	sī jī	driver
+思考	sī kǎo	ponder over, reflect on
+私立	sī lì	privately run, private
+思索	sī suǒ	think deeply, ponder
+私人	sī rén	private
+思想	sī xiǎng	thought, thinking, idea, ideology
+死	sǐ	extremely
+死亡	sǐ wáng	be dead/doomed
+四處	sì chù	all around, on all sides, on every side
+四處	sì chù	all around, everywhere
+四方	sì fāng	four directions, all sides, square
+似乎	sì hū	it seems, as if, seemingly
+四季	sì jì	four seasons, each season consisting of three months
+寺廟	sì miào	temple
+飼養	sì yǎng	raise (animals/etc)
+四周	sì zhōu	all around, on all sides, on every side
+鬆	sōng	loose, slack, not hard up, light and flaky, soft
+送行	sòng xíng	see sb. off, wish sb. bon voyage
+俗	sú	vulgar, common
+俗話	sú huà	common saying, proverb
+俗話說	sú huà shuō	As the old saying goes...
+速度	sù dù	speed, velocity, tempo, rate, pace
+算	suàn	consider, regard/count as
+算了	suàn le	Forget about it., That's enough!
+算起來	suàn qǐ lái	all considered
+算是	suàn shì	considered to be
+算帳	suàn zhàng	make out bills, settle accounts, reckon ,square accounts, balance the books, get even with sb.
+隨	suí	follow
+隨手	suí shǒu	conveniently, without extra trouble
+隨意	suí yì	as one pleases
+碎	suì	broken, fragmentary, garrulous, gabby
+歲數	suì shù	age, years
+孫女	sūn nǚ	granddaughter
+孫子	sūn zi	son's son, grandson
+損失	sǔn shī	loss
+損失	sǔn shī	lose
+縮	suō	contract, shrink, shorten, draw back, withdraw, recoil
+縮短	suō duǎn	shorten, curtail, cut down
+縮水	suō shuǐ	contract, shrink, withdraw, recoil
+鎖	suǒ	lock, fetters
+鎖	suǒ	lock(up), chain up, lockstitch
+所	suǒ	that which
+所謂	suǒ wèi	so-called
+塌	tā	collapse, droop, settle down
+踏	tà	step on, tread, stamp
+抬頭	tái tóu	raise one's head, gain ground, improve, go up (in price)
+彈	tán	pluck/play (musical instrument)
+談話	tán huà	talk, chat
+談判	tán pàn	negotiate, talk
+毯子	tǎn zi	blanket
+探	tàn	stretch/pop forward
+探親	tàn qīn	visit family
+堂	táng	measure word for classes.
+趟	tàng	①measure word for the times of coming and going; ②measure word for the times of communications and transport.
+燙	tàng	①scald, burn, warm in hot water; ②iron, press; ③have one's hair permed
+燙	tàng	scalding, boiling hot
+掏	tāo	take out with hand, hollow/scoop out
+逃	táo	escape, flee, evade, shirk
+逃避	táo bì	escape, evade, shirk
+陶瓷	táo cí	ceramics
+淘氣	táo qì	naughty
+桃子	táo zi	peach
+逃走	táo zǒu	run away, flee
+討	tǎo	demand, dun, marry (a woman)
+套	tào	encase, overlap, interlink, harness, hitch up, model on/after, copy, pump sb. about sth.
+套	tào	collective measure word for groups of abstract things.
+特別	tè bié	specially, particularly, especially
+特地	tè dì	on purpose, specially
+特點	tè diǎn	characteristic, peculiarity, trait
+特色	tè sè	a characteristic, a distinguishing feature, a character
+特殊	tè shū	exceptional, special, particular, peculiar, distinctive
+提	tí	carry, take (in hand with arm down), lift, raise
+提	tí	mention, refer to, promote, bring up
+題	tí	measure word for test items.
+題材	tí cái	subject matter, theme
+提到	tí dào	submit, present
+題目	tí mù	title, subject, topic, exam questions
+提起	tí qǐ	mention, speak of
+提前	tí qián	advance in date, ahead
+提醒	tí xǐng	remind, warn, alert to
+提早	tí zǎo	in advance
+體會	tǐ huì	know/learn from experience, try to realize (another's situation)
+體力	tǐ lì	physical power/strength
+體貼	tǐ tiē	be considerate, be thoughtful
+體溫	tǐ wēn	(body)temperature
+體重	tǐ zhòng	(body)weight
+天才	tiān cái	genius, talent, gift
+天空	tiān kōng	sky, heaven
+天然	tiān rán	natural
+天堂	tiān táng	paradise, heaven
+天文	tiān wén	astronomy
+天下	tiān xià	world, everywhere under heaven; domination
+天真	tiān zhēn	naive, innocent
+天主教	Tiān zhǔ jiào	Catholicism
+田	tián	field, farmland
+甜點	tián diǎn	dessert, sweetmeat
+田野	tián yě	field, open country
+挑	tiāo	push/poke sth. up
+挑選	tiāo xuǎn	choose, select
+調	tiáo	regulate, adjust, mediate
+條	tiáo	①measure word for abstract things, such as news and experience; ②Individual measure word forpeople's lives.
+條件	tiáo jiàn	condition, term, factor, requirement, prerequisite ,qualification
+條約	tiáo yuē	treaty, pact
+調整	tiáo zhěng	adjust, readjust, regulate, restructure, balance
+挑戰	tiǎo zhàn	challenge to battle/contest
+跳高	tiào gāo	high jump
+跳遠	tiào yuǎn	do long jump, do broad jump
+鐵	tiě	iron, arms, weapon
+鐵路	tiě lù	railway, railroad
+聽見	tīng jiàn	hear
+聽力	tīng lì	hearing, aural comprehension (in language teaching)
+聽起來	tīng qǐ lái	it sounds like
+聽眾	tīng zhòng	audience, listeners
+停電	tíng diàn	cut power
+停止	tíng zhǐ	stop, cease, halt, suspend, call off
+挺	tǐng	erect, firm
+挺	tǐng	stick/bulge out, endure, stand up against, sustain
+挺	tǐng	very, rather, quite
+偷(偷)	tōu tōu	stealthily, secretly
+頭	tóu	first, previous
+投	tóu	throw, fling, send, deliver, go to, join, lodge, stay, fit in with
+投票	tóu piào	vote, cast a vote
+投入	tóu rù	throw/put into
+頭痛	tóu tòng	have a headache
+投降	tóu xiáng	surrender, capitulate
+投資	tóu zī	investment
+投資	tóu zī	invest
+透	tòu	thorough
+透	tòu	penetrate, seep through
+通	tōng	measure word for telephone and call.
+通	tōng	understand thoroughly, master
+通常	tōng cháng	generally, usually, normally
+通過	tōng guò	adopt, pass, carry (motion/legislation)
+通信	tōng xìn	communicate by letter, correspond
+通訊	tōng xùn	communication, news report, newsletter
+銅	tóng	copper
+同	tóng	same, similar
+同	tóng	with, for
+同	tóng	be same as
+同	tóng	together, in common
+同胞	tóng bāo	offspring of same parents, compatriot
+同情	tóng qíng	sympathize with
+同事	tóng shì	colleague, fellow worker
+同志	tóng zhì	comrade
+桶	tǒng	container measure word for water, oil etc
+統計	tǒng jì	add up, count
+統一	tǒng yī	unify, unite, integrate
+統治	tǒng zhì	dominate, rule
+痛快	tòng kuài	joyful, delighted, to one's heart's content, forthright
+禿	tū	bald, devoid of hair, leaves or trees
+突出	tú chū	outstanding
+突出	tú chū	give prominence to, stress
+突破	tú pò	breakthrough, penetration
+突破	tú pò	make a breakthrough, surmount
+突然	tú rán	suddenly, abruptly
+圖書	tú shū	books
+圖章	tú zhāng	seal, stamp
+吐	tǔ	spit, force sth. out of one's mouth
+吐	tù	expectorate, vomit
+兔子	tù zi	rabbit, hare
+團	tuán	①Collective measure word forgroups of people; ②Partial measure word for materials rolled into a round mass.
+團結	tuán jié	unite, rally
+團體	tuán tǐ	organization, group, team
+團圓	tuán yuán	reunion
+推動	tuī dòng	push forward, promote
+推翻	tuī fān	overthrow
+推廣	tuī guǎng	popularize, spread, extend
+推薦	tuī jiàn	recommend
+推銷	tuī xiāo	promote sale of, peddle
+退	tuì	retreat, retire, decline, ebb
+退	tuì	return, give back, refund, cede
+退步	tuì bù	degenerate, backslide, regress, decline, step backward, retrogress
+退出	tuì chū	withdraw from, quit
+退回	tuì huí	return, send/give back
+退休	tuì xiū	to retire, to go into retirement, to step down
+吞	tūn	swallow, gulp down
+拖	tuō	pull, drag, haul
+托兒所	tuō ' ér suǒ	nursery, child-care center
+脫離	tuō lí	separate oneself from
+拖鞋	tuō xié	slippers, sandals, flip-flops
+妥善	tuǒ shàn	appropriate, proper
+妥協	tuǒ xié	come to terms, compromise
+哇	wā	inj.: Wah!
+哇	wā	particle: formed by linking syllable ending in u-sound and the final particle a
+挖	wā	dig, excavate
+娃娃	wá wa	baby, child, doll
+歪	wāi	askew, crooked, inclined, devious, underhand
+外部	wài bù	outside, exterior, surface
+外出	wài chū	go out
+外地	wài dì	place other than where one is
+外觀	wài guān	outward appearance, exterior
+外行	wài háng	unprofessional
+外匯	wài huì	foreign exchange
+外交	wài jiāo	diplomacy, foreign affairs
+外界	wài jiè	external/outside world, outside
+外科	wài kē	surgery
+外婆	wài pó	maternal grandmother
+外頭	wài tou	outside, out
+彎	wān	bent, curved, crooked
+彎腰	wān yāo	bow, hunch, stoop, double over
+完畢	wán bì	finish, complete
+玩具	wán jù	toy, plaything
+完善	wán shàn	perfect, consummate
+玩笑	wán xiào	joke, jest
+完整	wán zhěng	complete, integrated, intact
+晚輩	wǎn bèi	younger generation, one's juniors
+萬一	wàn yī	just in case, if by any chance
+網	wǎng	net
+網路	wǎng lù	network
+往	wǎng	go toward
+往往	wǎng wǎng	often, frequently
+望	wàng	gaze into the distance, expect
+威脅	wēi xié	threat
+威脅	wēi xié	threaten, menace, imperil
+圍	wéi	surround, enclose ,corral
+維持	wéi chí	keep, preserve
+違反	wéi fǎn	violate, transgress, infringe
+維護	wéi hù	safeguard, defend, uphold
+危機	wéi jī	crisis
+為難	wéi nán	create difficulties (for sb.), be in a quandary
+維他命	wéi tā mìng	vitamin
+微笑	wéi xiào	smile
+唯一	wéi yī	only, sole
+為主	wéi zhǔ	give first place to
+尾巴	wěi ba	tail
+偉大	wěi dà	great, mighty
+委託	wěi tuō	authorize, commend, consign
+委員	wěi yuán	committee member
+味(兒)	wèi er	①taste, flavour ②smell, odour ③delicacies or foods
+未	wèi	have not yet
+未婚	wèi hūn	unmarried, single
+味精	wèi jīng	monosodium glutamate, MSG
+為了	wèi le	for, for the sake of, in order to
+衛生	wèi shēng	hygienic
+衛生紙	wèi shēng zhǐ	toilet paper
+慰問	wèi wèn	comfort, console, convey sympathy/greetings
+衛星	wèi xīng	satellite
+位於	wèi yú	be located/situated
+位置	wèi zhì	seat, place, position
+溫度	wēn dù	temperature
+溫暖	wēn nuǎn	warm, warm up
+溫柔	wēn róu	gentle and soft
+文法	wén fǎ	grammar, syntax
+文件	wén jiàn	documents, file
+文具	wén jù	writing material, writing materials, stationery
+文物	wén wù	cultural/historical objects/relics
+文藝	wén yì	literature and art
+蚊子	wén zi	mosquito
+吻	wěn	a kiss
+吻	wěn	kiss
+穩	wěn	firm, stable, steady, staid, sedate
+穩定	wěn dìng	stable, steady
+問好	wèn hǎo	send one's regards to, say hello to
+問候	wèn hòu	send one's respects/regards to
+握	wò	hold, grasp
+臥房	wò fáng	bedroom
+臥室	wò shì	bedroom
+污染	wū rǎn	pollute, contaminate
+無	wú	not have, there is not
+無法	wú fǎ	unable to, cannot
+無可奈何	wú kěn ài hé	have no alternative
+無論	wú lùn	no matter what/how/etc., regardless
+無論如何	wú lùn rú hé	in any case, at any rate, no matter what
+無情	wú qíng	merciless, ruthless
+無窮	wú qióng	infinite, endless, inexhaustible
+無所謂	wú suǒ wèi	be indifferent, not matter
+無數	wú shù	innumerable, countless
+無限	wú xiàn	infinite, limitless
+無意	wú yì	have no intention to
+舞	wǔ	dance
+舞蹈	wǔ dào	dance
+舞會	wǔ huì	dance(party), ball
+武器	wǔ qì	weapon, arms
+臺	wǔ tái	stage, arena
+舞廳	wǔ tīng	ballroom, dance hall
+勿	wù	do not, must not
+霧	wù	mist
+誤	wù	by mistake
+誤	wù	harm, injure, miss (due to delay)
+誤點	wù diǎn	overdue, be late, be behind schedule, behind schedule, lose, late, delay
+誤會	wù huì	misunderstand, mistake
+誤會	wù huì	misunderstanding
+物價	wù jià	commodity prices
+物理	wù lǐ	physics
+物質	wù zhí	matter, substance, material
+吸	xī	inhale, breathe in, absorb, suck up, attract, draw to oneself
+西北	xī běi	northwest, the Northwest
+西部	xī bù	western part, the west
+吸毒	xī dú	take drugs
+西方	Xī fāng	west
+西南	xīn án	southwest, the Southwest
+吸取	xī qǔ	absorb, draw, assimilate
+犧牲	xī shēng	sacrifice oneself, die martyr's death, do sth. at the expense of self or sb. else
+吸食	xī shí	suck, take in (liquids/narcotics/etc)
+吸收	xī shōu	absorb, suck up, assimilate, recruit
+吸煙	xī yān	smoke, smoking
+吸引	xī yǐn	attract, draw, fascinate
+西裝	xī zhuāng	Western-style clothes
+媳婦	xí fù	daughter-in-law, wife of sb. of younger generation
+喜愛	xǐ ' ài	like, love, be fond of
+喜酒	xǐ jiǔ	liquor drunk at wedding feast, wedding feast
+洗衣粉	xǐ yī fěn	washing powder for clothes, laundry detergent
+戲	xì	drama, play, show
+細胞	xì bāo	cell
+細節	xì jié	details, particulars
+戲劇	xì jù	drama, play, theater
+細菌	xì jùn	germ, bacterium
+系列	xì liè	series, set
+系統	xì tǒng	system
+細小	xì xiǎo	tiny
+細心	xì xīn	careful, attentive
+瞎	xiā	become blind, become tangled (of thread/etc)
+蝦(子)	xiā zi	shrimp
+蝦米	xiā mǐ	dried, shelled shrimp, small shrimp
+嚇	xià	frighten, scare, intimidate
+下	xià	put sth. into, apply, form (opinion/etc)
+下巴	xià bā	lower jaw, chin
+夏季	xià jì	summer
+下降	xià jiàng	descend, go/come down, drop, fall, decline
+下來	xià lái	used after a verb to indicate motion toward a lower or nearer position
+下棋	xià qí	play chess
+下去	xià qù	[aspect] go on, continue (used after a verb)
+下午茶	xià wǔ chá	teatime
+嚇一跳	xià yī tiào	startle, start
+下游	xià yóu	lower reaches (of river)
+鮮	xiān	fresh, new, bright-colored, bright, delicious, tasty
+鮮花	xiān huā	fresh flower
+現金	xiàn jīn	ready money, cash, cash reserve in bank
+先進	xiān jìn	advance
+鮮奶	xiān nǎi	fresh milk
+鮮血	xiān xiě	fresh blood
+閒	xián	not busy, unoccupied, not in use, idle
+嫌	xián	dislike, mind
+鹹	xián	salty
+顯得	xiǎn de	seem, look, appear
+顯然	xiǎn rán	obviously, evidently, clearly
+顯示	xiǎn shì	show, display, demonstrate, manifest
+顯著	xiǎn zhù	notable, marked, striking, remarkable, outstanding
+線	xiàn	thread, string, wire, curved line, line, route
+現	xiàn	just, at the time, extempore
+現場	xiàn chǎng	scene (of an incident), site, spot
+現成	xiàn chéng	ready-made
+現代	xiàn dài	modern
+羨慕	xiàn mù	admire, envy
+現實	xiàn shí	reality, actuality
+現實	xiàn shí	practical, pragmatic
+現象	xiàn xiàng	phenomenon, appearance
+限制	xiàn zhì	restrictiveness
+限制	xiàn zhì	restrict, confine
+相	xiāng	each other, mutually
+箱	xiāng	box
+鄉村	xiāng cūn	village, countryside, rural area
+香腸	xiāng cháng	sausage
+相當	xiāng dāng	quite, fairly, considerably
+相當	xiāng dāng	correspond to, be equal to, match, balance
+相對	xiāng duì	be opposite, be face to face
+相反	xiāng fǎn	opposite, contrary, reverse
+相關	xiāng guān	be interrelated
+相互	xiāng hù	mutually, reciprocally
+香蕉	xiāng jiāo	banana
+相親相愛	xiāng qīn xiāng ' ài	intimate, fond of each other
+相似	xiāng sì	resemble, be similar/alike
+香水	xiāng shuǐ	perfume, scent
+相同	xiāng tóng	be identical/alike
+詳細	xiáng xì	detailed, minute
+想不到	xiǎng bù dào	unable to anticipate
+想到	xiǎng dào	think of, call to mind
+想念	xiǎng niàn	remember with longing, miss
+享受	xiǎng shòu	enjoy
+想像	xiǎng xiàng	imagination
+想像	xiǎng xiàng	imagine, fancy, visualize
+響應	xiǎng yìng	respond, answer
+享有	xiǎng yǒu	enjoy (right/etc)
+象	xiàng	elephant
+項	xiàng	①Individual measure word for rules, articles etc; ②Individual measure word for sport events.
+相機	xiàng jī	camera
+向來	xiàng lái	always, all along
+項目	xiàng mù	item, article, clause, project
+相片(兒)	xiàng piàn er	photograph, photo
+相親	xiàng qīn	get look at prospective spouse
+相聲	xiàng shēng	cross talk, comic dialogue
+巷子	xiàng zi	lane, alley
+消	xiāo	disappear, vanish
+消除	xiāo chú	to eliminate, to clear, to remove, to clear up
+消費	xiāo fèi	expenditure
+消費	xiāo fèi	consume
+消費者	xiāo fèi zhě	consumer
+消化	xiāo huà	digest
+消極	xiāo jí	negative, passive, inactive
+銷路	xiāo lù	sales, market
+消滅	xiāo miè	perish, die out, pass away, eliminate, abolish, exterminate
+消失	xiāo shī	disappear, vanish, dissolve
+銷售	xiāo shòu	sell, market
+消	xiāo yè	midnight snack
+小便	xiǎo biàn	to urinate
+小吃	xiǎo chī	snack, refreshment, cold/prepared dish
+曉得	xiǎo de	know
+小費	xiǎo fèi	tip, gratuity
+小麥	xiǎo mài	wheat
+小氣	xiǎo qì	stingy
+小子	xiǎo zi	bloke, boy, guy, fellow
+小組	xiǎo zǔ	group
+校車	xiào chē	school bus
+效果	xiào guǒ	effect, result
+效率	xiào lǜ	efficiency
+笑容	xiào róng	a smile, a smiling face
+孝順	xiào shùn	show filial obedience
+校友	xiào yǒu	alumnus, alumna
+校園	xiào yuán	schoolyard, campus
+歇	xiē	have a rest, stop (work/etc), knock off, go to bed
+斜	xié	oblique, inclined, tilted
+協助	xié zhù	assist, help
+血	xiě	blood
+血管	xiě guǎn	blood vessel
+血型	xiě xíng	blood group/type
+血液	xiě yè	blood
+謝	xiè	thank
+心得	xīn dé	what one has learned from work/study/etc
+新郎	xīn láng	bridegroom
+心理	xīn lǐ	psychology, mentality
+心目中	xīn mù zhōng	mood, frame of mind, memory, mind, mental view
+新娘	xīn niáng	bride
+欣賞	xīn shǎng	appreciate, enjoy, admire
+新生	xīn shēng	new student
+新式	xīn shì	new-style
+薪水	xīn shuǐ	salary, wages
+心跳	xīn tiào	flutter
+新鮮	xīn xiān	fresh
+心意	xīn yì	regard, kindly feeling, intention, purpose
+心臟	xīn zàng	heart
+信號	xìn hào	signal
+信任	xìn rèn	trust, have confidence in
+信仰	xìn yǎng	belief
+信仰	xìn yǎng	believe
+信用	xìn yòng	trustworthiness, credit
+興奮	xīng fèn	excited
+星光	xīng guāng	starlight
+形成	xíng chéng	take shape, form
+行程	xíng chéng	route/distance of travel, itinerary, travel
+行動	xíng dòng	action, operation
+行動	xíng dòng	move/get about, act, take action
+行李	xíng lǐ	luggage, baggage
+行人	xíng rén	pedestrian
+形容	xíng róng	describe
+形式	xíng shì	form, shape
+行為	xíng wéi	action, behavior, conduct
+形象	xíng xiàng	image, form, figure, imagery
+形狀	xíng zhuàng	form, appearance, shape
+醒	xǐng	sober up, wake up, be awake, be clear in mind, be striking to the eye
+醒來	xǐng lái	wake up
+性別	xìng bié	sexual distinction, sex
+幸福	xìng fú	happy
+性格	xìng gé	nature, disposition, temperament
+幸好	xìng hǎo	fortunately, luckily
+幸虧	xìng kuī	fortunately, luckily
+幸運	xìng yùn	very fortunate, lucky
+性質	xìng zhí	quality, nature, character
+兇	xiōng	fiendish, ferocious, murderous, ruffianize
+熊貓	xióng māo	panda
+雄偉	xióng wěi	imposing, magnificent
+修	xiū	embellish, decorate, repair, mend, overhaul, trim, prune
+修改	xiū gǎi	revise, amend, alter
+休假	xiū jià	have holiday/vacation/leave
+修理	xiū lǐ	repair, mend, fix
+休閒	xiū xián	lie fallow
+修正	xiū zhèng	revise, amend, correct
+需	xū	need, want, require
+需求	xū qiú	requirement, demand
+須知	xū zhī	points for attention, notice
+許	xǔ	promise, allow, permit, to pledge sth.
+許願	xǔ yuàn	wish
+宣布	xuān bù	declare, proclaim, announce
+宣傳	xuān chuán	propagandist, publicist
+宣傳	xuān chuán	propagate, disseminate, give publicity to
+懸	xuán	hang, suspend
+選舉	xuǎn jǔ	election
+選手	xuǎn shǒu	player selected as contestant, athlete
+學會	xué huì	learned society, (scholarly)association
+學會	xué huì	learn, master
+學歷	xué lì	record of formal schooling
+學術	xué shù	learning, science
+學位	xué wèi	academic degree, degree
+學問	xué wèn	learning, knowledge, scholarship
+學業	xué yè	one's studies, schoolwork
+學院	xué yuàn	college, academy, institute
+學者	xué zhě	scholar
+雪花	xuě huā	snowflake
+削減	xuè jiǎn	cut down, reduce
+尋	xún	search, seek
+循環	xún huán	circulate, cycle
+尋找	xún zhǎo	seek, look for
+訓練	xùn liàn	training
+訓練	xùn liàn	train, drill
+迅速	xùn sù	rapid, speedy, prompt
+壓	yā	press, push/hold down, control, quell
+押金	yā jīn	deposit
+壓力	yā lì	pressure
+壓迫	yā pò	oppress, repress, constrict
+鴨(子)	yā zi	duck
+牙膏	yá gāo	toothpaste
+煙	yān	①smoke, mist, vapor; ②tobacco, cigarette, opium
+煙火	yān huǒ	fireworks
+沿	yán	along
+嚴	yán	tight, strict, rigorous
+鹽巴	yán bā	salt
+延長	yán cháng	lengthen, prolong, extend
+嚴格	yáng é	strict, rigorous
+嚴肅	yán sù	serious, solemn
+演	yǎn	act, play, perform, develop, evolve
+演唱	yǎn chàng	sing in performance
+演出	yǎn chū	show, perform
+掩蓋	yǎng ài	cover
+眼光	yǎng u āng	eye, sight, foresight, insight, vision, view, way of looking at things
+演講	yǎn jiǎng	lecture, make speech
+眼淚	yǎn lèi	tears
+眼前	yǎn qián	before one's eyes
+演員	yǎn yuán	performer
+演奏	yǎn zòu	give instrumental performance
+宴會	yàn huì	banquet, dinner party
+厭惡	yàn wù	detest, be disgusted with
+陽傘	yáng sǎn	parasol, sunshade
+養	yǎng	support, provide for, raise, maintain, give birth to, form, cultivate, rest, recuperate
+癢	yǎng	tickle, itch
+氧氣	yǎng qì	oxygen
+樣品	yàng pǐn	sample(product), specimen
+喲	yāo	particle: expressing exclamation/warning/negative evaluation/etc
+腰	yāo	waist, waist of a garment, middle part
+邀請	yāo qǐng	invite
+搖	yáo	shake, wave, scull, row, agitate
+搖擺	yáo bǎi	sway, swing, oscillate
+搖頭	yáo tóu	shake one's head
+咬	yǎo	bite, snap at
+要不	yào bù	otherwise, or else, or
+要不然	yào bù rán	otherwise, or else, or
+要不是	yào bù shì	if it were not for, but for
+藥方	yào fāng	prescription
+藥房	yào fáng	drugstore, pharmacy, hospital pharmacy, dispensary
+要命	yào mìng	darned, kill, drive sb. to death
+藥水	yào shuǐ	liquid medicine, lotion
+藥物	yào wù	drugs, medicine
+野	yě	wild, undomesticated
+野餐	yě cān	picnic
+也好	yě hǎo	①no matter whether, may as well, that's fine; ②particle: showing hesitant acceptance
+野獸	yě shòu	wild animal
+野心	yě xīn	wild ambition, careerism
+夜市	yè shì	night market
+夜晚	yè wǎn	evening
+業務	yè wù	professional work, business
+業餘	yè yú	amateur
+葉子	yè zi	leaf
+醫	yī	cure, treat
+衣櫃	yī guì	dresser
+依據	yī jù	basis, foundation
+依靠	yī kào	rely/depend on
+依然	yī rán	still, as before
+衣裳	yī shang	clothing, clothes
+醫師	yī shī	doctor
+醫學	yī xué	medical science, medicine
+一一	yī yī	one by one, one after another
+移	yí	move, remove, shift, transform, change, alter
+一大早	yī dà zǎo	
+一帶	yī dài	district, region
+移動	yí dòng	move, shift
+一面	yī miàn	along, while
+移民	yí mín	emigrate
+儀器	yí qì	instrument, apparatus
+儀式	yí shì	ceremony, rite
+疑問	yí wèn	question, doubt
+一向	yī xiàng	consistently, all along, up to now
+一再	yī zài	time and again, again and again
+一陣(子)	yí zhèn zi	a burst, a fit, a peal
+一致	yī zhì	identical, unanimous
+乙	yǐ	second, second of the ten Heavenly Stems
+已	yǐ	already
+以	yǐ	in order to, so as to
+以	yǐ	using, taking, from a point on, because of
+以便	yǐ biàn	so that, in order to
+以及	yǐ jí	and
+以來	yǐ lái	since
+以免	yǐ miǎn	in order to avoid, so as not to
+以內	yǐn è i	within, less than
+以上	yǐ shàng	above
+以上	yǐ shàng	the above/foregoing/above-mentioned
+以外	yǐ wài	beyond, outside, other than, except
+以往	yǐ wǎng	before, formerly, in the past
+以下	yǐ xià	under the condition of, under, beneath, below
+以下	yǐ xià	the following, hereafter
+億	yì	hundred million
+易	yì	easy
+一般	yī bān	generally
+一般而言	yī bān ' ér yán	in general, generally speaking
+一般來說	yī bān lái shuō	in general, generally speaking
+一方面	yī fāng miàn	one aspect only, on the one hand
+議會	yì huì	parliament, legislative assembly
+一口氣	yī kǒu qì	at a heat, at one blast, at a whack, holus-bolus
+一連	yī lián	successively, in succession, running
+一旁	yī páng	side
+一齊	yī qí	simultaneously, in unison, together
+一生	yī shēng	all/throughout one's life
+一時	yī shí	for a time, temporarily, a moment
+意識	yì shì	consciousness, mentality
+藝術	yì shù	art
+一天到晚	yī tiān dào wǎn	all day long
+一同	yī tóng	together
+意外	yì wài	accident, mishap
+意外	yì wài	unexpected, unforeseen
+義務	yì wù	duty, obligation, volunteer duty
+意義	yì yì	meaning, sense, significance
+意志	yì zhì	will, determination
+因此	yīn cǐ	therefore, consequently
+因素	yīn sù	factor, element
+音響	yīn xiǎng	stereo, hi-fi
+銀	yín	silver
+飲	yǐn	drink, swallow (insults/etc), be hit (by bullet/etc)
+引發	yǐn fā	evoke
+引起	yǐn qǐ	give rise to, lead to
+飲食	yǐn shí	food and drink, diet
+印	yìn	print, engrave
+印刷	yìn shuā	print
+印象	yìn xiàng	impression
+印章	yìn zhāng	seal, signet, stamp
+應當	yīng dāng	should, ought to
+嬰兒	yīng ' ér	baby, infant
+應該	yīng gāi	right, proper
+英俊	yīng jùn	handsome
+英雄	yīng xióng	hero
+贏	yíng	gain, win
+贏得	yíng dé	win, gain
+迎接	yíng jiē	meet, welcome
+營養	yíng yǎng	nutritive, alimental
+營養	yíng yǎng	nutrition, nourishment
+營業	yíng yè	do business
+影本	yǐng běn	copy
+影片	yǐng piàn	film, movie
+影印	yǐng yìn	print by photo-offset, photocopy
+影子	yǐng zi	shadow, trace, sign, vague impression
+硬	yìng	hard, stiff, firm, tough, obstinate
+應付	yìng fù	deal/cope with, handle, do sth. perfunctorily, make do
+應邀	yìng yāo	receive an invitation
+應用	yìng yòng	apply, use
+優點	yōu diǎn	merit, strong/good point, advantage
+優惠	yōu huì	give preferential/special treatment
+優良	yōu liáng	fine, good
+優美	yōu měi	graceful, exquisite
+幽默	yōu mò	humor
+優秀	yōu xiù	outstanding, excellent
+優越	yōu yuè	superior, outstanding
+由	yóu	from, via, by, through, owing/due to
+游	yóu	swim, float, travel, rove
+郵差	yóu chāi	postman
+郵件	yóu jiàn	postal items, post, mail
+遊客	yóu kè	tourist, sightseer
+遊戲	yóu xì	recreation, game
+遊戲	yóu xì	play
+遊行	yóu xíng	parade, march, demonstrate
+由於	yóu yú	owing/due/thanks to
+有關	yǒu guān	with regard to
+有關	yǒu guān	be related
+友好	yǒu hǎo	friendly, amicable
+有力	yǒu lì	strong, forceful, powerful
+有利	yǒu lì	be advantageous/beneficial
+有時	yǒu shí	sometimes, at times
+有效	yǒu xiào	efficacious, effective, valid
+有些	yǒu xiē	somewhat, rather
+有些	yǒu xiē	some
+友誼	yǒu yí	friendship
+擁抱	yōng bào	embrace
+勇敢	yǒng gǎn	brave, courageous
+擁護	yǒng hù	support, endorse
+擁擠	yōng jǐ	crowded, pushed and squeezed together
+勇氣	yǒng qì	courage, nerve
+擁有	yǒng yǒu	possess, have, own
+用不著	yòng bù zháo	not need, have no use for
+用處	yòng chù	use, practical application
+用得著	yòng de zháo	
+用法	yòng fǎ	use, usage
+用具	yòng jù	utensil, appliance
+用力	yòng lì	exert self(physically)
+用品	yòng pǐn	articles for use
+用心	yòng xīn	be diligent/attentive
+愉快	yú kuài	be happy, be cheerful
+娛樂	yú lè	amusement, entertainment, recreation
+於是	yú shì	thereupon, hence, consequently, as a result
+語調	yǔ diào	intonation
+與其	yǔ qí	rather than
+語氣	yǔ qì	tone, manner of speaking, mood, modality
+雨衣	yǔ yī	raincoat
+語音	yǔ yīn	speech sounds, speech sounds, spoken (vs. written)pronunciation of characters
+玉	yù	jade
+遇	yù	meet, encounter, treat, receive
+預報	yù bào	forecast
+預定	yù dìng	predetermine, schedule
+預計	yù jì	predict, expect
+遇見	yù jiàn	meet, come across
+預算	yù suàn	budget
+浴室	yù shì	bathroom, shower room
+預先	yù xiān	in advance, beforehand
+暈	yūn	faint
+允許	yǔn xǔ	permit, allow
+運氣	yùn qì	fortune, luck
+運送	yùn sòng	transport, convey
+運輸	yùn shū	transport
+運用	yùn yòng	utilize, wield, apply
+運轉	yùn zhuǎn	revolve, turn round, work, operate
+冤枉	yuān wǎng	treat unjustly
+元旦	Yuán dàn	New Year's Day
+員工	yuán gōng	staff, personnel
+緣故	yuán gù	reason, cause
+原來	yuán lái	original
+原理	yuán lǐ	principle, tenet
+原料	yuán liào	raw material
+圓滿	yuán mǎn	satisfactory
+原始	yuán shǐ	original, firsthand, primeval, primitive
+原先	yuán xiān	originally, at first
+圓形	yuán xíng	circular shape
+原則	yuán zé	principle
+原則上	yuán zé shàng	basically, in principle
+原子筆	yuán zǐ bǐ	ball-point pen
+遠大	yuǎn dà	great
+願	yuàn	wish, desire
+願望	yuàn wàng	desire, wish, aspiration
+約	yuē	about, around
+約好	yuē hǎo	come to an agreement
+約會	yuē huì	make an appointment
+約會	yuē huì	appointment, engagement, date
+月餅	yuè bǐng	moon cake
+月底	yuè dǐ	the end of the month
+閱讀	yuè dú	read
+月份	yuè fèn	month
+月光	yuè guāng	moonlight, moonbeam
+樂器	yuè qì	musical instrument
+月球	yuè qiú	moon
+樂團	yuè tuán	philharmonic society/orchestra
+砸	zá	pound, ram, break, smash, fail, bungle
+雜	zá	mix, mingle
+雜誌	zá zhì	magazine, journal, periodical
+災害	zāi hài	calamity, disaster
+災難	zāi nàn	calamity, misfortune
+載	zài	①transport, fill; ②put down in writing, record
+在	zài	be at/in/on
+再度	zài dù	once more/again, second time
+在乎	zài hū	care about, mind
+再說	zài shuō	furthermore, besides
+在意	zài yì	pay attention to
+在於	zài yú	be at/in/on, depend on, rest with
+咱們	zán men	we, you and I
+贊成	zàn chéng	approve, endorse, assist
+讚美	zàn měi	praise, eulogize
+葬禮	zàng lǐ	funeral rites, funeral
+糟	zāo	rotten, spoiled (lit./fig.)
+遭到	zāo dào	meet with, encounter
+糟糕	zāo gāo	What a mess!; Too bad!
+遭受	zāo shòu	suffer
+遭遇	zāo yù	vicissitudes of life
+早	zǎo	early, long ago, in advance, beforehand, prematurely
+早晨	zǎo chén	early morning
+早點	zǎo diǎn	in advance, a bit earlier
+早點	zǎo diǎn	breakfast
+早期	zǎo qí	early stage/phase
+早日	zǎo rì	at an early date, early, soon
+早晚	zǎo wǎn	sooner or later
+早已	zǎo yǐ	long ago/since
+造	zào	make, build, create, establish, concoct, fabricate
+造成	zào chéng	create, bring about
+造句	zào jù	make a sentence
+噪音	zào yīn	noise
+則	zé	measure word forshort articles, such as news, jokes etc
+則	zé	then, in that case
+責任	zé rèn	duty, responsibility
+怎	zěn	why, how
+增長	zēng zhǎng	become longer
+贈品	zèng pǐn	giveway, gift
+贈送	zèng sòng	present as gift
+炸	zhá	blow up, explode, burst
+窄	zhǎi	narrow, petty, hard up
+展出	zhǎn chū	exhibit
+展開	zhǎn kāi	launch, develop
+展覽	zhǎn lǎn	exhibition
+展覽	zhǎn lǎn	exhibit, show, display
+展示	zhǎn shì	reveal, lay bare
+占	zhàn	occupy, take
+占	zhàn	constitute, make up, account for
+戰場	zhàn chǎng	battlefield
+暫時	zhàn shí	temporarily
+占	zhàn yǒu	own, have, occupy, hold
+戰爭	zhàn zhēng	war, warfare
+站住	zhàn zhù	stop
+張	zhāng	stretch, spread, expand, display, set out
+章	zhāng	m.[general]: chapter
+長	zhǎng	①older, elder, eldest, senior; ②grow, grow up, increase
+漲	zhǎng	rise, go up (of water/prices/etc)
+漲價	zhǎng jià	rise in price
+掌聲	zhǎng shēng	clapping, applause
+掌握	zhǎng wò	grasp, master, have in hand, control
+障礙	zhàng ' ài	obstacle, barrier
+帳單	zhàng dān	reckoning, tab, invoice, account, bill, check, chit
+丈夫	zhàng fū	husband
+招待	zhāo dài	receive(guests), serve(customers)
+招呼	zhāo hū	say hello to
+招牌	zhāo pái	shop sign, signboard
+招手	zhāo shǒu	beckon, wave, wave one's hand
+照	zhào	in the same old way, as before
+照常	zhào cháng	as usual
+召開	zhào kāi	convene, convoke
+折	zhé	break, snap, fold, bend, turn back, humiliate
+折合	zhé hé	convert into, amount to
+折扣	zhé kòu	discount, rebate
+折磨	zhé mó	persecute, torment
+哲學	zhé xué	philosophy
+者	zhě	nominal suffix, one who, -er
+這	zhè	immediately
+這下子	zhè xià zi	at present
+這樣子	zhè yàng zi	such, so
+這樣子	zhè yàng zi	like this
+這陣子	zhè zhèn zi	these days, lately, recently
+針	zhēn	needle, pin, stitch
+真的	zhēn de	really, truly, indeed
+針對	zhēn duì	in the light of, in connection with
+珍貴	zhēng u ì	valuable, precious
+真理	zhēn lǐ	truth
+真實	zhēn shí	true, real, authentic, factual
+真是	zhēn shì	really
+偵探	zhēn tàn	detective, spy
+真心	zhēn xīn	true heart, sincerity
+真心	zhēn xīn	sincere, genuine, true
+枕頭	zhěn tóu	pillow
+陣	zhèn	measure word to indicate a period of time an action lasts or for the period of an action that happens suddenly.
+震動	zhèn dòng	shake, shock, vibrate
+陣子	zhèn zi	period of time
+爭	zhēng	contend, vie, argue, disagree
+睜	zhēng	open (the eyes)
+睜開	zhēng kāi	open (the eyes)
+爭論	zhēng lùn	controvert, dispute
+徵求	zhēng qiú	solicit, seek
+爭取	zhēng qǔ	strive/fight for
+正月	Zhēng yuè	first month of lunar year
+整	zhěng	put in order, arrange, consolidate, repair, mend, do, to teach a lesson, punish
+整	zhěng	exact
+整	zhěng	put in order, arrange, consolidate, repair, mend, do, to teach a lesson, punish
+整潔	zhěng jié	clean and tidy, neat
+整理	zhěng lǐ	put in order, arrange
+整數	zhěng shù	integer, whole number, r ound number/figure
+正	zhèng	straight, upright, central, honest, just, unbiased
+政策	zhèng cè	policy
+政黨	zhèng dǎng	political party
+正方形	zhèng fāng xíng	square
+政府	zhèng fǔ	government
+正好	zhèng hǎo	just right, at the right moment
+正好	zhèng hǎo	just, exactly
+證件	zhèng jiàn	credentials, papers, document, certificate
+正經	zhèng jīng	serious
+證據	zhèng jù	evidence, proof, testimony
+正面	zhèng miàn	obverse/right side, front, facade
+證明	zhèng míng	certificate, identification, testimonial, proof
+證明	zhèng míng	prove, testify, bear out
+證實	zhèng shí	confirm, verify
+正式	zhèng shì	formal (of actions/speeches/etc)
+證書	zhèng shū	certificate, credentials
+政治	zhèng zhì	politics, political affairs
+症狀	zhèng zhuàng	symptom
+知	zhī	know, realize, sense, inform, notify
+之	zhī	it, him, her, this, that, these, those
+之	zhī	possessive particle of
+支	zhī	individual measure word for troops etc
+支持	zhī chí	support, stand by, back up
+支出	zhī chū	to spend, to disburse
+之後	zhī hòu	later, behind, at the back of, after
+之間	zhī jiān	the midst of
+之間	zhī jiān	among, between
+支票	zhī piào	(bank)check
+知識	zhī shì	knowledge
+支援	zhī yuán	support, assist, help
+值	zhí	①be worth; ②happen
+擲	zhí	throw, cast, fling, hurl
+直	zhí	directly, straight, continuously, just, simply
+直到	zhí dào	until, up to
+直接	zhí jiē	direct, immediate
+殖民地	zhí mín dì	colony
+職位	zhí wèi	position, post
+植物	zhí wù	plant, flora
+直線	zhí xiàn	sharp (rise or fall)
+執行	zhí xíng	carry out, execute
+職業	zhí yè	occupation, profession, vocation
+職員	zhí yuán	office worker, staff member, functionary
+止	zhǐ	stop
+只	zhǐ	individual measure word for box, watch or ring.
+指	zhǐ	refer to
+指出	zhǐ chū	point out(that)
+指導	zhǐ dǎo	guide, direct
+指定	zhǐ dìng	appoint, assign
+指示	zhǐ shì	directive, instructions
+指示	zhǐ shì	indicate, point out, instruct
+只是	zhǐ shì	however, but then
+只是	zhǐ shì	merely, only, just, simply be
+只有	zhǐ yǒu	only, alone
+紙張	zhǐ zhāng	paper
+治	zhì	treat(disease), cure
+至	zhì	arrive, reach
+制定	zhì dìng	formulate, draft
+制度	zhì dù	system, institution
+智慧	zhì huì	wisdom, intelligence
+志氣	zhì qì	aspiration, ambition
+至少	zhì shǎo	at(the)least
+秩序	zhì xù	order
+至於	zhì yú	as for/to
+志願	zhì yuàn	aspiration, wish, ideal
+製造	zhì zào	make, manufacture, engineer, create, fabricate
+製作	zhì zuò	make, manufacture
+制止	zhì zhǐ	curb, prevent, stop
+中	zhōng	[aspect] (used after a verb to indicate continuity)in the course of, in the process of
+中部	zhōng bù	the midland, central section, middle
+中級	zhōng jí	intermediate
+中年	zhōng nián	middle age
+中途	zhōng tú	halfway, midway
+中央	zhōng yāng	central authorities (of state/party/etc)
+中藥	zhōng yào	traditional Chinese medicine
+終於	zhōng yú	at long last, finally, all things considered, on the whole
+腫	zhǒng	swell
+種類	zhǒng lèi	kind, type, variety
+種子	zhǒng zǐ	seed
+種族	zhǒng zú	race, ethnic group
+中	zhōng	hit(target), attain, be hit by, pass an exam
+重	zhòng	value, put emphasis/stress on
+重大	zhòng dà	great, weighty, major, significant
+重點	zhòng diǎn	focal point, stress, emphasis
+中毒	zhòng dú	poison, taint, be poisoned
+重量	zhòng liàng	weight
+重傷	zhòng shāng	severely injured
+重傷	zhòng shāng	serious wound
+重視	zhòng shì	attach importance to, take sth. seriously, value
+重心	zhòng xīn	center of gravity, heart, core, focus
+粥	zhōu	gruel, porridge, congee
+州	zhōu	administrative division
+周	zhōu	measure word for times of going around sth, such as earth, islands etc
+周到	zhōu dào	thoughtful
+周圍	zhōu wéi	vicinity, surrounding, all around
+逐漸	zhú jiàn	gradually, by degrees
+竹子	zhú zi	bamboo
+主辦	zhǔ bàn	direct, sponsor, host
+主持	zhǔ chí	take charge/care of, manage, direct, uphold, stand for
+主動	zhǔ dòng	on one's own initiative
+主婦	zhǔ fù	housewife, hostess
+主觀	zhǔ guān	subjective
+主管	zhǔ guǎn	person in charge
+主題	zhǔ tí	theme, subject, motif, leitmotiv
+主席	zhǔ xí	chair (of meeting), chair/president (of organization/state)
+主要	zhǔ yào	mainly, essentially
+主張	zhǔ zhāng	view, position, stand, proposition
+主張	zhǔ zhāng	advocate, stand for, maintain, hold
+助	zhù	help, assist, aid
+註冊	zhù cè	register
+祝福	zhù fú	new year's sacrifice (in part of Zhejiang)
+祝福	zhù fú	invoke blessing, wish happiness to
+祝賀	zhù hè	congratulate
+助理	zhù lǐ	assistant
+著名	zhù míng	famous, celebrated
+注射	zhù shè	inject
+住院	zhù yuàn	be hospitalized
+住宅	zhù zhái	residence, dwelling
+住址	zhù zhǐ	address
+抓	zhuā	grab, seize, arrest, catch, press-gang, pay special attention to, be responsible for, take charge of
+專家	zhuān jiā	expert, specialist
+專利	zhuān lì	patent
+專門	zhuān mén	professional
+專門	zhuān mén	special, specialized
+專人	zhuān rén	person specially assigned for a task/job
+專心	zhuān xīn	be absorbed in, concentrate effort
+專業	zhuān yè	special field of research, specialty, discipline
+專業	zhuān yè	professional
+轉	zhuǎn	turn, revolve, rotate
+轉	zhuàn	turn, shift, change
+轉變	zhuǎn biàn	change, transform
+轉播	zhuǎn bò	relay (radio/TV broadcast)
+轉達	zhuǎn dá	pass on, convey, communicate
+轉告	zhuǎng ào	transmit(message), communicate, pass on(word)
+轉機	zhuǎn jī	change planes
+轉身	zhuǎn shēn	face about, turn round
+轉向	zhuǎn xiàng	change direction, change (political/etc)stand
+賺	zhuàn	make profit, gain, earn
+裝飾	zhuāng shì	decorate, adorn, ornament, deck
+壯	zhuàng	strong, robust, sturdy, magnificent
+撞	zhuàng	run into, strike, collide
+狀況	zhuàng kuàng	condition/state (of affairs)
+狀態	zhuàng tài	state (of affairs), condition
+追	zhuī	to chase after, to pursue
+追求	zhuī qiú	seek, pursue, woo, court
+準	zhǔn	accurate, exact
+准	zhǔn	allow, grant, permit
+准考證	zhǔn kǎo zhèng	admission ticket
+準確	zhǔn què	accurate, exact, precise
+準時	zhǔn shí	punctually
+捉	zhuō	clutch, hold, grasp, catch, capture
+桌	zhuō	a table of
+著	zhuó	put on(clothes)
+資本	zī běn	capital, sth. capitalized on
+資格	zī gé	qualifications, seniority
+資金	zī jīn	fund
+資源	zī yuán	natural resources
+紫	zǐ	purpleness, purple, empurpled
+子女	zǐ nǚ	sons and daughters, children
+仔細	zǐ xì	be careful
+自從	zì cóng	since
+自動	zì dòng	automatic
+自來水	zì lái shuǐ	running/tap water
+字母	zì mǔ	letter of an alphabet, letter
+字幕	zì mù	caption, subtitle
+自然	zì rán	natural, free from affectation
+自然	zì rán	nature, natural world
+自私	zì sī	selfish, self-centered
+自殺	zì shā	commit suicide
+自我	zì wǒ	self, oneself
+自信	zì xìn	be self-confident
+自行車	zì xíng chē	bicycle, bike
+自願	zì yuàn	act voluntarily
+自在	zì zài	free, unrestrained
+自主	zì zhǔ	be one's own master, take initiative
+宗教	zōng jiào	religion
+總	zǒng	always, invariably, anyway, after all, inevitably, sooner or later
+總而言之	zǒng ' ér yán zhī	in short, in a word
+總共	zǒng gòng	in all, altogether
+總理	zǒng lǐ	premier, prime minister
+總算	zǒng suàn	at long last, finally
+總之	zǒng zhī	in a word, in short
+綜合	zòng hé	synthetical, comprehensive, multiple, composite
+綜合	zòng hé	synthesize
+走道	zǒu dào	sidewalk
+走私	zǒu sī	smuggle
+走走	zǒu zǒu	①go for a stroll; ②come or go in a general sense
+租	zū	rent, rent out
+足	zú	sufficient
+足以	zú yǐ	sufficient/enough to
+組	zǔ	measure word for groups of people, or sets of sth.
+組	zǔ	form, make up(into), compose
+阻礙	zǔ ' ài	hinder, block, impede, bar
+祖父	zǔ fù	(paternal)grandfather
+祖國	zǔ guó	homeland, native land
+祖母	zǔ mǔ	(paternal)grandmother
+祖先	zǔ xiān	ancestors, forebears
+組織	zǔ zhī	①organization, organized system; ②tissue, nerve
+阻止	zǔ zhǐ	prevent, stop, prohibit
+鑽	zuān	bore, drill
+罪	zuì	crime, transgression, sin, offense, peccancy, guilt
+醉	zuì	tipsy, intoxicated, inebriate, drunk
+最初	zuì chū	initially, at first
+最多	zuì duō	at(the)most
+最佳	zuì jiā	optimum, best, first-rate
+最少	zuì shǎo	at least
+尊敬	zūn jìng	respect, honor, esteem
+遵守	zūn shǒu	observe, abide by
+尊重	zūn zhòng	respect, value, esteem
+左右	zuǒ yòu	left and right
+左右	zuǒ yòu	nearby, not far away
+座	zuò	individual measure word for buildings.
+作	zuò	regard as, take sb. or sth. for, act as, be, become
+做	zuò	be ,become, be used as
+做	zuò fǎ	way of doing or making a thing, method of work, practice
+作家	zuò jiā	writer
+做客	zuò kè	stay, be a guest
+做夢	zuò mèng	dream
+作品	zuò pǐn	works (of literature/art)
+做人	zuò rén	conduct oneself, behave, be an upright person
+作為	zuò wéi	regard as, look on as, take for
+座位	zuò wèi	seat, place
+作文	zuò wén	write an essay, a composition, an article, to compose
+作文	zuò wén	composition
+作用	zuò yòng	action, function, effect, intention, motive
+作者	zuò zhě	author, writer
