@@ -8,6 +8,7 @@ import random
 
 from game.cards import Card, ROOT
 from game.deck_modes import normalize_mode
+from game.pinyin import has_pinyin_marks
 
 DATA_FILE = os.path.join(ROOT, "flashcard_srs_data.json")
 
@@ -63,8 +64,8 @@ def chinese_choice_pool(pool: list[str]) -> list[str]:
     return result
 
 
-def remember_mistake(srs: dict, card_id: str, selected: str, *, chinese_only: bool) -> None:
-    if chinese_only:
+def remember_mistake(srs: dict, card_id: str, selected: str, *, mode: str) -> None:
+    if mode in ("reverse", "translate_reverse"):
         selected = chinese_display(selected)
         if not selected:
             return
@@ -73,12 +74,54 @@ def remember_mistake(srs: dict, card_id: str, selected: str, *, chinese_only: bo
         matrix.append(selected)
 
 
-def generate_choices(correct: str, card_id: str, srs: dict, pool: list[str]) -> list[str]:
+def meaning_choice_pool(pool: list[str]) -> list[str]:
+    seen: set[str] = set()
+    result: list[str] = []
+    for item in pool:
+        if not item or chinese_display(item) or has_pinyin_marks(item):
+            continue
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+
+def generate_meaning_choices(correct: str, card_id: str, srs: dict, pool: list[str]) -> list[str]:
+    pool = meaning_choice_pool(pool)
+    if not correct:
+        return pool[:5] if pool else []
+
     choices = [correct]
     mistakes = srs["confusion_matrix"].get(card_id, []).copy()
     mistakes = list(dict.fromkeys(reversed(mistakes)))
     for mistake in mistakes:
+        if chinese_display(mistake) or has_pinyin_marks(mistake):
+            continue
+        if mistake != correct and mistake not in choices:
+            choices.append(mistake)
+        if len(choices) == 5:
+            break
+
+    answers = [a for a in pool if a not in choices]
+    random.shuffle(answers)
+    for pick in answers:
+        choices.append(pick)
+        if len(choices) == 5:
+            break
+
+    random.shuffle(choices)
+    return choices[:5]
+
+
+def generate_choices(correct: str, card_id: str, srs: dict, pool: list[str]) -> list[str]:
+    choices = [correct]
+    pool_set = set(pool)
+    mistakes = srs["confusion_matrix"].get(card_id, []).copy()
+    mistakes = list(dict.fromkeys(reversed(mistakes)))
+    for mistake in mistakes:
         if chinese_display(mistake):
+            continue
+        if mistake not in pool_set and not has_pinyin_marks(mistake):
             continue
         if mistake != correct and mistake not in choices:
             choices.append(mistake)

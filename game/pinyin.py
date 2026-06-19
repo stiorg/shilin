@@ -119,4 +119,17 @@ def cycle_tone(tone: int, delta: int) -> int:
 
 
 def needs_cjk_font(text: str) -> bool:
-    return any("\u4e00" <= ch <= "\u9fff" for ch in text)
+    return any(is_cjk_script_char(ch) for ch in text)
+
+
+def is_cjk_script_char(ch: str) -> bool:
+    o = ord(ch)
+    return (
+        0x4E00 <= o <= 0x9FFF
+        or 0x3100 <= o <= 0x312F
+        or 0x31A0 <= o <= 0x31BF
+    )
+
+
+def has_pinyin_marks(text: str) -> bool:
+    return any(ch in _TONE_MARKS for ch in text)

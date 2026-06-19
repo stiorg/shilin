@@ -9,7 +9,15 @@ import pygame
 from game import config
 from game.cards import list_deck_files, load_deck
 from game.data import load_game_data
-from game.deck_modes import DECK_MODE_LABELS, cycle_mode
+from game.deck_modes import (
+    DECK_MODE_LABELS,
+    cycle_mode,
+    is_tone_mode,
+    requires_meaning,
+    uses_chinese_choices,
+    uses_latin_prompt,
+    uses_pinyin_prompt,
+)
 from game.deck_srs import DeckContext, DeckEndlessSession, DeckPackSession, ToneDrill
 from game.deck_store import deck_mode, deck_srs, load_store, save_store
 from game.input_handler import InputManager
@@ -37,19 +45,9 @@ class App:
             elif action == "bpm_pack":
                 self._run_quiz(PackSession(self.game_data), "Bopomofo 5-Pack", True)
             elif action == "deck_endless" and self._deck_ctx:
-                session = DeckEndlessSession(self._deck_ctx)
-                label = self._deck_mode_label()
-                if self._deck_ctx.mode == "tone":
-                    self._run_tone_quiz(session, label, False)
-                else:
-                    self._run_quiz(session, label, False)
+                self._start_deck_session(False)
             elif action == "deck_pack" and self._deck_ctx:
-                session = DeckPackSession(self._deck_ctx)
-                label = f"{self._deck_mode_label()} 5-Pack"
-                if self._deck_ctx.mode == "tone":
-                    self._run_tone_quiz(session, label, True)
-                else:
-                    self._run_quiz(session, label, True)
+                self._start_deck_session(True)
             elif action == "pick_deck":
                 self._run_deck_picker()
 
@@ -58,6 +56,35 @@ class App:
 
     def _deck_mode_label(self) -> str:
         return f"Characters · {DECK_MODE_LABELS[deck_mode(self.deck_store)]}"
+
+    def _start_deck_session(self, pack: bool) -> None:
+        ctx = self._deck_ctx
+        if ctx is None:
+            return
+        if requires_meaning(ctx.mode) and not ctx.meanings:
+            self._show_notice(
+                "No translations in deck",
+                "Translate modes need a 3rd field\n"
+                "(English / meaning in Anki export)",
+            )
+            return
+        label = self._deck_mode_label()
+        if pack:
+            label = f"{label} 5-Pack"
+            session = DeckPackSession(ctx)
+        else:
+            session = DeckEndlessSession(ctx)
+        if is_tone_mode(ctx.mode):
+            self._run_tone_quiz(session, label, pack)
+        else:
+            self._run_quiz(session, label, pack)
+
+    def _deck_prompt_style(self, mode: str) -> str:
+        if uses_pinyin_prompt(mode):
+            return "pinyin"
+        if uses_latin_prompt(mode):
+            return "latin"
+        return "chinese"
 
     def _is_deck_menu_index(self, actions: list[str], selected: int) -> bool:
         if selected < 0 or selected >= len(actions):
@@ -542,6 +569,7 @@ class App:
                     fb_text += f" — {feedback.submessage}"
                 fb_ok = feedback.correct
 
+            deck_mode_name = getattr(getattr(session, "ctx", None), "mode", "standard")
             self.renderer.draw_quiz(
                 mode_label,
                 status_fn(),
@@ -552,7 +580,8 @@ class App:
                 fb_text,
                 fb_ok,
                 question.hint,
-                getattr(getattr(session, "ctx", None), "mode", "") == "reverse",
+                uses_chinese_choices(deck_mode_name),
+                self._deck_prompt_style(deck_mode_name),
             )
             pygame.display.flip()
 

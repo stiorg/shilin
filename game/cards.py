@@ -22,6 +22,7 @@ class Card:
     id: str
     front: str
     back: str
+    meaning: str = ""
 
 
 def strip_html(text: str) -> str:
@@ -82,7 +83,12 @@ def load_anki_txt(path: str) -> list[Card]:
             back = strip_html(parts[1])
             if not front or not back:
                 continue
-            cards.append(Card(id=f"txt-{line_no}", front=front, back=_first_line(back)))
+            meaning = ""
+            if len(parts) > 2:
+                meaning = _first_line(strip_html(parts[2]))
+            cards.append(
+                Card(id=f"txt-{line_no}", front=front, back=_first_line(back), meaning=meaning)
+            )
     if not cards:
         raise ValueError("No cards found in text deck")
     return cards
@@ -122,7 +128,10 @@ def load_apkg(path: str) -> list[Card]:
         back = strip_html(fields[1])
         if not front or not back:
             continue
-        cards.append(Card(id=str(note_id), front=front, back=_first_line(back)))
+        meaning = ""
+        if len(fields) > 2:
+            meaning = _first_line(strip_html(fields[2]))
+        cards.append(Card(id=str(note_id), front=front, back=_first_line(back), meaning=meaning))
 
     if not cards:
         raise ValueError("No usable cards in .apkg (need at least 2 fields per note)")

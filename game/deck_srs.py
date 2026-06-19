@@ -6,10 +6,11 @@ import random
 from dataclasses import dataclass, field
 
 from game.cards import Card
-from game.deck_modes import normalize_mode
+from game.deck_modes import is_tone_mode, normalize_mode, requires_meaning
 from game.deck_store import (
     chinese_display,
     generate_choices,
+    generate_meaning_choices,
     generate_reverse_choices,
     remember_mistake,
     save_store,
@@ -28,12 +29,19 @@ class DeckContext:
     by_id: dict[str, Card] = field(init=False)
     fronts: list[str] = field(init=False)
     backs: list[str] = field(init=False)
+    meanings: list[str] = field(init=False)
 
     def __post_init__(self) -> None:
         self.mode = normalize_mode(self.mode)
         self.by_id = {c.id: c for c in self.cards}
         self.fronts = [c.front for c in self.cards]
         self.backs = [c.back for c in self.cards]
+        self.meanings = [c.meaning for c in self.cards if c.meaning]
+
+    def eligible_cards(self) -> list[Card]:
+        if requires_meaning(self.mode):
+            return [c for c in self.cards if c.meaning]
+        return self.cards
 
     def save(self) -> None:
         save_store(self.store)
@@ -73,6 +81,15 @@ def _make_tone_drill(ctx: DeckContext, card: Card) -> ToneDrill:
     )
 
 
+def _pick_card_id(ctx: DeckContext) -> str:
+    cards = ctx.eligible_cards()
+    if not cards:
+        raise RuntimeError("no cards for current mode")
+    ids = [c.id for c in cards]
+    weights = [1.0 / ctx.srs["intervals"].get(cid, 1) for cid in ids]
+    return random.choices(ids, weights=weights, k=1)[0]
+
+
 def _make_question(ctx: DeckContext, card: Card) -> Question:
     level = ctx.srs["intervals"].get(card.id, 1)
     mode = ctx.mode
@@ -81,6 +98,16 @@ def _make_question(ctx: DeckContext, card: Card) -> Question:
         correct = chinese_display(card.front) or card.front
         choices = generate_reverse_choices(correct, card.id, ctx.srs, ctx.fronts)
         return Question(char=card.back, correct=correct, choices=choices, level=level)
+
+    if mode == "translate":
+        correct = card.meaning
+        choices = generate_meaning_choices(correct, card.id, ctx.srs, ctx.meanings)
+        return Question(char=card.front, correct=correct, choices=choices, level=level)
+
+    if mode == "translate_reverse":
+        correct = chinese_display(card.front) or card.front
+        choices = generate_reverse_choices(correct, card.id, ctx.srs, ctx.fronts)
+        return Question(char=card.meaning, correct=correct, choices=choices, level=level)
 
     correct = card.back
     choices = generate_choices(correct, card.id, ctx.srs, ctx.backs)
@@ -102,14 +129,12 @@ class DeckEndlessSession:
 
     @property
     def is_tone_mode(self) -> bool:
-        return self.ctx.mode == "tone"
+        return is_tone_mode(self.ctx.mode)
 
     def next_question(self) -> Question:
         if self.is_tone_mode:
             raise RuntimeError("use next_tone_drill in tone mode")
-        ids = [c.id for c in self.ctx.cards]
-        weights = [1.0 / self.srs["intervals"].get(cid, 1) for cid in ids]
-        card_id = random.choices(ids, weights=weights, k=1)[0]
+        card_id = _pick_card_id(self.ctx)
         card = self.ctx.by_id[card_id]
         self._current_id = card_id
         self.current_tone = None
@@ -117,9 +142,7 @@ class DeckEndlessSession:
         return self.current
 
     def next_tone_drill(self) -> ToneDrill:
-        ids = [c.id for c in self.ctx.cards]
-        weights = [1.0 / self.srs["intervals"].get(cid, 1) for cid in ids]
-        card_id = random.choices(ids, weights=weights, k=1)[0]
+        card_id = _pick_card_id(self.ctx)
         card = self.ctx.by_id[card_id]
         self._current_id = card_id
         self.current = None
@@ -150,9 +173,7 @@ class DeckEndlessSession:
             )
 
         streak_broken = self.current_streak
-        remember_mistake(
-            self.srs, card_id, selected, chinese_only=self.ctx.mode == "reverse"
-        )
+        remember_mistake(self.srs, card_id, selected, mode=self.ctx.mode)
         self.srs["intervals"][card_id] = 1
         self.current_streak = 0
         sub = f"You picked '{selected}'"
@@ -189,9 +210,7 @@ class DeckEndlessSession:
             )
 
         streak_broken = self.current_streak
-        remember_mistake(
-            self.srs, card_id, selected, chinese_only=self.ctx.mode == "reverse"
-        )
+        remember_mistake(self.srs, card_id, selected, mode=self.ctx.mode)
         self.srs["intervals"][card_id] = 1
         self.current_streak = 0
         sub = f"You entered '{selected}'"
@@ -222,7 +241,7 @@ class DeckPackSession:
     _current_id: str | None = None
 
     def __post_init__(self) -> None:
-        ids = [c.id for c in self.ctx.cards]
+        ids = [c.id for c in self.ctx.eligible_cards()]
         self.sorted_pool = sorted(ids, key=lambda cid: self.srs["intervals"].get(cid, 1))
         self._load_next_pack()
 
@@ -232,7 +251,7 @@ class DeckPackSession:
 
     @property
     def is_tone_mode(self) -> bool:
-        return self.ctx.mode == "tone"
+        return is_tone_mode(self.ctx.mode)
 
     def _load_next_pack(self) -> None:
         self.pack_cleared = False
@@ -287,9 +306,7 @@ class DeckPackSession:
                 message=f"Correct! → Lv.{self.srs['intervals'][card_id]}",
             )
         else:
-            remember_mistake(
-                self.srs, card_id, selected, chinese_only=self.ctx.mode == "reverse"
-            )
+            remember_mistake(self.srs, card_id, selected, mode=self.ctx.mode)
             self.srs["intervals"][card_id] = 1
             retry = True
             front = self.ctx.by_id[card_id].front

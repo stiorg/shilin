@@ -8,7 +8,7 @@ import pygame
 
 from game import config
 from game.deck_store import chinese_display
-from game.pinyin import build_reading, needs_cjk_font
+from game.pinyin import build_reading, is_cjk_script_char, needs_cjk_font
 
 COLOR_BG = (24, 28, 42)
 COLOR_HUD = (18, 22, 34)
@@ -322,19 +322,24 @@ class Renderer:
         feedback_ok: bool | None = None,
         prompt_hint: str = "",
         chinese_choices: bool = False,
+        prompt_style: str = "chinese",
     ) -> None:
         self.clear()
         pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
 
         left = self.font_small.render(mode_label, True, COLOR_MUTED)
-        right = self.font_small.render(status, True, COLOR_SELECT if "Streak" in status else COLOR_TEXT)
         self.screen.blit(left, (12, 12))
-        self.screen.blit(right, (config.SCREEN_WIDTH - right.get_width() - 12, 12))
+        status_color = COLOR_SELECT if "Streak" in status else COLOR_TEXT
+        self._blit_mixed_line(
+            status, status_color, 12, align="right", latin_font=self.font_small
+        )
 
-        if chinese_choices:
-            prompt_font, prompt_surf = self._fit_pinyin_prompt(char)
+        if prompt_style == "pinyin":
+            _prompt_font, prompt_surf = self._fit_pinyin_prompt(char)
+        elif prompt_style == "latin":
+            _prompt_font, prompt_surf = self._fit_pinyin_prompt(char)
         else:
-            prompt_font, prompt_surf = self._fit_prompt(char)
+            _prompt_font, prompt_surf = self._fit_prompt(char)
         self.screen.blit(
             prompt_surf,
             (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, 52),
@@ -390,7 +395,7 @@ class Renderer:
         buf: list[str] = []
         is_cjk: bool | None = None
         for ch in text:
-            cjk = "\u4e00" <= ch <= "\u9fff"
+            cjk = is_cjk_script_char(ch)
             if is_cjk is None:
                 is_cjk = cjk
                 buf.append(ch)
@@ -404,14 +409,26 @@ class Renderer:
             segments.append(("".join(buf), is_cjk if is_cjk is not None else False))
         return segments
 
-    def _segment_font(self, is_cjk: bool) -> pygame.font.Font:
-        return self.font_cjk_normal if is_cjk else self.font
+    def _segment_font(self, is_cjk: bool, *, latin_font: pygame.font.Font | None = None) -> pygame.font.Font:
+        if is_cjk:
+            return self.font_cjk_normal
+        return latin_font or self.font
 
-    def _blit_feedback(self, text: str, color: tuple[int, int, int], y: int) -> None:
-        max_w = config.SCREEN_WIDTH - 24
+    def _blit_mixed_line(
+        self,
+        text: str,
+        color: tuple[int, int, int],
+        y: int,
+        *,
+        align: str = "center",
+        latin_font: pygame.font.Font | None = None,
+        max_w: int | None = None,
+    ) -> None:
+        if max_w is None:
+            max_w = config.SCREEN_WIDTH - 24
         segments = self._text_segments(text)
         surfaces = [
-            self._segment_font(is_cjk).render(seg, True, color)
+            self._segment_font(is_cjk, latin_font=latin_font).render(seg, True, color)
             for seg, is_cjk in segments
             if seg
         ]
@@ -422,15 +439,23 @@ class Renderer:
                 shown = _truncate(shown, max(8, len(shown) - 1))
                 segments = self._text_segments(shown)
                 surfaces = [
-                    self._segment_font(is_cjk).render(seg, True, color)
+                    self._segment_font(is_cjk, latin_font=latin_font).render(seg, True, color)
                     for seg, is_cjk in segments
                     if seg
                 ]
                 total_w = sum(surf.get_width() for surf in surfaces)
-        x = config.SCREEN_WIDTH // 2 - total_w // 2
+        if align == "right":
+            x = config.SCREEN_WIDTH - total_w - 12
+        elif align == "left":
+            x = 12
+        else:
+            x = config.SCREEN_WIDTH // 2 - total_w // 2
         for surf in surfaces:
             self.screen.blit(surf, (x, y))
             x += surf.get_width()
+
+    def _blit_feedback(self, text: str, color: tuple[int, int, int], y: int) -> None:
+        self._blit_mixed_line(text, color, y, align="center")
 
     def _fit_pinyin_prompt(self, text: str) -> tuple[pygame.font.Font, pygame.Surface]:
         max_w = config.SCREEN_WIDTH - 48
