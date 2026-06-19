@@ -6,6 +6,15 @@ import random
 from dataclasses import dataclass, field
 
 from game.data import BOPOMOFO_DICT, generate_dynamic_choices, save_game_data
+from game.scheduling import (
+    due_count,
+    ensure_schedule,
+    pick_due_id,
+    schedule_correct,
+    schedule_wrong,
+    sorted_due_ids,
+    today_str,
+)
 
 
 @dataclass
@@ -32,6 +41,15 @@ class EndlessSession:
     current_streak: int = 0
     max_streak_this_session: int = 0
     current: Question | None = None
+    _item_ids: list[str] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        self._item_ids = list(BOPOMOFO_DICT.keys())
+        ensure_schedule(self.game_data, self._item_ids)
+
+    @property
+    def due_remaining(self) -> int:
+        return due_count(self.game_data, self._item_ids, today_str())
 
     @property
     def intervals(self) -> dict:
@@ -41,10 +59,10 @@ class EndlessSession:
     def confusion_matrix(self) -> dict:
         return self.game_data["confusion_matrix"]
 
-    def next_question(self) -> Question:
-        chars = list(BOPOMOFO_DICT.keys())
-        weights = [1.0 / self.intervals[c] for c in chars]
-        char = random.choices(chars, weights=weights, k=1)[0]
+    def next_question(self) -> Question | None:
+        char = pick_due_id(self.game_data, self._item_ids, today_str())
+        if char is None:
+            return None
         correct = BOPOMOFO_DICT[char]
         choices = generate_dynamic_choices(correct, char, self.game_data)
         self.current = Question(char, correct, choices, self.intervals[char])
@@ -58,7 +76,7 @@ class EndlessSession:
 
         if selected == q.correct:
             self.current_streak += 1
-            self.intervals[q.char] = min(self.intervals[q.char] * 2, 32)
+            new_iv = schedule_correct(self.game_data, q.char, today_str())
             new_high = False
             if self.current_streak > self.max_streak_this_session:
                 self.max_streak_this_session = self.current_streak
@@ -67,7 +85,7 @@ class EndlessSession:
                 new_high = True
             return AnswerResult(
                 correct=True,
-                message=f"Correct! {q.char} -> Lv.{self.intervals[q.char]}",
+                message=f"Correct! {q.char} -> {new_iv}d",
                 submessage=f"Streak: {self.current_streak}",
                 new_high_streak=new_high,
             )
@@ -75,7 +93,7 @@ class EndlessSession:
         streak_broken = self.current_streak
         if selected not in self.confusion_matrix[q.char]:
             self.confusion_matrix[q.char].append(selected)
-        self.intervals[q.char] = 1
+        schedule_wrong(self.game_data, q.char, today_str())
         self.current_streak = 0
         msg = f"Wrong - answer was '{q.correct}'"
         sub = f"You picked '{selected}'"
@@ -104,8 +122,9 @@ class PackSession:
     all_done: bool = False
 
     def __post_init__(self) -> None:
-        chars = list(BOPOMOFO_DICT.keys())
-        self.sorted_pool = sorted(chars, key=lambda c: self.game_data["intervals"][c])
+        ids = list(BOPOMOFO_DICT.keys())
+        ensure_schedule(self.game_data, ids)
+        self.sorted_pool = sorted_due_ids(self.game_data, ids, today_str())
         self._load_next_pack()
 
     @property
@@ -127,7 +146,7 @@ class PackSession:
 
     def pack_label(self) -> str:
         if self.all_done:
-            return "All packs cleared!"
+            return "Caught up for today!"
         return f"Pack #{self.pack_count}: {', '.join(self.current_pack)}"
 
     def next_question(self) -> Question | None:
@@ -147,17 +166,17 @@ class PackSession:
         retry = False
 
         if selected == q.correct:
-            self.intervals[q.char] = min(self.intervals[q.char] * 2, 32)
+            new_iv = schedule_correct(self.game_data, q.char, today_str())
             if q.char in self.current_pack:
                 self.current_pack.remove(q.char)
             result = AnswerResult(
                 correct=True,
-                message=f"Correct! {q.char} -> Lv.{self.intervals[q.char]}",
+                message=f"Correct! {q.char} -> {new_iv}d",
             )
         else:
             if selected not in self.confusion_matrix[q.char]:
                 self.confusion_matrix[q.char].append(selected)
-            self.intervals[q.char] = 1
+            schedule_wrong(self.game_data, q.char, today_str())
             retry = True
             result = AnswerResult(
                 correct=False,

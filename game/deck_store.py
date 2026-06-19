@@ -7,8 +7,9 @@ import os
 import random
 
 from game.cards import Card, ROOT
-from game.deck_modes import normalize_mode
+from game.deck_modes import DECK_MODES, normalize_mode
 from game.pinyin import has_pinyin_marks
+from game.scheduling import ensure_schedule
 
 DATA_FILE = os.path.join(ROOT, "flashcard_srs_data.json")
 
@@ -35,17 +36,57 @@ def save_store(store: dict) -> None:
         json.dump(store, fh, ensure_ascii=False, indent=4)
 
 
+def _fresh_mode_bucket(card_ids: list[str]) -> dict:
+    return {
+        "all_time_high_streak": 0,
+        "intervals": {card_id: 1 for card_id in card_ids},
+        "confusion_matrix": {card_id: [] for card_id in card_ids},
+    }
+
+
+def migrate_deck_srs(srs: dict, card_ids: list[str]) -> None:
+    """Move legacy flat SRS data into per-mode buckets."""
+    if "modes" in srs:
+        return
+    modes: dict[str, dict] = {}
+    if "intervals" in srs:
+        modes["standard"] = {
+            "intervals": srs.pop("intervals"),
+            "confusion_matrix": srs.pop("confusion_matrix", {}),
+            "due": srs.pop("due", {}),
+            "all_time_high_streak": int(srs.pop("all_time_high_streak", 0)),
+        }
+        ensure_schedule(modes["standard"], card_ids)
+    srs["modes"] = modes
+
+
+def mode_schedule(srs: dict, mode: str, card_ids: list[str]) -> dict:
+    """SRS schedule for one study mode (standard, reverse, tone, etc.)."""
+    migrate_deck_srs(srs, card_ids)
+    mode = normalize_mode(mode)
+    modes = srs.setdefault("modes", {})
+    if mode not in modes:
+        modes[mode] = _fresh_mode_bucket(card_ids)
+    bucket = modes[mode]
+    for card_id in card_ids:
+        bucket["intervals"].setdefault(card_id, 1)
+        bucket["confusion_matrix"].setdefault(card_id, [])
+    ensure_schedule(bucket, card_ids)
+    return bucket
+
+
 def deck_srs(store: dict, deck_file: str, cards: list[Card]) -> dict:
     if deck_file not in store["decks"]:
-        store["decks"][deck_file] = {
-            "all_time_high_streak": 0,
-            "intervals": {c.id: 1 for c in cards},
-            "confusion_matrix": {c.id: [] for c in cards},
-        }
+        store["decks"][deck_file] = {"modes": {}}
     srs = store["decks"][deck_file]
-    for card in cards:
-        srs["intervals"].setdefault(card.id, 1)
-        srs["confusion_matrix"].setdefault(card.id, [])
+    card_ids = [c.id for c in cards]
+    migrate_deck_srs(srs, card_ids)
+    for mode in DECK_MODES:
+        eligible = card_ids
+        if mode in ("translate", "translate_reverse"):
+            eligible = [c.id for c in cards if c.meaning]
+        if eligible:
+            mode_schedule(srs, mode, eligible)
     return srs
 
 

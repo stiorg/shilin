@@ -8,7 +8,7 @@ import pygame
 
 from game import config
 from game.cards import list_deck_files, load_deck
-from game.data import load_game_data, save_game_data
+from game.data import BOPOMOFO_DICT, load_game_data, save_game_data
 from game.deck_modes import (
     DECK_MODE_LABELS,
     cycle_mode,
@@ -19,9 +19,10 @@ from game.deck_modes import (
     uses_pinyin_prompt,
 )
 from game.deck_srs import DeckContext, DeckEndlessSession, DeckPackSession, ToneDrill
-from game.deck_store import deck_mode, deck_srs, load_store, save_store
+from game.deck_store import deck_mode, deck_srs, load_store, mode_schedule, save_store
 from game.input_handler import InputManager
 from game.renderer import Renderer
+from game.scheduling import due_count, due_menu_suffix, ensure_schedule, today_str
 from game.srs import AnswerResult, EndlessSession, PackSession
 
 
@@ -41,10 +42,7 @@ class App:
             if action is None:
                 break
             if action == "bpm":
-                pack = self._bpm_pack_mode()
-                session = PackSession(self.game_data) if pack else EndlessSession(self.game_data)
-                label = "Bopomofo" + (" · 5-Pack" if pack else "")
-                self._run_quiz(session, label, pack)
+                self._start_bpm_session(self._bpm_pack_mode())
             elif action == "deck" and self._deck_ctx:
                 self._start_deck_session(self._deck_pack_mode())
             elif action == "pick_deck":
@@ -72,8 +70,49 @@ class App:
         save_store(self.deck_store)
         self._nav_cooldown = config.NAV_COOLDOWN
 
+    def _show_caught_up(self) -> None:
+        self._show_notice(
+            "Caught up for today",
+            "No cards are due right now.\n"
+            "Come back tomorrow, or after a break\n"
+            "overdue cards will pile up.",
+        )
+
+    def _start_bpm_session(self, pack: bool) -> None:
+        ensure_schedule(self.game_data, list(BOPOMOFO_DICT.keys()))
+        ids = list(BOPOMOFO_DICT.keys())
+        if due_count(self.game_data, ids, today_str()) == 0:
+            self._show_caught_up()
+            return
+        session = PackSession(self.game_data) if pack else EndlessSession(self.game_data)
+        if pack and session.all_done:
+            self._show_caught_up()
+            return
+        label = "Bopomofo" + (" · 5-Pack" if pack else "")
+        self._run_quiz(session, label, pack)
+
     def _deck_mode_label(self) -> str:
         return f"Characters · {DECK_MODE_LABELS[deck_mode(self.deck_store)]}"
+
+    def _deck_due_count(self) -> int:
+        ctx = self._deck_ctx
+        if ctx is None:
+            return 0
+        ids = [c.id for c in ctx.eligible_cards()]
+        sched = mode_schedule(ctx.srs, ctx.mode, ids)
+        return due_count(sched, ids, today_str())
+
+    def _menu_extra(self) -> str:
+        high = self.game_data["all_time_high_streak"]
+        deck_count = len(list_deck_files())
+        bpm_due = due_count(self.game_data, list(BOPOMOFO_DICT.keys()), today_str())
+        if self._deck_ctx:
+            deck_due = self._deck_due_count()
+            return (
+                f"Due today: {bpm_due} bopomofo, {deck_due} cards"
+                f"  |  Streak: {high}  |  Decks: {deck_count}"
+            )
+        return f"Due today: {bpm_due} bopomofo  |  Streak: {high}  |  Decks: {deck_count}"
 
     def _start_deck_session(self, pack: bool) -> None:
         ctx = self._deck_ctx
@@ -86,10 +125,18 @@ class App:
                 "(English / meaning in Anki export)",
             )
             return
+        ids = [c.id for c in ctx.eligible_cards()]
+        sched = mode_schedule(ctx.srs, ctx.mode, ids)
+        if due_count(sched, ids, today_str()) == 0:
+            self._show_caught_up()
+            return
         label = self._deck_mode_label()
         if pack:
             label = f"{label} 5-Pack"
             session = DeckPackSession(ctx)
+            if session.all_done:
+                self._show_caught_up()
+                return
         else:
             session = DeckEndlessSession(ctx)
         if is_tone_mode(ctx.mode):
@@ -122,13 +169,17 @@ class App:
         self._nav_cooldown = config.NAV_COOLDOWN
 
     def _menu_entries(self) -> tuple[list[str], list[str]]:
-        items = [f"Bopomofo - {self._srs_layout_label(self._bpm_pack_mode())}"]
+        ensure_schedule(self.game_data, list(BOPOMOFO_DICT.keys()))
+        bpm_due = due_count(self.game_data, list(BOPOMOFO_DICT.keys()), today_str())
+        layout = self._srs_layout_label(self._bpm_pack_mode())
+        items = [f"Bopomofo - {layout}{due_menu_suffix(bpm_due)}"]
         actions = ["bpm"]
         deck = self.deck_store.get("last_deck", "")
         if deck and self._deck_ctx:
+            deck_due = self._deck_due_count()
             mode = DECK_MODE_LABELS[deck_mode(self.deck_store)]
-            layout = self._srs_layout_label(self._deck_pack_mode())
-            items += [f"Characters - {mode} - {layout}"]
+            deck_layout = self._srs_layout_label(self._deck_pack_mode())
+            items += [f"Characters - {mode} - {deck_layout}{due_menu_suffix(deck_due)}"]
             actions += ["deck"]
         items += ["Choose Deck…", "Exit"]
         actions += ["pick_deck", "exit"]
@@ -170,9 +221,6 @@ class App:
         items, actions = self._menu_entries()
         selected = 0
         clock = pygame.time.Clock()
-        high = self.game_data["all_time_high_streak"]
-        deck_count = len(list_deck_files())
-        extra = f"Bopomofo streak: {high}  |  Decks in decks/: {deck_count}"
 
         while True:
             dt = clock.tick(config.FPS) / 1000.0
@@ -254,7 +302,7 @@ class App:
                 "SHILIN TRAINER",
                 items,
                 selected,
-                extra=extra,
+                extra=self._menu_extra(),
                 footer_hint=menu_hint,
                 deck_label=deck_label,
             )
@@ -402,6 +450,17 @@ class App:
             self.renderer.draw_notice(title, message)
             pygame.display.flip()
 
+    def _session_status(self, session: Any, pack: bool) -> str:
+        if pack:
+            return session.pack_label()[:48]
+        parts: list[str] = []
+        if hasattr(session, "due_remaining"):
+            parts.append(f"Due: {session.due_remaining}")
+        streak = getattr(session, "current_streak", 0)
+        if streak:
+            parts.append(f"Streak: {streak}")
+        return "  |  ".join(parts)
+
     def _run_tone_quiz(self, session: Any, mode_label: str, pack: bool) -> None:
         self.input_mgr.arm_for_quiz()
         drill = session.next_tone_drill()
@@ -411,13 +470,7 @@ class App:
         feedback_timer = 0.0
         clock = pygame.time.Clock()
 
-        status_fn: Callable[[], str]
-        if pack:
-            status_fn = lambda: session.pack_label()[:48]
-        else:
-            status_fn = lambda: (
-                f"Streak: {session.current_streak}" if session.current_streak else ""
-            )
+        status_fn: Callable[[], str] = lambda: self._session_status(session, pack)
 
         while True:
             dt = clock.tick(config.FPS) / 1000.0
@@ -534,13 +587,7 @@ class App:
         feedback_timer = 0.0
         clock = pygame.time.Clock()
 
-        status_fn: Callable[[], str]
-        if pack:
-            status_fn = lambda: session.pack_label()[:48]
-        else:
-            status_fn = lambda: (
-                f"Streak: {session.current_streak}" if session.current_streak else ""
-            )
+        status_fn: Callable[[], str] = lambda: self._session_status(session, pack)
 
         while True:
             dt = clock.tick(config.FPS) / 1000.0

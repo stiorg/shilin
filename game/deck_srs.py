@@ -12,10 +12,19 @@ from game.deck_store import (
     generate_choices,
     generate_meaning_choices,
     generate_reverse_choices,
+    mode_schedule,
     remember_mistake,
     save_store,
 )
 from game.pinyin import build_reading, cycle_tone, parse_reading
+from game.scheduling import (
+    due_count,
+    pick_due_id,
+    schedule_correct,
+    schedule_wrong,
+    sorted_due_ids,
+    today_str,
+)
 from game.srs import AnswerResult, Question
 
 
@@ -67,11 +76,16 @@ class ToneDrill:
         self.selected = (self.selected + delta) % len(self.syllables)
 
 
+def _schedule(ctx: DeckContext) -> dict:
+    return mode_schedule(ctx.srs, ctx.mode, _eligible_ids(ctx))
+
+
 def _make_tone_drill(ctx: DeckContext, card: Card) -> ToneDrill:
     syllables = parse_reading(card.back)
     if not syllables:
         syllables = [card.back]
-    level = ctx.srs["intervals"].get(card.id, 1)
+    sched = _schedule(ctx)
+    level = sched["intervals"].get(card.id, 1)
     return ToneDrill(
         char=card.front,
         correct=card.back,
@@ -81,36 +95,42 @@ def _make_tone_drill(ctx: DeckContext, card: Card) -> ToneDrill:
     )
 
 
+def _eligible_ids(ctx: DeckContext) -> list[str]:
+    return [c.id for c in ctx.eligible_cards()]
+
+
 def _pick_card_id(ctx: DeckContext) -> str:
-    cards = ctx.eligible_cards()
-    if not cards:
+    ids = _eligible_ids(ctx)
+    if not ids:
         raise RuntimeError("no cards for current mode")
-    ids = [c.id for c in cards]
-    weights = [1.0 / ctx.srs["intervals"].get(cid, 1) for cid in ids]
-    return random.choices(ids, weights=weights, k=1)[0]
+    card_id = pick_due_id(_schedule(ctx), ids, today_str())
+    if card_id is None:
+        raise RuntimeError("no cards due today")
+    return card_id
 
 
 def _make_question(ctx: DeckContext, card: Card) -> Question:
-    level = ctx.srs["intervals"].get(card.id, 1)
+    sched = _schedule(ctx)
+    level = sched["intervals"].get(card.id, 1)
     mode = ctx.mode
 
     if mode == "reverse":
         correct = chinese_display(card.front) or card.front
-        choices = generate_reverse_choices(correct, card.id, ctx.srs, ctx.fronts)
+        choices = generate_reverse_choices(correct, card.id, sched, ctx.fronts)
         return Question(char=card.back, correct=correct, choices=choices, level=level)
 
     if mode == "translate":
         correct = card.meaning
-        choices = generate_meaning_choices(correct, card.id, ctx.srs, ctx.meanings)
+        choices = generate_meaning_choices(correct, card.id, sched, ctx.meanings)
         return Question(char=card.front, correct=correct, choices=choices, level=level)
 
     if mode == "translate_reverse":
         correct = chinese_display(card.front) or card.front
-        choices = generate_reverse_choices(correct, card.id, ctx.srs, ctx.fronts)
+        choices = generate_reverse_choices(correct, card.id, sched, ctx.fronts)
         return Question(char=card.meaning, correct=correct, choices=choices, level=level)
 
     correct = card.back
-    choices = generate_choices(correct, card.id, ctx.srs, ctx.backs)
+    choices = generate_choices(correct, card.id, sched, ctx.backs)
     return Question(char=card.front, correct=correct, choices=choices, level=level)
 
 
@@ -123,6 +143,17 @@ class DeckEndlessSession:
     current_tone: ToneDrill | None = None
     _current_id: str | None = None
 
+    def __post_init__(self) -> None:
+        _schedule(self.ctx)
+
+    @property
+    def schedule(self) -> dict:
+        return _schedule(self.ctx)
+
+    @property
+    def due_remaining(self) -> int:
+        return due_count(self.schedule, _eligible_ids(self.ctx), today_str())
+
     @property
     def srs(self) -> dict:
         return self.ctx.srs
@@ -131,18 +162,24 @@ class DeckEndlessSession:
     def is_tone_mode(self) -> bool:
         return is_tone_mode(self.ctx.mode)
 
-    def next_question(self) -> Question:
+    def next_question(self) -> Question | None:
         if self.is_tone_mode:
             raise RuntimeError("use next_tone_drill in tone mode")
-        card_id = _pick_card_id(self.ctx)
+        try:
+            card_id = _pick_card_id(self.ctx)
+        except RuntimeError:
+            return None
         card = self.ctx.by_id[card_id]
         self._current_id = card_id
         self.current_tone = None
         self.current = _make_question(self.ctx, card)
         return self.current
 
-    def next_tone_drill(self) -> ToneDrill:
-        card_id = _pick_card_id(self.ctx)
+    def next_tone_drill(self) -> ToneDrill | None:
+        try:
+            card_id = _pick_card_id(self.ctx)
+        except RuntimeError:
+            return None
         card = self.ctx.by_id[card_id]
         self._current_id = card_id
         self.current = None
@@ -158,23 +195,23 @@ class DeckEndlessSession:
 
         if selected == q.correct:
             self.current_streak += 1
-            self.srs["intervals"][card_id] = min(self.srs["intervals"].get(card_id, 1) * 2, 32)
+            new_iv = schedule_correct(self.schedule, card_id, today_str())
             new_high = False
             if self.current_streak > self.max_streak_this_session:
                 self.max_streak_this_session = self.current_streak
-            if self.max_streak_this_session > self.srs["all_time_high_streak"]:
-                self.srs["all_time_high_streak"] = self.max_streak_this_session
+            if self.max_streak_this_session > self.schedule["all_time_high_streak"]:
+                self.schedule["all_time_high_streak"] = self.max_streak_this_session
                 new_high = True
             return AnswerResult(
                 correct=True,
-                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> {new_iv}d",
                 submessage=f"Streak: {self.current_streak}",
                 new_high_streak=new_high,
             )
 
         streak_broken = self.current_streak
-        remember_mistake(self.srs, card_id, selected, mode=self.ctx.mode)
-        self.srs["intervals"][card_id] = 1
+        remember_mistake(self.schedule, card_id, selected, mode=self.ctx.mode)
+        schedule_wrong(self.schedule, card_id, today_str())
         self.current_streak = 0
         sub = f"You picked '{selected}'"
         if streak_broken > 0:
@@ -195,23 +232,23 @@ class DeckEndlessSession:
 
         if selected == correct:
             self.current_streak += 1
-            self.srs["intervals"][card_id] = min(self.srs["intervals"].get(card_id, 1) * 2, 32)
+            new_iv = schedule_correct(self.schedule, card_id, today_str())
             new_high = False
             if self.current_streak > self.max_streak_this_session:
                 self.max_streak_this_session = self.current_streak
-            if self.max_streak_this_session > self.srs["all_time_high_streak"]:
-                self.srs["all_time_high_streak"] = self.max_streak_this_session
+            if self.max_streak_this_session > self.schedule["all_time_high_streak"]:
+                self.schedule["all_time_high_streak"] = self.max_streak_this_session
                 new_high = True
             return AnswerResult(
                 correct=True,
-                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> {new_iv}d",
                 submessage=f"Streak: {self.current_streak}",
                 new_high_streak=new_high,
             )
 
         streak_broken = self.current_streak
-        remember_mistake(self.srs, card_id, selected, mode=self.ctx.mode)
-        self.srs["intervals"][card_id] = 1
+        remember_mistake(self.schedule, card_id, selected, mode=self.ctx.mode)
+        schedule_wrong(self.schedule, card_id, today_str())
         self.current_streak = 0
         sub = f"You entered '{selected}'"
         if streak_broken > 0:
@@ -241,9 +278,17 @@ class DeckPackSession:
     _current_id: str | None = None
 
     def __post_init__(self) -> None:
-        ids = [c.id for c in self.ctx.eligible_cards()]
-        self.sorted_pool = sorted(ids, key=lambda cid: self.srs["intervals"].get(cid, 1))
+        ids = _eligible_ids(self.ctx)
+        self.sorted_pool = sorted_due_ids(_schedule(self.ctx), ids, today_str())
         self._load_next_pack()
+
+    @property
+    def schedule(self) -> dict:
+        return _schedule(self.ctx)
+
+    @property
+    def due_remaining(self) -> int:
+        return due_count(self.schedule, _eligible_ids(self.ctx), today_str())
 
     @property
     def srs(self) -> dict:
@@ -264,7 +309,7 @@ class DeckPackSession:
 
     def pack_label(self) -> str:
         if self.all_done:
-            return "All packs cleared!"
+            return "Caught up for today!"
         return f"Pack #{self.pack_count} ({len(self.current_pack)} cards)"
 
     def next_question(self) -> Question | None:
@@ -298,16 +343,16 @@ class DeckPackSession:
         retry = False
 
         if selected == q.correct:
-            self.srs["intervals"][card_id] = min(self.srs["intervals"].get(card_id, 1) * 2, 32)
+            new_iv = schedule_correct(self.schedule, card_id, today_str())
             if card_id in self.current_pack:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
                 correct=True,
-                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> {new_iv}d",
             )
         else:
-            remember_mistake(self.srs, card_id, selected, mode=self.ctx.mode)
-            self.srs["intervals"][card_id] = 1
+            remember_mistake(self.schedule, card_id, selected, mode=self.ctx.mode)
+            schedule_wrong(self.schedule, card_id, today_str())
             retry = True
             front = self.ctx.by_id[card_id].front
             result = AnswerResult(
@@ -336,18 +381,18 @@ class DeckPackSession:
         retry = False
 
         if selected == correct:
-            self.srs["intervals"][card_id] = min(self.srs["intervals"].get(card_id, 1) * 2, 32)
+            new_iv = schedule_correct(self.schedule, card_id, today_str())
             if card_id in self.current_pack:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
                 correct=True,
-                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> {new_iv}d",
             )
         else:
-            matrix = self.srs["confusion_matrix"].setdefault(card_id, [])
+            matrix = self.schedule["confusion_matrix"].setdefault(card_id, [])
             if selected not in matrix:
                 matrix.append(selected)
-            self.srs["intervals"][card_id] = 1
+            schedule_wrong(self.schedule, card_id, today_str())
             retry = True
             front = self.ctx.by_id[card_id].front
             result = AnswerResult(

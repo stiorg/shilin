@@ -6,6 +6,8 @@ import json
 import os
 import random
 
+from game.scheduling import ensure_schedule
+
 BOPOMOFO_DICT = {
     "ㄅ": "b", "ㄆ": "p", "ㄇ": "m", "ㄈ": "f",
     "ㄉ": "d", "ㄊ": "t", "ㄋ": "n", "ㄌ": "l",
@@ -37,9 +39,11 @@ def load_game_data() -> dict:
                 if "all_time_high_streak" in data and "intervals" in data:
                     if "confusion_matrix" not in data:
                         data["confusion_matrix"] = {char: [] for char in BOPOMOFO_DICT}
+                    ensure_schedule(data, list(BOPOMOFO_DICT.keys()))
                     return data
         except (OSError, json.JSONDecodeError):
             pass
+    ensure_schedule(default_data, list(BOPOMOFO_DICT.keys()))
     return default_data
 
 
