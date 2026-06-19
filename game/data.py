@@ -25,6 +25,7 @@ DATA_FILE = os.path.join(ROOT, "bopomofo_srs_data.json")
 
 def load_game_data() -> dict:
     default_data = {
+        "pack_mode": False,
         "all_time_high_streak": 0,
         "intervals": {char: 1 for char in BOPOMOFO_DICT},
         "confusion_matrix": {char: [] for char in BOPOMOFO_DICT},

@@ -10,6 +10,8 @@ CONFIRM_KEYS = (pygame.K_RETURN, pygame.K_z, pygame.K_SPACE)
 CONFIRM_BUTTONS = (1, 0, 2, 3, 7)
 SELECT_BUTTONS = (6,)
 START_BUTTONS = (7,)
+TOGGLE_KEYS = (pygame.K_SPACE,)
+TOGGLE_BUTTONS = (4, 5)
 
 # PC only — direct answer via number row
 PICK_KEYS: dict[int, int] = {
@@ -104,6 +106,8 @@ class InputManager:
                 return None
             if event.key == pygame.K_ESCAPE:
                 return "back"
+            if self._menu_mode and event.key in TOGGLE_KEYS:
+                return "toggle_pack"
             if event.key in CONFIRM_KEYS:
                 return "confirm"
             if not config.is_handheld():
@@ -139,6 +143,8 @@ class InputManager:
                 return "right"
         if event.type == pygame.JOYBUTTONDOWN:
             self._held_buttons.add((_event_joy_id(event), event.button))
+            if self._menu_mode and event.button in TOGGLE_BUTTONS:
+                return "toggle_pack"
             if event.button in SELECT_BUTTONS:
                 return "back"
             if event.button in CONFIRM_BUTTONS:

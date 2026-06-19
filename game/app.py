@@ -8,7 +8,7 @@ import pygame
 
 from game import config
 from game.cards import list_deck_files, load_deck
-from game.data import load_game_data
+from game.data import load_game_data, save_game_data
 from game.deck_modes import (
     DECK_MODE_LABELS,
     cycle_mode,
@@ -40,19 +40,37 @@ class App:
             action = self._run_menu()
             if action is None:
                 break
-            if action == "bpm_endless":
-                self._run_quiz(EndlessSession(self.game_data), "Bopomofo", False)
-            elif action == "bpm_pack":
-                self._run_quiz(PackSession(self.game_data), "Bopomofo 5-Pack", True)
-            elif action == "deck_endless" and self._deck_ctx:
-                self._start_deck_session(False)
-            elif action == "deck_pack" and self._deck_ctx:
-                self._start_deck_session(True)
+            if action == "bpm":
+                pack = self._bpm_pack_mode()
+                session = PackSession(self.game_data) if pack else EndlessSession(self.game_data)
+                label = "Bopomofo" + (" · 5-Pack" if pack else "")
+                self._run_quiz(session, label, pack)
+            elif action == "deck" and self._deck_ctx:
+                self._start_deck_session(self._deck_pack_mode())
             elif action == "pick_deck":
                 self._run_deck_picker()
 
     def _tick_cooldown(self, dt: float) -> None:
         self._nav_cooldown = max(0.0, self._nav_cooldown - dt)
+
+    def _srs_layout_label(self, pack: bool) -> str:
+        return "5-Pack" if pack else "Endless"
+
+    def _bpm_pack_mode(self) -> bool:
+        return bool(self.game_data.get("pack_mode", False))
+
+    def _deck_pack_mode(self) -> bool:
+        return bool(self.deck_store.get("pack_mode", False))
+
+    def _toggle_bpm_pack_mode(self) -> None:
+        self.game_data["pack_mode"] = not self._bpm_pack_mode()
+        save_game_data(self.game_data)
+        self._nav_cooldown = config.NAV_COOLDOWN
+
+    def _toggle_deck_pack_mode(self) -> None:
+        self.deck_store["pack_mode"] = not self._deck_pack_mode()
+        save_store(self.deck_store)
+        self._nav_cooldown = config.NAV_COOLDOWN
 
     def _deck_mode_label(self) -> str:
         return f"Characters · {DECK_MODE_LABELS[deck_mode(self.deck_store)]}"
@@ -86,10 +104,15 @@ class App:
             return "latin"
         return "chinese"
 
+    def _is_drill_menu_index(self, actions: list[str], selected: int) -> bool:
+        if selected < 0 or selected >= len(actions):
+            return False
+        return actions[selected] in ("bpm", "deck")
+
     def _is_deck_menu_index(self, actions: list[str], selected: int) -> bool:
         if selected < 0 or selected >= len(actions):
             return False
-        return actions[selected] in ("deck_endless", "deck_pack")
+        return actions[selected] == "deck"
 
     def _cycle_deck_mode(self, delta: int) -> None:
         self.deck_store["deck_mode"] = cycle_mode(deck_mode(self.deck_store), delta)
@@ -99,20 +122,15 @@ class App:
         self._nav_cooldown = config.NAV_COOLDOWN
 
     def _menu_entries(self) -> tuple[list[str], list[str]]:
-        items = [
-            "Bopomofo — Endless",
-            "Bopomofo — 5-Pack",
-        ]
-        actions = ["bpm_endless", "bpm_pack"]
+        items = [f"Bopomofo — {self._srs_layout_label(self._bpm_pack_mode())}"]
+        actions = ["bpm"]
         deck = self.deck_store.get("last_deck", "")
         if deck and self._deck_ctx:
             short = deck if len(deck) <= 14 else deck[:11] + "…"
             mode = DECK_MODE_LABELS[deck_mode(self.deck_store)]
-            items += [
-                f"Characters ({short}) — {mode} — Endless",
-                f"Characters ({short}) — {mode} — 5-Pack",
-            ]
-            actions += ["deck_endless", "deck_pack"]
+            layout = self._srs_layout_label(self._deck_pack_mode())
+            items += [f"Characters ({short}) — {mode} — {layout}"]
+            actions += ["deck"]
         items += ["Choose Deck…", "Exit"]
         actions += ["pick_deck", "exit"]
         return items, actions
@@ -139,7 +157,7 @@ class App:
             self._ensure_deck()
             self.input_mgr.arm_for_menu()
             return "menu"
-        if picked in ("deck_endless", "deck_pack") and not self._deck_ctx:
+        if picked == "deck" and not self._deck_ctx:
             self._show_notice(
                 "No deck loaded",
                 "Choose Deck first.\nCopy .apkg or .txt to decks/",
@@ -161,7 +179,7 @@ class App:
             dt = clock.tick(config.FPS) / 1000.0
             self._tick_cooldown(dt)
             items, actions = self._menu_entries()
-            menu_hint = self._menu_hint(actions)
+            menu_hint = self._menu_hint(actions, selected)
 
             for event in pygame.event.get():
                 action = self.input_mgr.handle_event(event)
@@ -172,6 +190,16 @@ class App:
                     continue
                 if action == "exit":
                     return None
+                if action == "toggle_pack":
+                    if self._is_drill_menu_index(actions, selected):
+                        if self._nav_cooldown > 0:
+                            continue
+                        if actions[selected] == "bpm":
+                            self._toggle_bpm_pack_mode()
+                        elif actions[selected] == "deck":
+                            self._toggle_deck_pack_mode()
+                        continue
+                    action = "confirm"
                 if action in ("quit", "back") or self.input_mgr.quit_combo_held():
                     if action == "quit" or self.input_mgr.quit_combo_held():
                         return None
@@ -227,12 +255,20 @@ class App:
             )
             pygame.display.flip()
 
-    def _menu_hint(self, actions: list[str]) -> str:
-        if any(action in ("deck_endless", "deck_pack") for action in actions):
-            if config.is_handheld():
-                return "← → — Character mode | Start+Select — Exit | B — Back"
-            return "← → — Character mode | Esc — Back | Enter — Select"
-        return ""
+    def _menu_hint(self, actions: list[str], selected: int) -> str:
+        parts: list[str] = []
+        if 0 <= selected < len(actions) and actions[selected] in ("bpm", "deck"):
+            toggle = "L/R" if config.is_handheld() else "Space"
+            parts.append(f"{toggle} — Endless / 5-Pack")
+        if 0 <= selected < len(actions) and actions[selected] == "deck":
+            parts.append("← → — Character mode")
+        if not parts:
+            return ""
+        if config.is_handheld():
+            parts.append("Start+Select — Exit | B — Back")
+            return " | ".join(parts)
+        parts.append("Esc — Back | Enter — Select")
+        return " | ".join(parts)
 
     def _menu_nav_action(self, action: str, actions: list[str], selected: int) -> str | None:
         if action in ("up", "down", "confirm", "back"):

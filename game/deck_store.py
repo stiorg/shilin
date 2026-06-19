@@ -14,7 +14,7 @@ DATA_FILE = os.path.join(ROOT, "flashcard_srs_data.json")
 
 
 def load_store() -> dict:
-    default = {"last_deck": "", "deck_mode": "standard", "decks": {}}
+    default = {"last_deck": "", "deck_mode": "standard", "pack_mode": False, "decks": {}}
     if os.path.exists(DATA_FILE):
         try:
             with open(DATA_FILE, encoding="utf-8") as fh:
