@@ -14,6 +14,7 @@ class Question:
     correct: str
     choices: list[str]
     level: int
+    hint: str = ""
 
 
 @dataclass

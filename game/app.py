@@ -9,8 +9,9 @@ import pygame
 from game import config
 from game.cards import list_deck_files, load_deck
 from game.data import load_game_data
-from game.deck_srs import DeckContext, DeckEndlessSession, DeckPackSession
-from game.deck_store import deck_srs, load_store, save_store
+from game.deck_modes import DECK_MODE_LABELS, cycle_mode
+from game.deck_srs import DeckContext, DeckEndlessSession, DeckPackSession, ToneDrill
+from game.deck_store import deck_mode, deck_srs, load_store, save_store
 from game.input_handler import InputManager
 from game.renderer import Renderer
 from game.srs import AnswerResult, EndlessSession, PackSession
@@ -36,14 +37,39 @@ class App:
             elif action == "bpm_pack":
                 self._run_quiz(PackSession(self.game_data), "Bopomofo 5-Pack", True)
             elif action == "deck_endless" and self._deck_ctx:
-                self._run_quiz(DeckEndlessSession(self._deck_ctx), "Characters", False)
+                session = DeckEndlessSession(self._deck_ctx)
+                label = self._deck_mode_label()
+                if self._deck_ctx.mode == "tone":
+                    self._run_tone_quiz(session, label, False)
+                else:
+                    self._run_quiz(session, label, False)
             elif action == "deck_pack" and self._deck_ctx:
-                self._run_quiz(DeckPackSession(self._deck_ctx), "Characters 5-Pack", True)
+                session = DeckPackSession(self._deck_ctx)
+                label = f"{self._deck_mode_label()} 5-Pack"
+                if self._deck_ctx.mode == "tone":
+                    self._run_tone_quiz(session, label, True)
+                else:
+                    self._run_quiz(session, label, True)
             elif action == "pick_deck":
                 self._run_deck_picker()
 
     def _tick_cooldown(self, dt: float) -> None:
         self._nav_cooldown = max(0.0, self._nav_cooldown - dt)
+
+    def _deck_mode_label(self) -> str:
+        return f"Characters · {DECK_MODE_LABELS[deck_mode(self.deck_store)]}"
+
+    def _is_deck_menu_index(self, actions: list[str], selected: int) -> bool:
+        if selected < 0 or selected >= len(actions):
+            return False
+        return actions[selected] in ("deck_endless", "deck_pack")
+
+    def _cycle_deck_mode(self, delta: int) -> None:
+        self.deck_store["deck_mode"] = cycle_mode(deck_mode(self.deck_store), delta)
+        if self._deck_ctx is not None:
+            self._deck_ctx.mode = self.deck_store["deck_mode"]
+        save_store(self.deck_store)
+        self._nav_cooldown = config.NAV_COOLDOWN
 
     def _menu_entries(self) -> tuple[list[str], list[str]]:
         items = [
@@ -53,10 +79,11 @@ class App:
         actions = ["bpm_endless", "bpm_pack"]
         deck = self.deck_store.get("last_deck", "")
         if deck and self._deck_ctx:
-            short = deck if len(deck) <= 18 else deck[:15] + "…"
+            short = deck if len(deck) <= 14 else deck[:11] + "…"
+            mode = DECK_MODE_LABELS[deck_mode(self.deck_store)]
             items += [
-                f"Characters ({short}) — Endless",
-                f"Characters ({short}) — 5-Pack",
+                f"Characters ({short}) — {mode} — Endless",
+                f"Characters ({short}) — {mode} — 5-Pack",
             ]
             actions += ["deck_endless", "deck_pack"]
         items += ["Choose Deck…", "Exit"]
@@ -71,11 +98,30 @@ class App:
         try:
             cards = load_deck(deck_file)
             srs = deck_srs(self.deck_store, deck_file, cards)
-            self._deck_ctx = DeckContext(deck_file, cards, srs, self.deck_store)
+            self._deck_ctx = DeckContext(
+                deck_file, cards, srs, self.deck_store, deck_mode(self.deck_store)
+            )
         except (OSError, ValueError):
             self._deck_ctx = None
 
+    def _confirm_menu_pick(self, picked: str) -> str | None:
+        if picked == "exit":
+            return None
+        if picked == "pick_deck":
+            self._run_deck_picker()
+            self._ensure_deck()
+            self.input_mgr.arm_for_menu()
+            return "menu"
+        if picked in ("deck_endless", "deck_pack") and not self._deck_ctx:
+            self._show_notice(
+                "No deck loaded",
+                "Choose Deck first.\nCopy .apkg or .txt to decks/",
+            )
+            return "menu"
+        return picked
+
     def _run_menu(self) -> str | None:
+        self.input_mgr.set_menu_mode(True)
         self._ensure_deck()
         items, actions = self._menu_entries()
         selected = 0
@@ -88,35 +134,45 @@ class App:
             dt = clock.tick(config.FPS) / 1000.0
             self._tick_cooldown(dt)
             items, actions = self._menu_entries()
+            menu_hint = self._menu_hint(actions)
 
             for event in pygame.event.get():
                 action = self.input_mgr.handle_event(event)
-                if action in ("endless", "pack", "exit"):
-                    if action == "exit":
-                        return None
+                if action and action.startswith("menu_pick_"):
+                    idx = int(action[10:])
+                    if idx < len(items):
+                        selected = idx
+                    continue
+                if action == "exit":
+                    return None
                 if action in ("quit", "back") or self.input_mgr.quit_combo_held():
                     if action == "quit" or self.input_mgr.quit_combo_held():
                         return None
                     if selected == len(items) - 1:
                         return None
-                if action in ("up", "down", "confirm", "back"):
-                    if action in ("up", "down") and self._nav_cooldown > 0:
+                if action in ("left", "right") and self._is_deck_menu_index(actions, selected):
+                    if self._nav_cooldown > 0:
                         continue
-                    result = self._handle_list_nav(action, selected, len(items))
+                    self._cycle_deck_mode(-1 if action == "left" else 1)
+                    continue
+                nav_action = self._menu_nav_action(action, actions, selected)
+                if nav_action in ("up", "down", "confirm", "back"):
+                    if nav_action in ("up", "down") and self._nav_cooldown > 0:
+                        continue
+                    result = self._handle_list_nav(nav_action, selected, len(items))
                     if result == "exit":
                         return None
                     if isinstance(result, int):
                         selected = result
                     elif result == "confirm":
-                        picked = actions[selected]
-                        if picked == "exit":
-                            return None
-                        if picked in ("deck_endless", "deck_pack") and not self._deck_ctx:
-                            self._show_notice("No deck loaded", "Choose Deck first.\nCopy .apkg or .txt to decks/")
+                        picked = self._confirm_menu_pick(actions[selected])
+                        if picked == "menu":
                             continue
+                        if picked is None:
+                            return None
                         return picked
 
-            if self._nav_cooldown <= 0:
+            if self._nav_cooldown <= 0 and self.input_mgr.menu_confirm_ready():
                 if self.input_mgr.quit_combo_held():
                     return None
                 polled = self.input_mgr.menu_nav()
@@ -127,12 +183,11 @@ class App:
                     if isinstance(result, int):
                         selected = result
                     elif result == "confirm":
-                        picked = actions[selected]
-                        if picked == "exit":
-                            return None
-                        if picked in ("deck_endless", "deck_pack") and not self._deck_ctx:
-                            self._show_notice("No deck loaded", "Choose Deck first.\nCopy .apkg or .txt to decks/")
+                        picked = self._confirm_menu_pick(actions[selected])
+                        if picked == "menu":
                             continue
+                        if picked is None:
+                            return None
                         return picked
 
             self.renderer.draw_menu(
@@ -141,8 +196,23 @@ class App:
                 selected,
                 f"{config.PROJECT_NAME} — RG34XXSP / PC",
                 extra,
+                menu_hint,
             )
             pygame.display.flip()
+
+    def _menu_hint(self, actions: list[str]) -> str:
+        if any(action in ("deck_endless", "deck_pack") for action in actions):
+            if config.is_handheld():
+                return "← → — Character mode | Start+Select — Exit | B — Back"
+            return "← → — Character mode | Esc — Back | Enter — Select"
+        return ""
+
+    def _menu_nav_action(self, action: str, actions: list[str], selected: int) -> str | None:
+        if action in ("up", "down", "confirm", "back"):
+            return action
+        if action in ("left", "right") and not self._is_deck_menu_index(actions, selected):
+            return "up" if action == "left" else "down"
+        return None
 
     def _handle_list_nav(self, action: str, selected: int, count: int) -> str | int:
         if action == "up":
@@ -160,6 +230,7 @@ class App:
         return selected
 
     def _run_deck_picker(self) -> None:
+        self.input_mgr.set_menu_mode(True)
         files = list_deck_files()
         if not files:
             self._show_notice(
@@ -183,8 +254,15 @@ class App:
 
             for event in pygame.event.get():
                 action = self.input_mgr.handle_event(event)
+                if action and action.startswith("menu_pick_"):
+                    idx = int(action[10:])
+                    if idx < len(items):
+                        selected = idx
+                    continue
                 if action in ("quit", "back") or self.input_mgr.quit_combo_held():
                     return
+                if action in ("left", "right"):
+                    action = "up" if action == "left" else "down"
                 if action in ("up", "down", "confirm"):
                     if action in ("up", "down") and self._nav_cooldown > 0:
                         continue
@@ -200,13 +278,15 @@ class App:
                             self.deck_store["last_deck"] = picked
                             srs = deck_srs(self.deck_store, picked, cards)
                             save_store(self.deck_store)
-                            self._deck_ctx = DeckContext(picked, cards, srs, self.deck_store)
+                            self._deck_ctx = DeckContext(
+                                picked, cards, srs, self.deck_store, deck_mode(self.deck_store)
+                            )
                             return
                         except (OSError, ValueError) as exc:
                             self._show_notice("Deck error", str(exc))
                             return
 
-            if self._nav_cooldown <= 0:
+            if self._nav_cooldown <= 0 and self.input_mgr.menu_confirm_ready():
                 polled = self.input_mgr.menu_nav()
                 if polled:
                     result = self._handle_list_nav(polled, selected, len(items))
@@ -221,7 +301,9 @@ class App:
                             self.deck_store["last_deck"] = picked
                             srs = deck_srs(self.deck_store, picked, cards)
                             save_store(self.deck_store)
-                            self._deck_ctx = DeckContext(picked, cards, srs, self.deck_store)
+                            self._deck_ctx = DeckContext(
+                                picked, cards, srs, self.deck_store, deck_mode(self.deck_store)
+                            )
                             return
                         except (OSError, ValueError) as exc:
                             self._show_notice("Deck error", str(exc))
@@ -247,6 +329,128 @@ class App:
                     return
             self.renderer.draw_notice(title, message)
             pygame.display.flip()
+
+    def _run_tone_quiz(self, session: Any, mode_label: str, pack: bool) -> None:
+        self.input_mgr.arm_for_quiz()
+        drill = session.next_tone_drill()
+        if drill is None:
+            return
+        feedback: AnswerResult | None = None
+        feedback_timer = 0.0
+        clock = pygame.time.Clock()
+
+        status_fn: Callable[[], str]
+        if pack:
+            status_fn = lambda: session.pack_label()[:48]
+        else:
+            status_fn = lambda: (
+                f"Streak: {session.current_streak}" if session.current_streak else ""
+            )
+
+        while True:
+            dt = clock.tick(config.FPS) / 1000.0
+            self._tick_cooldown(dt)
+
+            if feedback:
+                feedback_timer -= dt
+                if feedback_timer <= 0:
+                    feedback = None
+                    if pack and getattr(session, "all_done", False):
+                        session.save()
+                        return
+                    drill = session.next_tone_drill()
+                    if drill is None:
+                        session.save()
+                        return
+
+            for event in pygame.event.get():
+                action = self.input_mgr.handle_event(event)
+                if action == "quit" or self.input_mgr.quit_combo_held():
+                    session.save()
+                    return
+                if action == "back":
+                    session.save()
+                    return
+                if feedback:
+                    continue
+                if not self.input_mgr.quiz_input_ready():
+                    continue
+                if action == "confirm":
+                    feedback, next_drill = self._submit_tone_answer(session, drill, pack)
+                    if next_drill is not None:
+                        drill = next_drill
+                    feedback_timer = config.FEEDBACK_DURATION
+                    continue
+                if action in ("up", "down", "left", "right"):
+                    if self._nav_cooldown > 0:
+                        continue
+                    self._nav_cooldown = config.NAV_COOLDOWN
+                    if action == "up":
+                        drill.adjust_tone(1)
+                    elif action == "down":
+                        drill.adjust_tone(-1)
+                    elif action == "left":
+                        drill.move_syllable(-1)
+                    elif action == "right":
+                        drill.move_syllable(1)
+
+            if not feedback and self._nav_cooldown <= 0 and self.input_mgr.quiz_input_ready():
+                polled = self.input_mgr.menu_nav()
+                if polled == "confirm":
+                    feedback, next_drill = self._submit_tone_answer(session, drill, pack)
+                    if next_drill is not None:
+                        drill = next_drill
+                    feedback_timer = config.FEEDBACK_DURATION
+                elif polled == "back":
+                    session.save()
+                    return
+
+            level_label = f"Lv.{drill.level}" if drill.level > 1 else "New"
+            fb_text = None
+            fb_ok = None
+            correct_reading = ""
+            your_reading = ""
+            if feedback:
+                fb_ok = feedback.correct
+                if feedback.correct:
+                    fb_text = feedback.message
+                    if feedback.submessage:
+                        fb_text += f" — {feedback.submessage}"
+                else:
+                    correct_reading = drill.correct
+                    your_reading = drill.reading()
+                    fb_text = feedback.submessage or ""
+
+            self.renderer.draw_tone_quiz(
+                mode_label,
+                status_fn(),
+                drill.char,
+                level_label,
+                drill.syllables,
+                drill.tones,
+                drill.selected,
+                fb_text,
+                fb_ok,
+                correct_reading,
+                your_reading,
+            )
+            pygame.display.flip()
+
+    def _submit_tone_answer(
+        self, session: Any, drill: ToneDrill, pack: bool
+    ) -> tuple[AnswerResult, ToneDrill | None]:
+        feedback = session.answer_tone(drill)
+        feedback = self._after_answer(session, pack, feedback)
+        next_drill = self._maybe_advance_pack_tone(session, pack)
+        return feedback, next_drill
+
+    def _maybe_advance_pack_tone(self, session: Any, pack: bool) -> ToneDrill | None:
+        if not pack or not getattr(session, "pack_rolled", False):
+            return None
+        session.pack_rolled = False
+        if session.all_done:
+            return None
+        return session.next_tone_drill()
 
     def _run_quiz(self, session: Any, mode_label: str, pack: bool) -> None:
         self.input_mgr.arm_for_quiz()
@@ -303,11 +507,12 @@ class App:
                         selected = 0
                     feedback_timer = config.FEEDBACK_DURATION
                     continue
-                if action in ("up", "down", "confirm"):
-                    if action in ("up", "down") and self._nav_cooldown > 0:
+                if action in ("up", "down", "left", "right", "confirm"):
+                    if action in ("up", "down", "left", "right") and self._nav_cooldown > 0:
                         continue
+                    nav_action = self._quiz_nav_action(action)
                     selected, answered = self._handle_quiz_nav(
-                        action, selected, len(question.choices)
+                        nav_action, selected, len(question.choices)
                     )
                     if answered is not None:
                         feedback, next_q = self._submit_answer(session, answered, pack)
@@ -346,6 +551,8 @@ class App:
                 selected,
                 fb_text,
                 fb_ok,
+                question.hint,
+                getattr(getattr(session, "ctx", None), "mode", "") == "reverse",
             )
             pygame.display.flip()
 
@@ -374,6 +581,13 @@ class App:
         if session.all_done:
             return None
         return session.next_question()
+
+    def _quiz_nav_action(self, action: str) -> str:
+        if action == "left":
+            return "up"
+        if action == "right":
+            return "down"
+        return action
 
     def _parse_pick(self, action: str | None) -> int | None:
         if action and action.startswith("pick_"):

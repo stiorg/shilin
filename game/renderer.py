@@ -7,6 +7,8 @@ import os
 import pygame
 
 from game import config
+from game.deck_store import chinese_display
+from game.pinyin import build_reading, needs_cjk_font
 
 COLOR_BG = (24, 28, 42)
 COLOR_HUD = (18, 22, 34)
@@ -119,7 +121,15 @@ class Renderer:
             return "Start+Select — Exit | B — Back"
         return "Esc — Back | Enter — Select"
 
-    def draw_menu(self, title: str, items: list[str], selected: int, subtitle: str, extra: str = "") -> None:
+    def draw_menu(
+        self,
+        title: str,
+        items: list[str],
+        selected: int,
+        subtitle: str,
+        extra: str = "",
+        footer_hint: str = "",
+    ) -> None:
         self.clear()
         pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
 
@@ -149,8 +159,156 @@ class Renderer:
             text = self.font.render(prefix + label, True, COLOR_SELECT if selected_row else COLOR_TEXT)
             self.screen.blit(text, (rect.x + 16, rect.centery - text.get_height() // 2))
 
-        hint = self.font_small.render(self._handheld_hint(), True, COLOR_MUTED)
+        hint = self.font_small.render(footer_hint or self._handheld_hint(), True, COLOR_MUTED)
         self.screen.blit(hint, (config.SCREEN_WIDTH // 2 - hint.get_width() // 2, config.SCREEN_HEIGHT - 28))
+
+    def _tone_hint(self) -> str:
+        if config.is_handheld():
+            return "↑↓ Tone | ←→ Syllable | A — Check | B — Back"
+        return "↑↓ Tone | ←→ Syllable | Enter — Check | Esc — Back"
+
+    def _blit_level_label(self, level_label: str) -> None:
+        surf = self.font_small.render(level_label, True, COLOR_MUTED)
+        self.screen.blit(surf, (12, 130))
+
+    def draw_tone_quiz(
+        self,
+        mode_label: str,
+        status: str,
+        char: str,
+        level_label: str,
+        syllables: list[str],
+        tones: list[int],
+        selected_idx: int,
+        feedback: str | None = None,
+        feedback_ok: bool | None = None,
+        correct_reading: str = "",
+        your_reading: str = "",
+    ) -> None:
+        self.clear()
+        pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
+
+        left = self.font_small.render(mode_label, True, COLOR_MUTED)
+        right = self.font_small.render(status, True, COLOR_SELECT if "Streak" in status else COLOR_TEXT)
+        self.screen.blit(left, (12, 12))
+        self.screen.blit(right, (config.SCREEN_WIDTH - right.get_width() - 12, 12))
+
+        _prompt_font, prompt_surf = self._fit_prompt(char)
+        self.screen.blit(
+            prompt_surf,
+            (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, 52),
+        )
+
+        self._blit_level_label(level_label)
+
+        show_wrong_panel = feedback_ok is False and correct_reading
+
+        if not show_wrong_panel:
+            toned = [build_reading([syl], [tone]) for syl, tone in zip(syllables, tones)]
+            gap = 16
+            surfaces: list[tuple[pygame.Surface, str]] = []
+            for i, text in enumerate(toned):
+                color = COLOR_SELECT if i == selected_idx else COLOR_TEXT
+                surfaces.append((self._pinyin_font(large=True).render(text, True, color), text))
+            total_w = sum(s[0].get_width() for s in surfaces) + gap * max(0, len(surfaces) - 1)
+            x = config.SCREEN_WIDTH // 2 - total_w // 2
+            y = 228
+            row_h = max(s[0].get_height() for s in surfaces) if surfaces else config.FONT_LARGE
+            pad_x, pad_y = 14, 8
+            for i, (surf, _text) in enumerate(surfaces):
+                rect = pygame.Rect(
+                    x - pad_x,
+                    y - pad_y,
+                    surf.get_width() + pad_x * 2,
+                    surf.get_height() + pad_y * 2,
+                )
+                selected = i == selected_idx
+                bg = COLOR_SELECT_BG if selected else COLOR_OPTION
+                pygame.draw.rect(self.screen, bg, rect, border_radius=8)
+                if selected:
+                    pygame.draw.rect(self.screen, COLOR_SELECT, rect, 2, border_radius=8)
+                self.screen.blit(surf, (x, y))
+                x += surf.get_width() + gap
+
+            tone_y = y + row_h + pad_y * 2 + 20
+            tone_label = self.font.render(f"Tone {tones[selected_idx]}", True, COLOR_MUTED)
+            self.screen.blit(
+                tone_label,
+                (config.SCREEN_WIDTH // 2 - tone_label.get_width() // 2, tone_y),
+            )
+
+        if show_wrong_panel:
+            self._draw_tone_wrong_feedback(
+                correct_reading, your_reading, feedback or "", 200
+            )
+        elif feedback:
+            color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
+            self._blit_feedback(feedback, color, config.SCREEN_HEIGHT - 56)
+
+        hint = self.font_small.render(self._tone_hint(), True, COLOR_MUTED)
+        self.screen.blit(hint, (config.SCREEN_WIDTH // 2 - hint.get_width() // 2, config.SCREEN_HEIGHT - 28))
+
+    def _draw_syllable_row(
+        self,
+        syllable_texts: list[str],
+        y: int,
+        color: tuple[int, int, int],
+        *,
+        highlight: bool = False,
+    ) -> int:
+        gap = 16
+        pad_x, pad_y = 14, 8
+        surfaces = [
+            self._pinyin_font(large=True).render(text, True, color) for text in syllable_texts
+        ]
+        total_w = sum(s.get_width() for s in surfaces) + gap * max(0, len(surfaces) - 1)
+        x = config.SCREEN_WIDTH // 2 - total_w // 2
+        row_h = max(s.get_height() for s in surfaces) if surfaces else config.FONT_LARGE
+        for surf in surfaces:
+            rect = pygame.Rect(
+                x - pad_x,
+                y - pad_y,
+                surf.get_width() + pad_x * 2,
+                surf.get_height() + pad_y * 2,
+            )
+            bg = COLOR_SELECT_BG if highlight else COLOR_OPTION
+            pygame.draw.rect(self.screen, bg, rect, border_radius=8)
+            if highlight:
+                pygame.draw.rect(self.screen, color, rect, 2, border_radius=8)
+            self.screen.blit(surf, (x, y))
+            x += surf.get_width() + gap
+        return y + row_h + pad_y * 2
+
+    def _draw_tone_wrong_feedback(
+        self, correct_reading: str, your_reading: str, note: str, start_y: int
+    ) -> None:
+        y = start_y
+        label = self.font.render("Wrong", True, COLOR_WRONG)
+        self.screen.blit(label, (config.SCREEN_WIDTH // 2 - label.get_width() // 2, y))
+        y += label.get_height() + 12
+
+        if your_reading:
+            prefix = self.font.render("You entered: ", True, COLOR_MUTED)
+            entry = self._pinyin_font().render(your_reading, True, COLOR_WRONG)
+            total_w = prefix.get_width() + entry.get_width()
+            x = config.SCREEN_WIDTH // 2 - total_w // 2
+            self.screen.blit(prefix, (x, y))
+            self.screen.blit(entry, (x + prefix.get_width(), y))
+            y += max(prefix.get_height(), entry.get_height()) + 16
+
+        answer_label = self.font_small.render("Correct reading", True, COLOR_MUTED)
+        self.screen.blit(
+            answer_label,
+            (config.SCREEN_WIDTH // 2 - answer_label.get_width() // 2, y),
+        )
+        y += 22
+
+        correct_parts = correct_reading.split()
+        y = self._draw_syllable_row(correct_parts, y + 4, COLOR_CORRECT, highlight=True) + 8
+
+        if note:
+            y += 26
+            self._blit_feedback(note, COLOR_MUTED, y)
 
     def draw_quiz(
         self,
@@ -162,6 +320,8 @@ class Renderer:
         selected: int,
         feedback: str | None = None,
         feedback_ok: bool | None = None,
+        prompt_hint: str = "",
+        chinese_choices: bool = False,
     ) -> None:
         self.clear()
         pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
@@ -171,16 +331,25 @@ class Renderer:
         self.screen.blit(left, (12, 12))
         self.screen.blit(right, (config.SCREEN_WIDTH - right.get_width() - 12, 12))
 
-        prompt_font, prompt_surf = self._fit_prompt(char)
+        if chinese_choices:
+            prompt_font, prompt_surf = self._fit_pinyin_prompt(char)
+        else:
+            prompt_font, prompt_surf = self._fit_prompt(char)
         self.screen.blit(
             prompt_surf,
             (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, 52),
         )
 
-        level = self.font.render(level_label, True, COLOR_MUTED)
-        self.screen.blit(level, (config.SCREEN_WIDTH // 2 - level.get_width() // 2, 168))
+        if prompt_hint:
+            hint_surf = self.font.render(prompt_hint, True, COLOR_MUTED)
+            self.screen.blit(
+                hint_surf,
+                (config.SCREEN_WIDTH // 2 - hint_surf.get_width() // 2, 132),
+            )
 
-        start_y = 200
+        self._blit_level_label(level_label)
+
+        start_y = 188 if prompt_hint else 168
         for i, choice in enumerate(choices):
             y = start_y + i * (config.OPTION_HEIGHT + config.OPTION_GAP)
             rect = pygame.Rect(60, y, config.SCREEN_WIDTH - 120, config.OPTION_HEIGHT)
@@ -189,22 +358,87 @@ class Renderer:
             pygame.draw.rect(self.screen, bg, rect, border_radius=8)
             if selected_row:
                 pygame.draw.rect(self.screen, COLOR_SELECT, rect, 2, border_radius=8)
-            shown = _truncate(choice)
+            shown = _truncate(chinese_display(choice) if chinese_choices else choice)
             if config.is_handheld():
                 prefix = "> " if selected_row else "  "
                 label = prefix + shown
             else:
                 label = f"[{i + 1}] {shown}"
-            text = self.font.render(label, True, COLOR_SELECT if selected_row else COLOR_TEXT)
+            choice_font = self.font_cjk_normal if chinese_choices else self._choice_font(shown)
+            text = choice_font.render(
+                label, True, COLOR_SELECT if selected_row else COLOR_TEXT
+            )
             self.screen.blit(text, (rect.x + 16, rect.centery - text.get_height() // 2))
 
         if feedback:
             color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
-            fb = self.font.render(feedback, True, color)
-            self.screen.blit(fb, (config.SCREEN_WIDTH // 2 - fb.get_width() // 2, config.SCREEN_HEIGHT - 56))
+            self._blit_feedback(feedback, color, config.SCREEN_HEIGHT - 56)
 
         hint = self.font_small.render(self._handheld_hint(quiz=True), True, COLOR_MUTED)
         self.screen.blit(hint, (config.SCREEN_WIDTH // 2 - hint.get_width() // 2, config.SCREEN_HEIGHT - 28))
+
+    def _pinyin_font(self, *, large: bool = False) -> pygame.font.Font:
+        return self.font_large if large else self.font
+
+    def _choice_font(self, text: str) -> pygame.font.Font:
+        if needs_cjk_font(text):
+            return self.font_cjk_normal
+        return self.font
+
+    def _text_segments(self, text: str) -> list[tuple[str, bool]]:
+        segments: list[tuple[str, bool]] = []
+        buf: list[str] = []
+        is_cjk: bool | None = None
+        for ch in text:
+            cjk = "\u4e00" <= ch <= "\u9fff"
+            if is_cjk is None:
+                is_cjk = cjk
+                buf.append(ch)
+            elif cjk == is_cjk:
+                buf.append(ch)
+            else:
+                segments.append(("".join(buf), is_cjk))
+                buf = [ch]
+                is_cjk = cjk
+        if buf:
+            segments.append(("".join(buf), is_cjk if is_cjk is not None else False))
+        return segments
+
+    def _segment_font(self, is_cjk: bool) -> pygame.font.Font:
+        return self.font_cjk_normal if is_cjk else self.font
+
+    def _blit_feedback(self, text: str, color: tuple[int, int, int], y: int) -> None:
+        max_w = config.SCREEN_WIDTH - 24
+        segments = self._text_segments(text)
+        surfaces = [
+            self._segment_font(is_cjk).render(seg, True, color)
+            for seg, is_cjk in segments
+            if seg
+        ]
+        total_w = sum(surf.get_width() for surf in surfaces)
+        if total_w > max_w:
+            shown = text
+            while shown and total_w > max_w:
+                shown = _truncate(shown, max(8, len(shown) - 1))
+                segments = self._text_segments(shown)
+                surfaces = [
+                    self._segment_font(is_cjk).render(seg, True, color)
+                    for seg, is_cjk in segments
+                    if seg
+                ]
+                total_w = sum(surf.get_width() for surf in surfaces)
+        x = config.SCREEN_WIDTH // 2 - total_w // 2
+        for surf in surfaces:
+            self.screen.blit(surf, (x, y))
+            x += surf.get_width()
+
+    def _fit_pinyin_prompt(self, text: str) -> tuple[pygame.font.Font, pygame.Surface]:
+        max_w = config.SCREEN_WIDTH - 48
+        for font in (self.font_large, self.font):
+            surf = font.render(text, True, COLOR_CHAR)
+            if surf.get_width() <= max_w:
+                return font, surf
+        return self.font, self.font.render(_truncate(text, 40), True, COLOR_CHAR)
 
     def _fit_prompt(self, text: str) -> tuple[pygame.font.Font, pygame.Surface]:
         max_w = config.SCREEN_WIDTH - 48

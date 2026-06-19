@@ -21,8 +21,6 @@ PICK_KEYS: dict[int, int] = {
 }
 
 MENU_KEYS: dict[int, str] = {
-    pygame.K_1: "endless",
-    pygame.K_2: "pack",
     pygame.K_0: "exit",
 }
 
@@ -46,12 +44,32 @@ class InputManager:
         self._held_buttons: set[tuple[int, int]] = set()
         self._quit_combo_armed = True
         self._quiz_armed = False
+        self._menu_mode = True
+        self._menu_confirm_armed = False
         self._hat_state: dict[int, tuple[int, int]] = {}
         self._refresh_joysticks()
+
+    def set_menu_mode(self, enabled: bool) -> None:
+        self._menu_mode = enabled
+        if enabled:
+            self.arm_for_menu()
+
+    def arm_for_menu(self) -> None:
+        """Ignore held confirm until the key is released (menu / deck picker)."""
+        self._menu_confirm_armed = False
+
+    def menu_confirm_ready(self) -> bool:
+        if self._menu_confirm_armed:
+            return True
+        if self._confirm_held():
+            return False
+        self._menu_confirm_armed = True
+        return True
 
     def arm_for_quiz(self) -> None:
         """Wait for menu confirm keys to release before accepting answers."""
         self._quiz_armed = False
+        self._menu_mode = False
 
     def quiz_input_ready(self) -> bool:
         if self._quiz_armed:
@@ -89,14 +107,21 @@ class InputManager:
             if event.key in CONFIRM_KEYS:
                 return "confirm"
             if not config.is_handheld():
-                if event.key in PICK_KEYS:
+                if self._menu_mode:
+                    if event.key in MENU_KEYS:
+                        return MENU_KEYS[event.key]
+                    if event.key in PICK_KEYS:
+                        return f"menu_pick_{PICK_KEYS[event.key]}"
+                elif event.key in PICK_KEYS:
                     return f"pick_{PICK_KEYS[event.key]}"
-                if event.key in MENU_KEYS:
-                    return MENU_KEYS[event.key]
-            if event.key in (pygame.K_UP, pygame.K_LEFT):
+            if event.key == pygame.K_UP:
                 return "up"
-            if event.key in (pygame.K_DOWN, pygame.K_RIGHT):
+            if event.key == pygame.K_DOWN:
                 return "down"
+            if event.key == pygame.K_LEFT:
+                return "left"
+            if event.key == pygame.K_RIGHT:
+                return "right"
         if event.type == pygame.JOYHATMOTION:
             joy_id = _event_joy_id(event)
             hx, hy = event.value
@@ -109,9 +134,9 @@ class InputManager:
             if hy == -1:
                 return "down"
             if hx == -1:
-                return "up"
+                return "left"
             if hx == 1:
-                return "down"
+                return "right"
         if event.type == pygame.JOYBUTTONDOWN:
             self._held_buttons.add((_event_joy_id(event), event.button))
             if event.button in SELECT_BUTTONS:
