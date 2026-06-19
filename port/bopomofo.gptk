@@ -1,0 +1,9 @@
+# Bopomofo — muOS / PortMaster (D-pad + A confirm, B back)
+a = enter
+b = esc
+start = enter
+back = esc
+up = up
+down = down
+left = left
+right = right

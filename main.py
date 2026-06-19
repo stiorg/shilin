@@ -1,222 +1,191 @@
-import random
+#!/usr/bin/env python3
+"""Bopomofo Training — PC and Anbernic RG34XXSP (muOS) compatible."""
+
+from __future__ import annotations
+
 import os
-import json
+import sys
+import traceback
 
-BOPOMOFO_DICT = {
-    "ㄅ": "b", "ㄆ": "p", "ㄇ": "m", "ㄈ": "f",
-    "ㄉ": "d", "ㄊ": "t", "ㄋ": "n", "ㄌ": "l",
-    "ㄍ": "g", "ㄎ": "k", "ㄏ": "h",
-    "ㄐ": "ji", "ㄑ": "qi", "ㄒ": "xi",
-    "ㄓ": "zhi", "ㄔ": "chi", "ㄕ": "shi", "ㄖ": "ri",
-    "ㄗ": "zi", "ㄘ": "ci", "ㄙ": "si",
-    "ㄚ": "a", "ㄛ": "o", "ㄜ": "e", "ㄝ": "e",
-    "ㄞ": "ai", "ㄟ": "ei", "ㄠ": "ao", "ㄡ": "ou",
-    "ㄢ": "an", "ㄣ": "en", "ㄤ": "ang", "ㄥ": "eng", "ㄦ": "er",
-    "ㄧ": "yi", "ㄨ": "wu", "ㄩ": "yu"
-}
+ROOT = os.path.dirname(os.path.abspath(__file__))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
 
-DATA_FILE = "bopomofo_srs_data.json"
+LIBS = os.path.join(ROOT, "libs")
 
-def load_game_data():
-    default_data = {
-        "all_time_high_streak": 0,
-        "intervals": {char: 1 for char in BOPOMOFO_DICT},
-        "confusion_matrix": {char: [] for char in BOPOMOFO_DICT}
-    }
-    if os.path.exists(DATA_FILE):
+_LOG_PATHS = (
+    os.path.join(ROOT, "log.txt"),
+    "/mnt/mmc/ports/bopomofo/log.txt",
+    "/mnt/sdcard/ports/bopomofo/log.txt",
+    "/mnt/mmc/ROMS/Ports/bopomofo.log",
+    "/tmp/bopomofo.log",
+)
+
+
+def _log(msg: str) -> None:
+    line = f"[bopomofo] {msg}\n"
+    for path in _LOG_PATHS:
         try:
-            with open(DATA_FILE, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                if "all_time_high_streak" in data and "intervals" in data:
-                    if "confusion_matrix" not in data:
-                        data["confusion_matrix"] = {char: [] for char in BOPOMOFO_DICT}
-                    return data
-        except Exception:
-            pass
-    return default_data
-
-def save_game_data(data):
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-
-def generate_dynamic_choices(correct_answer, char, game_data):
-    """Generates 5 options prioritizing user's historic mistakes."""
-    choices = [correct_answer]
-    
-    personal_mistakes = game_data["confusion_matrix"].get(char, []).copy()
-    personal_mistakes = list(dict.fromkeys(reversed(personal_mistakes)))
-    
-    for mistake in personal_mistakes:
-        if mistake != correct_answer and mistake not in choices:
-            choices.append(mistake)
-        if len(choices) == 5:
+            with open(path, "a", encoding="utf-8") as fh:
+                fh.write(line)
             break
-            
-    all_pinyins = list(set(BOPOMOFO_DICT.values()))
-    while len(choices) < 5:
-        rand_pinyin = random.choice(all_pinyins)
-        if rand_pinyin not in choices:
-            choices.append(rand_pinyin)
-            
-    random.shuffle(choices)
-    return choices
-
-def play_endless(game_data):
-    print("\n--- 🏃 NUMERIC SRS ENDLESS MODE ---")
-    print("Press [0] at any time to return to the main menu.\n")
-    
-    intervals = game_data["intervals"]
-    confusion_matrix = game_data["confusion_matrix"]
-    current_streak = 0
-    max_streak_this_session = 0
-
-    while True:
-        chars = list(BOPOMOFO_DICT.keys())
-        weights = [1.0 / intervals[c] for c in chars]
-        char = random.choices(chars, weights=weights, k=1)[0]
-        
-        correct_answer = BOPOMOFO_DICT[char]
-        choices = generate_dynamic_choices(correct_answer, char, game_data)
-        
-        # Map options to strings "1" through "5"
-        mapping = {str(i+1): choices[i] for i in range(5)}
-
-        level_display = f"Lv.{intervals[char]}" if intervals[char] > 1 else "New"
-        streak_display = f" | 🔥 Streak: {current_streak}" if current_streak > 0 else ""
-        
-        print(f"👉 Character:  {char}  ({level_display}){streak_display}")
-        for num in ["1", "2", "3", "4", "5"]:
-            print(f"  [{num}] {mapping[num]}")
-            
-        user_input = input("Your answer (1-5 or 0 to exit): ").strip()
-
-        if user_input == '0':
-            break
-
-        if user_input not in ["1", "2", "3", "4", "5"]:
-            print("⚠️ Invalid choice! Press 1-5 to answer, or 0 to exit.\n")
+        except OSError:
             continue
+    if os.environ.get("BOPOMOFO_DEBUG"):
+        print(line, end="")
 
-        selected_pinyin = mapping[user_input]
 
-        if selected_pinyin == correct_answer:
-            current_streak += 1
-            intervals[char] = min(intervals[char] * 2, 32)
-            print(f"✨ Correct! {char} leveled up to Lv.{intervals[char]}.\n")
-            
-            if current_streak > max_streak_this_session:
-                max_streak_this_session = current_streak
-            if max_streak_this_session > game_data["all_time_high_streak"]:
-                game_data["all_time_high_streak"] = max_streak_this_session
-                print("👑 NEW ALL-TIME HIGH STREAK!")
-        else:
-            if current_streak > 0:
-                print(f"💥 Streak Broken! (You hit {current_streak})")
-            print(f"❌ Incorrect. Option [{user_input}] was '{selected_pinyin}'. The correct answer was '{correct_answer}'.")
-            print(f"📉 Resetting [{char}] back to basic rotation.")
-            
-            if selected_pinyin not in confusion_matrix[char]:
-                confusion_matrix[char].append(selected_pinyin)
-            print(f"🧠 Logged mistake: System linked {char} with '{selected_pinyin}'.\n")
-            
-            intervals[char] = 1
-            current_streak = 0
-            
-    print(f"\nSession Max Streak: {max_streak_this_session}")
-    save_game_data(game_data)
+def _setup_pygame_path() -> None:
+    if os.environ.get("MUOS") == "1":
+        return
+    if os.path.isdir(LIBS) and LIBS not in sys.path:
+        sys.path.insert(0, LIBS)
 
-def play_focused_packs(game_data):
-    print("\n--- 📦 NUMERIC SRS 5-PACK MODE ---")
-    print("Press [0] at any time to save and return to the menu.\n")
 
-    intervals = game_data["intervals"]
-    confusion_matrix = game_data["confusion_matrix"]
-    chars = list(BOPOMOFO_DICT.keys())
-    sorted_pool = sorted(chars, key=lambda c: intervals[c])
-    pack_count = 1
+def _scrub_libs_from_path() -> None:
+    if os.environ.get("MUOS") != "1":
+        return
+    norm_libs = os.path.normpath(LIBS)
+    sys.path[:] = [p for p in sys.path if os.path.normpath(p) != norm_libs]
 
-    while sorted_pool:
-        current_pack = sorted_pool[:5]
-        sorted_pool = sorted_pool[5:]
-        print(f"📦 Loading Pack #{pack_count}")
-        print(f"Target characters: {', '.join(current_pack)}\n")
-        
-        while current_pack:
-            random.shuffle(current_pack)
-            remaining_this_round = []
-            
-            for char in current_pack:
-                correct_answer = BOPOMOFO_DICT[char]
-                choices = generate_dynamic_choices(correct_answer, char, game_data)
-                mapping = {str(i+1): choices[i] for i in range(5)}
 
-                level_display = f"Lv.{intervals[char]}" if intervals[char] > 1 else "New"
-                print(f"👉 Character:  {char}  ({level_display})")
-                for num in ["1", "2", "3", "4", "5"]:
-                    print(f"  [{num}] {mapping[num]}")
-                    
-                user_input = input("Your answer (1-5 or 0 to exit): ").strip()
-                
-                if user_input == '0':
-                    print("\nExiting pack mode... saving progress.")
-                    save_game_data(game_data)
-                    return
+def _import_pygame():
+    _scrub_libs_from_path()
+    _setup_pygame_path()
+    try:
+        import pygame as pg
 
-                if user_input not in ["1", "2", "3", "4", "5"]:
-                    print("⚠️ Invalid choice! Penalized: Character remains in pack.\n")
-                    remaining_this_round.append(char)
-                    continue
+        _log(f"pygame loaded: {pg.__file__}")
+        if os.environ.get("MUOS") == "1" and "/libs/" in pg.__file__:
+            _log("WARN: bundled pygame cannot use handheld screen. SSH: pip3 install --user pygame")
+        return pg
+    except ImportError:
+        pass
+    if os.path.isdir(LIBS) and LIBS not in sys.path:
+        sys.path.insert(0, LIBS)
+    import pygame as pg
 
-                selected_pinyin = mapping[user_input]
+    _log(f"pygame loaded from libs: {pg.__file__}")
+    return pg
 
-                if selected_pinyin == correct_answer:
-                    intervals[char] = min(intervals[char] * 2, 32)
-                    print(f"✨ Correct! Leveled up to Lv.{intervals[char]}.\n")
-                else:
-                    intervals[char] = 1
-                    if selected_pinyin not in confusion_matrix[char]:
-                        confusion_matrix[char].append(selected_pinyin)
-                        
-                    print(f"❌ Incorrect. The correct answer was '{correct_answer}'.")
-                    print(f"🧠 Logged mistake: System linked {char} with '{selected_pinyin}'.")
-                    print(f"📉 [{char}] reset to Lv.1. It stays in the pack.\n")
-                    remaining_this_round.append(char)
-            
-            current_pack = remaining_this_round
-            if current_pack:
-                print(f"🔄 Reviewing the {len(current_pack)} character(s) missed in this pack...\n")
-            else:
-                print(f"🎉 Pack #{pack_count} CLEARED!\n")
-                pack_count += 1
-                save_game_data(game_data)
-                
-    print("🏆 AMAZING! You have reviewed all characters across all packs!")
 
-def main():
-    while True:
-        game_data = load_game_data()
-        all_time_high = game_data["all_time_high_streak"]
+def _setup_sdl_env() -> None:
+    if sys.platform != "linux":
+        return
+    os.environ.setdefault("SDL_AUDIODRIVER", "alsa")
 
-        print("=" * 45)
-        print("         BOPOMOFO TRAINING CENTER        ")
-        print("=" * 45)
-        print(f"🏆 All-Time Max Streak Record: {all_time_high}")
-        print("1. 🏃 Endless SRS Streak Mode (5 Choices)")
-        print("2. 📦 Focused SRS 5-Pack Mode (5 Choices)")
-        print("0. ❌ Exit Program")
-        print("-" * 45)
-        
-        choice = input("Select a option: ").strip()
-        
-        if choice == '1':
-            play_endless(game_data)
-        elif choice == '2':
-            play_focused_packs(game_data)
-        elif choice == '0':
-            print("\nGoodbye! Keep practicing! 加油！")
-            break
-        else:
-            print("\n⚠️ Invalid selection. Please type 1, 2, or 0.\n")
+
+_log("boot")
+_setup_sdl_env()
+os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
+
+try:
+    _log("import pygame...")
+    pygame = _import_pygame()
+
+    _log("import game...")
+    from game import config
+    from game.app import App
+except Exception:
+    _log("import failed:\n" + traceback.format_exc())
+    raise
+
+_BAD_DRIVERS = frozenset({"dummy", "offscreen", ""})
+
+
+def _display_drivers() -> list[str | None]:
+    if os.environ.get("MUOS") == "1":
+        preferred = ("kmsdrm", None, "fbcon", "mali")
+    else:
+        preferred = (None, "fbcon", "x11")
+
+    order: list[str | None] = []
+    for drv in preferred:
+        if drv not in order:
+            order.append(drv)
+    return order
+
+
+def _apply_driver_env(drv: str | None) -> None:
+    if drv:
+        os.environ["SDL_VIDEODRIVER"] = drv
+        if drv == "fbcon":
+            for fb in ("/dev/fb0", "/dev/fb1"):
+                if os.path.exists(fb):
+                    os.environ["SDL_FBDEV"] = fb
+                    break
+    else:
+        os.environ.pop("SDL_VIDEODRIVER", None)
+
+
+def _reset_pygame() -> None:
+    if pygame.get_init():
+        try:
+            pygame.display.quit()
+        except pygame.error:
+            pass
+        pygame.quit()
+
+
+def _validate_screen(screen: pygame.Surface, drv_label: str) -> None:
+    name = pygame.display.get_driver()
+    _log(f"SDL video driver: {name!r} (try={drv_label})")
+    if name in _BAD_DRIVERS:
+        raise pygame.error(f"unusable video driver: {name!r}")
+    screen.fill((24, 28, 42))
+    pygame.display.flip()
+    _log("splash flip ok")
+
+
+def init_pygame() -> pygame.Surface:
+    os.environ.setdefault("SDL_VIDEO_CENTERED", "1")
+    _log(
+        f"SDL env: VIDEODRIVER={os.environ.get('SDL_VIDEODRIVER', 'auto')} "
+        f"LD_PRELOAD={os.environ.get('LD_PRELOAD', 'unset')} "
+        f"LD_LIBRARY_PATH={os.environ.get('LD_LIBRARY_PATH', 'unset')[:120]}"
+    )
+    width, height = config.SCREEN_WIDTH, config.SCREEN_HEIGHT
+    fullscreen = config.default_fullscreen()
+    flags = pygame.FULLSCREEN if fullscreen else 0
+    last_error: pygame.error | None = None
+
+    for drv in _display_drivers():
+        _apply_driver_env(drv)
+        drv_label = drv or "auto"
+        _log(f"try driver={drv_label} fullscreen={fullscreen}")
+        _reset_pygame()
+        try:
+            pygame.init()
+            pygame.joystick.init()
+            pygame.display.set_caption("Bopomofo Training")
+            try:
+                screen = pygame.display.set_mode((width, height), flags)
+            except pygame.error:
+                if not flags:
+                    raise
+                _log("fullscreen failed, trying windowed on same driver")
+                screen = pygame.display.set_mode((width, height))
+            _validate_screen(screen, drv_label)
+            _log(f"display ready size={screen.get_size()}")
+            return screen
+        except pygame.error as exc:
+            last_error = exc
+            _log(f"driver {drv_label} failed: {exc}")
+
+    raise last_error or pygame.error("no display driver available")
+
+
+def main() -> None:
+    _log("main start")
+    screen = init_pygame()
+    App(screen).run()
+    pygame.quit()
+    _log("exit ok")
+
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        _log("fatal:\n" + traceback.format_exc())
+        sys.exit(1)

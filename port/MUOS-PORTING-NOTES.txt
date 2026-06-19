@@ -1,0 +1,70 @@
+Bopomofo on muOS (Anbernic RG34XXSP) — porting checklist
+==========================================================
+
+Same muOS patterns as the Bomberman port. Use this when something misbehaves.
+
+
+1. SD card layout (two folders)
+-------------------------------
+  /mnt/mmc/ports/bopomofo/          ← game files (main.py, game/, port/*.gptk)
+  /mnt/mmc/ROMS/Ports/Bopomofo.sh   ← launcher (Explore Content → Ports)
+
+Copy port/bopomofo.sh → ROMS/Ports/Bopomofo.sh
+Assign core: External - Ports
+
+
+2. Shell scripts need Unix line endings (LF)
+--------------------------------------------
+  - .gitattributes: *.sh text eol=lf
+  - sync-anbernic.bat normalizes before upload
+
+
+3. Launcher GAMEDIR is a fixed path
+-----------------------------------
+Use: GAMEDIR="/mnt/mmc/ports/bopomofo" (not relative to ROMS/Ports/)
+
+
+4. Logs
+-------
+  /mnt/mmc/ports/bopomofo/log.txt
+  /mnt/mmc/ROMS/Ports/bopomofo.log
+  /tmp/bopomofo.log
+
+
+5. Black screen / offscreen SDL driver
+--------------------------------------
+Strip *frontend* from LD_LIBRARY_PATH, LD_PRELOAD=/usr/lib/libSDL2-2.0.so.0,
+unset SDL_VIDEODRIVER. See port/bopomofo.sh.
+
+
+6. Use system pygame, not libs/
+--------------------------------
+pip3 install --user pygame on device. Do not bundle libs/ on muOS.
+
+
+7. Face buttons via gptokeyb
+-----------------------------
+port/bopomofo.gptk maps A→Enter, B→Esc, D-pad→arrows.
+Handheld uses D-pad + A to select answers (no number labels).
+
+
+8. Zhuyin (Bopomofo) font
+-------------------------
+Copy a CJK font to fonts/NotoSansTC-Regular.otf on the device if characters
+show as boxes. Windows dev uses Microsoft JhengHei automatically.
+
+
+9. Exit on handheld
+-------------------
+  Start+Select  → quit to muOS
+  B / Select    → back to menu
+  A / Start     → confirm selection
+
+
+Quick deploy
+------------
+1. sync-anbernic.bat
+2. Explore Content → Ports → Bopomofo
+3. ssh root@<ip> "tail -50 /mnt/mmc/ports/bopomofo/log.txt"
+
+Look for: SDL driver mali/kmsdrm (not offscreen), display ready size=(720, 480)
