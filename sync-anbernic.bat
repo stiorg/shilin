@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 
-REM Sync Bopomofo to Anbernic RG34XXSP (muOS)
+REM Sync Shilin Trainer to Anbernic RG34XXSP (muOS)
 
 if exist credentials.txt (
     for /f "delims=" %%x in (credentials.txt) do set "%%x"
@@ -14,8 +14,8 @@ if exist credentials.txt (
 if not "%~1"=="" set "DEVICE_IP=%~1"
 
 set "REMOTE=%DEVICE_USER%@%DEVICE_IP%"
-set "GAME_DIR=/mnt/mmc/ports/bopomofo"
-set "LAUNCHER=/mnt/mmc/ROMS/Ports/Bopomofo.sh"
+set "GAME_DIR=/mnt/mmc/ports/shilin-trainer"
+set "LAUNCHER=/mnt/mmc/ROMS/Ports/ShilinTrainer.sh"
 
 cd /d "%~dp0"
 
@@ -29,7 +29,7 @@ where ssh >nul 2>&1 || (
 )
 
 echo.
-echo Syncing to %REMOTE%
+echo Syncing Shilin Trainer to %REMOTE%
 echo   game files  -^> %GAME_DIR%/
 echo   launcher    -^> %LAUNCHER%
 echo.
@@ -39,27 +39,34 @@ if errorlevel 1 (
     echo WARN: could not normalize .sh line endings via python
 )
 
-ssh "%REMOTE%" "mkdir -p '%GAME_DIR%/port' '%GAME_DIR%/game' '%GAME_DIR%/fonts'"
+ssh "%REMOTE%" "mkdir -p '%GAME_DIR%/port' '%GAME_DIR%/game' '%GAME_DIR%/fonts' '%GAME_DIR%/decks'"
 
-echo [1/5] main.py
+echo [1/6] main.py
 scp "%~dp0main.py" "%REMOTE%:%GAME_DIR%/" || goto :fail
 
-echo [2/5] game/
+echo [2/6] game/
 scp -r "%~dp0game" "%REMOTE%:%GAME_DIR%/" || goto :fail
 
-echo [3/5] requirements.txt
+echo [3/6] decks/
+if exist "%~dp0decks" (
+    scp -r "%~dp0decks" "%REMOTE%:%GAME_DIR%/" || goto :fail
+) else (
+    echo       skip — no decks folder
+)
+
+echo [4/6] requirements.txt
 scp "%~dp0requirements.txt" "%REMOTE%:%GAME_DIR%/" || goto :fail
 
-echo [4/5] port/bopomofo.gptk
-scp "%~dp0port\bopomofo.gptk" "%REMOTE%:%GAME_DIR%/port/" || goto :fail
+echo [5/6] port/shilin-trainer.gptk
+scp "%~dp0port\shilin-trainer.gptk" "%REMOTE%:%GAME_DIR%/port/" || goto :fail
 
-echo [5/5] Bopomofo.sh launcher
-scp "%~dp0port\bopomofo.sh" "%REMOTE%:%LAUNCHER%" || goto :fail
+echo [6/6] ShilinTrainer.sh launcher
+scp "%~dp0port\shilin-trainer.sh" "%REMOTE%:%LAUNCHER%" || goto :fail
 
 ssh "%REMOTE%" "chmod +x '%LAUNCHER%'" || goto :fail
 
 echo.
-echo Done. Launch from Explore Content -^> Ports -^> Bopomofo
+echo Done. Launch from Explore Content -^> Ports -^> Shilin Trainer
 echo Logs: ssh %REMOTE% "cat %GAME_DIR%/log.txt"
 echo.
 exit /b 0

@@ -1,0 +1,13 @@
+#separator:tab
+#html:false
+# Anki plain-text export format — field 1 = character, field 2 = reading/meaning
+你好	nǐ hǎo	hello
+谢谢	xiè xie	thank you
+再见	zài jiàn	goodbye
+中国	Zhōng guó	China
+学习	xué xí	to study
+中文	Zhōng wén	Chinese language
+朋友	péng you	friend
+老师	lǎo shī	teacher
+学生	xué sheng	student
+水	shuǐ	water

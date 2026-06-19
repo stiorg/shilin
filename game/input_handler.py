@@ -45,7 +45,30 @@ class InputManager:
         self.joysticks: list[pygame.joystick.Joystick] = []
         self._held_buttons: set[tuple[int, int]] = set()
         self._quit_combo_armed = True
+        self._quiz_armed = False
+        self._hat_state: dict[int, tuple[int, int]] = {}
         self._refresh_joysticks()
+
+    def arm_for_quiz(self) -> None:
+        """Wait for menu confirm keys to release before accepting answers."""
+        self._quiz_armed = False
+
+    def quiz_input_ready(self) -> bool:
+        if self._quiz_armed:
+            return True
+        if self._confirm_held():
+            return False
+        self._quiz_armed = True
+        return True
+
+    def _confirm_held(self) -> bool:
+        keys = pygame.key.get_pressed()
+        if any(keys[k] for k in CONFIRM_KEYS):
+            return True
+        for joy in self.joysticks:
+            if _any_button(joy, CONFIRM_BUTTONS):
+                return True
+        return False
 
     def _refresh_joysticks(self) -> None:
         self.joysticks = []
@@ -59,6 +82,8 @@ class InputManager:
         if event.type == pygame.QUIT:
             return "quit"
         if event.type == pygame.KEYDOWN:
+            if getattr(event, "repeat", 0):
+                return None
             if event.key == pygame.K_ESCAPE:
                 return "back"
             if event.key in CONFIRM_KEYS:
@@ -68,13 +93,24 @@ class InputManager:
                     return f"pick_{PICK_KEYS[event.key]}"
                 if event.key in MENU_KEYS:
                     return MENU_KEYS[event.key]
-            if event.key == pygame.K_UP:
+            if event.key in (pygame.K_UP, pygame.K_LEFT):
                 return "up"
-            if event.key == pygame.K_DOWN:
+            if event.key in (pygame.K_DOWN, pygame.K_RIGHT):
                 return "down"
-            if event.key == pygame.K_LEFT:
+        if event.type == pygame.JOYHATMOTION:
+            joy_id = _event_joy_id(event)
+            hx, hy = event.value
+            prev = self._hat_state.get(joy_id, (0, 0))
+            self._hat_state[joy_id] = (hx, hy)
+            if (hx, hy) == (0, 0) or (hx, hy) == prev:
+                return None
+            if hy == 1:
                 return "up"
-            if event.key == pygame.K_RIGHT:
+            if hy == -1:
+                return "down"
+            if hx == -1:
+                return "up"
+            if hx == 1:
                 return "down"
         if event.type == pygame.JOYBUTTONDOWN:
             self._held_buttons.add((_event_joy_id(event), event.button))
@@ -97,41 +133,15 @@ class InputManager:
             return True
         return any(pair[0] == joy_idx and pair[1] in indices for pair in self._held_buttons)
 
-    def _nav_from_hat_or_axis(self, joy: pygame.joystick.Joystick) -> str | None:
-        if joy.get_numhats() > 0:
-            hx, hy = joy.get_hat(0)
-            if hy == 1:
-                return "up"
-            if hy == -1:
-                return "down"
-            if hx == -1:
-                return "up"
-            if hx == 1:
-                return "down"
-        if joy.get_numaxes() >= 2:
-            dz = 0.45
-            ax_v = joy.get_axis(1)
-            if ax_v < -dz:
-                return "up"
-            if ax_v > dz:
-                return "down"
-        return None
-
     def menu_nav(self) -> str | None:
+        """Poll confirm/back only — navigation is edge-triggered via events."""
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_UP] or keys[pygame.K_LEFT]:
-            return "up"
-        if keys[pygame.K_DOWN] or keys[pygame.K_RIGHT]:
-            return "down"
         if any(keys[k] for k in CONFIRM_KEYS):
             return "confirm"
         if keys[pygame.K_ESCAPE]:
             return "back"
 
         for joy_idx, joy in enumerate(self.joysticks):
-            nav = self._nav_from_hat_or_axis(joy)
-            if nav:
-                return nav
             if self._button_held(joy_idx, joy, CONFIRM_BUTTONS[:4]):
                 return "confirm"
             if _any_button(joy, SELECT_BUTTONS):

@@ -3,6 +3,10 @@
 import os
 import sys
 
+PROJECT_NAME = "Shilin Trainer"
+PORT_SLUG = "shilin-trainer"
+LOG_TAG = "shilin"
+
 SCREEN_WIDTH = 720
 SCREEN_HEIGHT = 480
 
@@ -26,6 +30,8 @@ FONT_CHAR = 120 if _handheld else 96
 OPTION_HEIGHT = 52 if _handheld else 40
 OPTION_GAP = 6
 FEEDBACK_DURATION = 1.8
+
+NAV_COOLDOWN = 0.2
 
 FPS = 60
 

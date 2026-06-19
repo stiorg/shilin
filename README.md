@@ -1,21 +1,23 @@
-# Bopomofo Training (Pygame)
+# Shilin Trainer (Pygame)
 
-Zhuyin (Bopomofo) → Pinyin quiz with spaced repetition for **PC** and **Anbernic RG34XXSP** running **muOS**.
+**Shilin Trainer** — Bopomofo drills + **Anki flashcard** character study for **PC** and **Anbernic RG34XXSP** (muOS).
 
 Native resolution: **720×480** (RG34XXSP screen).
 
 ## Features
 
-- 37 Bopomofo symbols with 5-choice Pinyin answers
-- SRS intervals — correct answers double the interval (up to Lv.32)
-- Mistake-aware distractors from your wrong answers
-- Endless streak mode and focused 5-pack mode
-- Progress saved to `bopomofo_srs_data.json`
+**Bopomofo** (built-in)
+- 37 Zhuyin symbols → 5-choice Pinyin quiz
+- SRS intervals, mistake-aware distractors, endless + 5-pack modes
+
+**Character flashcards** (Anki decks)
+- Load decks from `decks/` — `.apkg` or Anki plain-text `.txt`
+- Shows the **first field** (character/word), pick the **second field** (reading/meaning)
+- Same SRS engine; progress in `flashcard_srs_data.json`
 
 ## PC — Quick start
 
 ```bash
-cd bopomofo
 pip install -r requirements.txt
 python main.py
 ```
@@ -29,8 +31,6 @@ python main.py
 | Enter | Confirm selection |
 | Esc | Back / exit menu |
 
-Menu: **1** Endless, **2** Pack, **0** Exit
-
 ### Controls (RG34XXSP)
 
 - **D-pad** — move selection
@@ -38,7 +38,14 @@ Menu: **1** Endless, **2** Pack, **0** Exit
 - **B** — back to menu
 - **Start + Select** — quit to muOS
 
-(No number keys on handheld — options show without [1] labels.)
+## Anki decks
+
+1. Export from Anki: **File → Export → Notes in Plain Text (.txt)**  
+   Or copy a classic `.apkg` (must contain `collection.anki2`).
+2. Put the file in `decks/`.
+3. In-game: **Choose Deck…** → **Characters — Endless** or **5-Pack**.
+
+Sample deck: `decks/sample-hsk1.txt`.
 
 ## Sync to Anbernic (Windows)
 
@@ -46,57 +53,33 @@ Menu: **1** Endless, **2** Pack, **0** Exit
 sync-anbernic.bat
 ```
 
-Default target in `credentials.txt`. Pass another IP as the first argument.
-
-Does not upload `libs/` (keep pygame on the device).
-
-**Passwordless sync (one-time):**
-
 ```bat
 setup-ssh-keys.bat
 ```
 
 ## muOS (RG34XXSP)
 
-1. Copy the entire `bopomofo` folder to `/mnt/mmc/ports/bopomofo/`
-2. Copy `port/bopomofo.sh` to **`/mnt/mmc/ROMS/Ports/Bopomofo.sh`** (binary upload — Windows CRLF breaks the script)
-3. `chmod +x /mnt/mmc/ROMS/Ports/Bopomofo.sh`
-4. Assign core: Explore Content → Ports → **Select** → Assign Core → **External - Ports**
+1. Sync to `/mnt/mmc/ports/shilin-trainer/`
+2. Launcher: `/mnt/mmc/ROMS/Ports/ShilinTrainer.sh`
+3. Assign core **External - Ports**
+4. `pip3 install --user pygame` on the device
 
-Install pygame on device (SSH):
-
-```bash
-pip3 install --user pygame
-```
-
-**Zhuyin font:** If characters show as boxes, copy a CJK font to  
-`/mnt/mmc/ports/bopomofo/fonts/NotoSansTC-Regular.otf`
-
-After a failed launch, check logs:
-
-1. `/mnt/mmc/ports/bopomofo/log.txt`
-2. `/mnt/mmc/ROMS/Ports/bopomofo.log`
-3. `/tmp/bopomofo.log`
-
-See `port/MUOS-PORTING-NOTES.txt` for troubleshooting.
+Copy CJK fonts to `fonts/NotoSansTC-Regular.otf` if characters show as boxes.
 
 ## Project layout
 
 ```
-bopomofo/
-  main.py              # Entry point (pygame + muOS bootstrap)
-  requirements.txt
+shilin-trainer/          # repo folder may still be named bopomofo locally
+  main.py
+  decks/
   game/
-    config.py          # 720×480, handheld detection
-    data.py            # Dictionary + save/load
-    srs.py             # Endless & pack session logic
-    input_handler.py
-    renderer.py
-    app.py             # Menu + quiz UI
+    config.py            # PROJECT_NAME, PORT_SLUG
+    cards.py
+    data.py
+    app.py
   port/
-    bopomofo.sh        # copy to ROMS/Ports/Bopomofo.sh
-    bopomofo.gptk      # gptokeyb button mapping
-  fonts/               # optional CJK font for handheld
+    shilin-trainer.sh    # → ROMS/Ports/ShilinTrainer.sh
+    shilin-trainer.gptk
 ```
 
 ## License

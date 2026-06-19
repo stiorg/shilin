@@ -25,7 +25,7 @@ if not exist "%USERPROFILE%\.ssh" mkdir "%USERPROFILE%\.ssh"
 
 if not exist "%KEY%" (
     echo Creating SSH key at %KEY%
-    ssh-keygen -t ed25519 -f "%KEY%" -N "" -C "bopomofo-sync"
+    ssh-keygen -t ed25519 -f "%KEY%" -N "" -C "shilin-trainer-sync"
     if errorlevel 1 exit /b 1
 ) else (
     echo Using existing key: %KEY%

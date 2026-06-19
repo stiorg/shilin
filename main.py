@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bopomofo Training — PC and Anbernic RG34XXSP (muOS) compatible."""
+"""Shilin Trainer — PC and Anbernic RG34XXSP (muOS) compatible."""
 
 from __future__ import annotations
 
@@ -11,19 +11,22 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
+from game import config
+
 LIBS = os.path.join(ROOT, "libs")
+_SLUG = config.PORT_SLUG
 
 _LOG_PATHS = (
     os.path.join(ROOT, "log.txt"),
-    "/mnt/mmc/ports/bopomofo/log.txt",
-    "/mnt/sdcard/ports/bopomofo/log.txt",
-    "/mnt/mmc/ROMS/Ports/bopomofo.log",
-    "/tmp/bopomofo.log",
+    f"/mnt/mmc/ports/{_SLUG}/log.txt",
+    f"/mnt/sdcard/ports/{_SLUG}/log.txt",
+    f"/mnt/mmc/ROMS/Ports/{_SLUG}.log",
+    f"/tmp/{_SLUG}.log",
 )
 
 
 def _log(msg: str) -> None:
-    line = f"[bopomofo] {msg}\n"
+    line = f"[{config.LOG_TAG}] {msg}\n"
     for path in _LOG_PATHS:
         try:
             with open(path, "a", encoding="utf-8") as fh:
@@ -31,7 +34,7 @@ def _log(msg: str) -> None:
             break
         except OSError:
             continue
-    if os.environ.get("BOPOMOFO_DEBUG"):
+    if os.environ.get("SHILIN_DEBUG"):
         print(line, end="")
 
 
@@ -84,7 +87,6 @@ try:
     pygame = _import_pygame()
 
     _log("import game...")
-    from game import config
     from game.app import App
 except Exception:
     _log("import failed:\n" + traceback.format_exc())
@@ -157,7 +159,7 @@ def init_pygame() -> pygame.Surface:
         try:
             pygame.init()
             pygame.joystick.init()
-            pygame.display.set_caption("Bopomofo Training")
+            pygame.display.set_caption(config.PROJECT_NAME)
             try:
                 screen = pygame.display.set_mode((width, height), flags)
             except pygame.error:

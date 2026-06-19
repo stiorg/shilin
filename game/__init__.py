@@ -1,1 +1,1 @@
-"""Bopomofo training game — PC and RG34XXSP (muOS)."""
+"""Shilin Trainer — PC and RG34XXSP (muOS)."""

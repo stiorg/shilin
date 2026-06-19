@@ -99,6 +99,7 @@ class PackSession:
     current_pack: list[str] = field(default_factory=list)
     current: Question | None = None
     pack_cleared: bool = False
+    pack_rolled: bool = False
     all_done: bool = False
 
     def __post_init__(self) -> None:
@@ -168,6 +169,7 @@ class PackSession:
             save_game_data(self.game_data)
             self.pack_count += 1
             self._load_next_pack()
+            self.pack_rolled = not self.all_done
         elif retry:
             pass
 

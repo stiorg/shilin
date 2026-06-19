@@ -1,13 +1,13 @@
 #!/bin/bash
-# Install: copy to /mnt/mmc/ROMS/Ports/Bopomofo.sh
-#           chmod +x /mnt/mmc/ROMS/Ports/Bopomofo.sh
+# Install: copy to /mnt/mmc/ROMS/Ports/ShilinTrainer.sh
+#           chmod +x /mnt/mmc/ROMS/Ports/ShilinTrainer.sh
 
 LOG_PATHS=(
-  "/mnt/mmc/ports/bopomofo/log.txt"
-  "/mnt/sdcard/ports/bopomofo/log.txt"
-  "/mnt/mmc/ROMS/Ports/bopomofo.log"
-  "/mnt/sdcard/ROMS/Ports/bopomofo.log"
-  "/tmp/bopomofo.log"
+  "/mnt/mmc/ports/shilin-trainer/log.txt"
+  "/mnt/sdcard/ports/shilin-trainer/log.txt"
+  "/mnt/mmc/ROMS/Ports/shilin-trainer.log"
+  "/mnt/sdcard/ROMS/Ports/shilin-trainer.log"
+  "/tmp/shilin-trainer.log"
 )
 
 log() {
@@ -52,11 +52,13 @@ fi
 
 GAMEDIR=""
 for candidate in \
+  "/mnt/mmc/ports/shilin-trainer" \
+  "/mnt/sdcard/ports/shilin-trainer" \
+  "/mnt/mmc/PORTS/shilin-trainer" \
+  "/mnt/sdcard/PORTS/shilin-trainer" \
   "/mnt/mmc/ports/bopomofo" \
   "/mnt/sdcard/ports/bopomofo" \
-  "/mnt/mmc/PORTS/bopomofo" \
-  "/mnt/sdcard/PORTS/bopomofo" \
-  "/${directory:-__missing__}/ports/bopomofo"; do
+  "/${directory:-__missing__}/ports/shilin-trainer"; do
   if [ -f "$candidate/main.py" ]; then
     GAMEDIR="$candidate"
     break
@@ -136,7 +138,7 @@ if ! "$PYTHON" -c "import pygame" 2>/dev/null; then
 fi
 log "pygame=$("$PYTHON" -c "import pygame; print(pygame.__file__)" 2>/dev/null)"
 
-GPTK="$GAMEDIR/port/bopomofo.gptk"
+GPTK="$GAMEDIR/port/shilin-trainer.gptk"
 GPTOKEYB_BIN=""
 if [ -n "${GPTOKEYB:-}" ] && [ -x "$GPTOKEYB" ]; then
   GPTOKEYB_BIN="$GPTOKEYB"
