@@ -1,8 +1,13 @@
-# Shilin Trainer — muOS / PortMaster (D-pad + A confirm, B back)
+# Shilin Trainer — muOS / PortMaster
+# A confirm | B back | X/Y/L/R toggle Endless↔5-Pack on drill rows
 a = enter
 b = esc
 start = enter
 back = esc
+x = space
+y = space
+l1 = space
+r1 = space
 up = up
 down = down
 left = left

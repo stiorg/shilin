@@ -8,7 +8,7 @@ import pygame
 
 from game import config
 from game.deck_store import chinese_display
-from game.pinyin import build_reading, is_cjk_script_char, needs_cjk_font
+from game.pinyin import build_reading, has_pinyin_marks, is_cjk_script_char, needs_cjk_font
 
 COLOR_BG = (24, 28, 42)
 COLOR_HUD = (18, 22, 34)
@@ -33,17 +33,39 @@ def _project_root() -> str:
     return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def _font_log(msg: str) -> None:
+    if os.environ.get("MUOS") != "1":
+        return
+    line = f"[shilin] font: {msg}\n"
+    for rel in ("log.txt",):
+        path = os.path.join(_project_root(), rel)
+        try:
+            with open(path, "a", encoding="utf-8") as fh:
+                fh.write(line)
+            return
+        except OSError:
+            continue
+
+
 def _cjk_font_candidates() -> list[str]:
     root = _project_root()
-    return [
-        os.path.join(root, "fonts", "NotoSansTC-Regular.otf"),
+    bundled = (
+        "NotoSansCJKtc-Regular.otf",
+        "NotoSansTC-Regular.otf",
+        "NotoSansBopomofo-Regular.ttf",
+    )
+    paths = [os.path.join(root, "fonts", name) for name in bundled]
+    paths += [
+        "/usr/share/fonts/opentype/noto/NotoSansCJKtc-Regular.otf",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
         "/usr/share/fonts/noto/NotoSansCJK-Regular.ttc",
         "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
-        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+        "/opt/muos/share/fonts/NotoSansCJKtc-Regular.otf",
         "C:/Windows/Fonts/msjh.ttc",
         "C:/Windows/Fonts/msjhbd.ttc",
         "C:/Windows/Fonts/NotoSansTC-Regular.otf",
     ]
+    return paths
 
 
 def _latin_font_candidates() -> list[str]:
@@ -51,52 +73,93 @@ def _latin_font_candidates() -> list[str]:
     return [
         os.path.join(root, "fonts", "NotoSans-Regular.ttf"),
         os.path.join(root, "fonts", "NotoSans-Regular.otf"),
+        "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+        "/opt/muos/share/fonts/NotoSans-Regular.ttf",
         "C:/Windows/Fonts/segoeui.ttf",
         "C:/Windows/Fonts/arial.ttf",
         "C:/Windows/Fonts/calibri.ttf",
         "C:/Windows/Fonts/NotoSans-Regular.ttf",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
-        "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
     ]
 
 
-def _load_from_paths(paths: list[str], size: int) -> pygame.font.Font | None:
+def _load_from_paths(
+    paths: list[str], size: int, *, label: str = "font"
+) -> tuple[pygame.font.Font | None, str | None]:
     for path in paths:
-        if os.path.isfile(path):
-            try:
-                return pygame.font.Font(path, size)
-            except (OSError, pygame.error):
-                continue
-    return None
+        if not os.path.isfile(path):
+            continue
+        if path.lower().endswith(".ttc"):
+            for index in range(6):
+                try:
+                    font = pygame.font.Font(path, size, index=index)
+                    _font_log(f"{label} loaded {path} index={index} size={size}")
+                    return font, path
+                except (OSError, pygame.error, TypeError):
+                    continue
+            continue
+        try:
+            font = pygame.font.Font(path, size)
+            _font_log(f"{label} loaded {path} size={size}")
+            return font, path
+        except (OSError, pygame.error):
+            continue
+    return None, None
+
+
+def _sysfont_names(*, cjk: bool) -> tuple[str, ...]:
+    if cjk:
+        return (
+            "noto sans cjk tc",
+            "noto sans tc",
+            "noto sans cjk",
+            "noto sans traditional chinese",
+            "microsoft jhenghei",
+            "microsoft yahei",
+            "arial unicode ms",
+            "droid sans fallback",
+            "wqy-zenhei",
+        )
+    return (
+        "noto sans",
+        "dejavu sans",
+        "liberation sans",
+        "segoe ui",
+        "arial",
+        "calibri",
+        "consolas",
+    )
 
 
 def _load_cjk_font(size: int, bold: bool = False) -> pygame.font.Font:
-    font = _load_from_paths(_cjk_font_candidates(), size)
+    font, path = _load_from_paths(_cjk_font_candidates(), size, label="cjk")
     if font is not None:
         return font
-    if config.is_handheld():
-        return pygame.font.Font(None, size + (6 if bold else 0))
-    for name in ("microsoft jhenghei", "noto sans tc", "arial unicode ms"):
+    for name in _sysfont_names(cjk=True):
         try:
-            return pygame.font.SysFont(name, size, bold=bold)
+            font = pygame.font.SysFont(name, size, bold=bold)
+            _font_log(f"cjk SysFont {name!r} size={size}")
+            return font
         except (OSError, pygame.error):
             continue
+    _font_log(f"cjk fallback bitmap size={size} (no CJK font found)")
     return pygame.font.Font(None, size + (6 if bold else 0))
 
 
 def _load_latin_font(size: int, bold: bool = False) -> pygame.font.Font:
-    font = _load_from_paths(_latin_font_candidates(), size)
+    font, _path = _load_from_paths(_latin_font_candidates(), size, label="latin")
     if font is not None:
         return font
-    if config.is_handheld():
-        return pygame.font.Font(None, size + (6 if bold else 0))
-    for name in ("segoe ui", "arial", "calibri", "noto sans", "dejavu sans", "consolas"):
+    for name in _sysfont_names(cjk=False):
         try:
-            return pygame.font.SysFont(name, size, bold=bold)
+            font = pygame.font.SysFont(name, size, bold=bold)
+            _font_log(f"latin SysFont {name!r} size={size}")
+            return font
         except (OSError, pygame.error):
             continue
-    return _load_cjk_font(size, bold)
+    _font_log(f"latin fallback bitmap size={size} (no Latin font found)")
+    return pygame.font.Font(None, size + (6 if bold else 0))
 
 
 class Renderer:
@@ -115,35 +178,52 @@ class Renderer:
     def _handheld_hint(self, quiz: bool = False) -> str:
         if quiz:
             if config.is_handheld():
-                return "D-pad — Move | A — Confirm | B — Back | Start+Select — Exit"
-            return "1-5 — Answer | D-pad+Enter — Select | Esc — Back"
+                return "D-pad - Move | A - Confirm | B - Back | Start+Select - Exit"
+            return "1-5 - Answer | D-pad+Enter - Select | Esc - Back"
         if config.is_handheld():
-            return "Start+Select — Exit | B — Back"
-        return "Esc — Back | Enter — Select"
+            return "Start+Select - Exit | B - Back"
+        return "Esc - Back | Enter - Select"
 
     def draw_menu(
         self,
         title: str,
         items: list[str],
         selected: int,
-        subtitle: str,
+        subtitle: str = "",
         extra: str = "",
         footer_hint: str = "",
+        deck_label: str = "",
     ) -> None:
         self.clear()
         pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
 
         title_surf = self.font_large.render(title, True, COLOR_TEXT)
-        self.screen.blit(title_surf, (config.SCREEN_WIDTH // 2 - title_surf.get_width() // 2, 28))
+        y = 28
+        self.screen.blit(
+            title_surf, (config.SCREEN_WIDTH // 2 - title_surf.get_width() // 2, y)
+        )
+        y += title_surf.get_height() + 10
 
-        sub = self.font_small.render(subtitle, True, COLOR_MUTED)
-        self.screen.blit(sub, (config.SCREEN_WIDTH // 2 - sub.get_width() // 2, 88))
+        if deck_label:
+            shown = _truncate(deck_label, 44)
+            deck_surf = self.font_small.render(f"Deck: {shown}", True, COLOR_MUTED)
+            self.screen.blit(
+                deck_surf, (config.SCREEN_WIDTH // 2 - deck_surf.get_width() // 2, y)
+            )
+            y += deck_surf.get_height() + 8
+        elif subtitle:
+            sub = self.font_small.render(subtitle, True, COLOR_MUTED)
+            self.screen.blit(sub, (config.SCREEN_WIDTH // 2 - sub.get_width() // 2, y))
+            y += sub.get_height() + 8
 
         if extra:
             extra_surf = self.font.render(extra, True, COLOR_SELECT)
-            self.screen.blit(extra_surf, (config.SCREEN_WIDTH // 2 - extra_surf.get_width() // 2, 118))
+            self.screen.blit(
+                extra_surf, (config.SCREEN_WIDTH // 2 - extra_surf.get_width() // 2, y)
+            )
+            y += extra_surf.get_height() + 10
 
-        start_y = 160 if extra else 140
+        start_y = y + 4
         row_h = config.OPTION_HEIGHT
         if len(items) > 4:
             row_h = max(36, config.OPTION_HEIGHT - 10)
@@ -164,12 +244,46 @@ class Renderer:
 
     def _tone_hint(self) -> str:
         if config.is_handheld():
-            return "↑↓ Tone | ←→ Syllable | A — Check | B — Back"
-        return "↑↓ Tone | ←→ Syllable | Enter — Check | Esc — Back"
+            return "Up/Down - Tone | L/R - Syllable | A - Check | B - Back"
+        return "Up/Down - Tone | L/R - Syllable | Enter - Check | Esc - Back"
 
-    def _blit_level_label(self, level_label: str) -> None:
+    def _quiz_footer_reserve(self) -> int:
+        return 34
+
+    def _quiz_option_metrics(self, choice_count: int) -> tuple[int, int, int]:
+        if config.is_handheld() and choice_count >= 5:
+            opt_h, gap = 44, 4
+        else:
+            opt_h, gap = config.OPTION_HEIGHT, config.OPTION_GAP
+        return opt_h, gap, opt_h + gap
+
+    def _quiz_max_prompt_height(
+        self, choice_count: int, *, hint_lines: int = 0
+    ) -> tuple[int, int]:
+        """Max prompt height and Y where choices begin."""
+        footer = self._quiz_footer_reserve()
+        level_h = self.font_small.get_height()
+        opt_h, opt_gap, row_step = self._quiz_option_metrics(choice_count)
+        choices_h = choice_count * row_step - opt_gap
+        choices_start = config.SCREEN_HEIGHT - footer - choices_h
+        hint_extra = hint_lines * (self.font.get_height() + 6)
+        max_h = choices_start - config.HUD_HEIGHT - level_h - hint_extra - 20
+        return max(28, max_h), choices_start
+
+    def _quiz_prompt_y(self, prompt_h: int, choices_start: int, *, hint_lines: int = 0) -> tuple[int, int]:
+        level_h = self.font_small.get_height()
+        hint_extra = hint_lines * (self.font.get_height() + 6) if hint_lines else 0
+        gap = 8
+        level_y = choices_start - gap - level_h
+        prompt_y = level_y - gap - hint_extra - prompt_h
+        min_y = config.HUD_HEIGHT + 4
+        if prompt_y < min_y:
+            prompt_y = min_y
+        return prompt_y, level_y
+
+    def _blit_level_label(self, level_label: str, y: int) -> None:
         surf = self.font_small.render(level_label, True, COLOR_MUTED)
-        self.screen.blit(surf, (12, 130))
+        self.screen.blit(surf, (12, y))
 
     def draw_tone_quiz(
         self,
@@ -189,17 +303,22 @@ class Renderer:
         pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
 
         left = self.font_small.render(mode_label, True, COLOR_MUTED)
-        right = self.font_small.render(status, True, COLOR_SELECT if "Streak" in status else COLOR_TEXT)
         self.screen.blit(left, (12, 12))
-        self.screen.blit(right, (config.SCREEN_WIDTH - right.get_width() - 12, 12))
-
-        _prompt_font, prompt_surf = self._fit_prompt(char)
-        self.screen.blit(
-            prompt_surf,
-            (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, 52),
+        status_color = COLOR_SELECT if "Streak" in status else COLOR_TEXT
+        self._blit_mixed_line(
+            status, status_color, 12, align="right", latin_font=self.font_small
         )
 
-        self._blit_level_label(level_label)
+        syllable_start_y = 228
+        max_prompt_h = syllable_start_y - config.HUD_HEIGHT - self.font_small.get_height() - 24
+        _prompt_font, prompt_surf = self._fit_prompt(char, max_height=max(28, max_prompt_h))
+        prompt_y, level_y = self._quiz_prompt_y(prompt_surf.get_height(), syllable_start_y)
+        self.screen.blit(
+            prompt_surf,
+            (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, prompt_y),
+        )
+
+        self._blit_level_label(level_label, level_y)
 
         show_wrong_panel = feedback_ok is False and correct_reading
 
@@ -334,30 +453,38 @@ class Renderer:
             status, status_color, 12, align="right", latin_font=self.font_small
         )
 
+        hint_lines = 1 if prompt_hint else 0
+        max_prompt_h, choices_start = self._quiz_max_prompt_height(
+            len(choices), hint_lines=hint_lines
+        )
         if prompt_style == "pinyin":
             _prompt_font, prompt_surf = self._fit_pinyin_prompt(char)
         elif prompt_style == "latin":
             _prompt_font, prompt_surf = self._fit_pinyin_prompt(char)
         else:
-            _prompt_font, prompt_surf = self._fit_prompt(char)
+            _prompt_font, prompt_surf = self._fit_prompt(char, max_height=max_prompt_h)
+        prompt_y, level_y = self._quiz_prompt_y(
+            prompt_surf.get_height(), choices_start, hint_lines=hint_lines
+        )
         self.screen.blit(
             prompt_surf,
-            (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, 52),
+            (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, prompt_y),
         )
 
         if prompt_hint:
             hint_surf = self.font.render(prompt_hint, True, COLOR_MUTED)
+            hint_y = level_y - hint_surf.get_height() - 6
             self.screen.blit(
                 hint_surf,
-                (config.SCREEN_WIDTH // 2 - hint_surf.get_width() // 2, 132),
+                (config.SCREEN_WIDTH // 2 - hint_surf.get_width() // 2, hint_y),
             )
 
-        self._blit_level_label(level_label)
+        self._blit_level_label(level_label, level_y)
 
-        start_y = 188 if prompt_hint else 168
+        opt_h, opt_gap, row_step = self._quiz_option_metrics(len(choices))
         for i, choice in enumerate(choices):
-            y = start_y + i * (config.OPTION_HEIGHT + config.OPTION_GAP)
-            rect = pygame.Rect(60, y, config.SCREEN_WIDTH - 120, config.OPTION_HEIGHT)
+            y = choices_start + i * row_step
+            rect = pygame.Rect(60, y, config.SCREEN_WIDTH - 120, opt_h)
             selected_row = i == selected
             bg = COLOR_SELECT_BG if selected_row else COLOR_OPTION
             pygame.draw.rect(self.screen, bg, rect, border_radius=8)
@@ -369,11 +496,12 @@ class Renderer:
                 label = prefix + shown
             else:
                 label = f"[{i + 1}] {shown}"
-            choice_font = self.font_cjk_normal if chinese_choices else self._choice_font(shown)
-            text = choice_font.render(
-                label, True, COLOR_SELECT if selected_row else COLOR_TEXT
+            self._blit_choice_label(
+                label,
+                COLOR_SELECT if selected_row else COLOR_TEXT,
+                rect,
+                chinese_only=chinese_choices,
             )
-            self.screen.blit(text, (rect.x + 16, rect.centery - text.get_height() // 2))
 
         if feedback:
             color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
@@ -386,9 +514,33 @@ class Renderer:
         return self.font_large if large else self.font
 
     def _choice_font(self, text: str) -> pygame.font.Font:
-        if needs_cjk_font(text):
+        if needs_cjk_font(text) and not has_pinyin_marks(text):
             return self.font_cjk_normal
         return self.font
+
+    def _blit_choice_label(
+        self,
+        label: str,
+        color: tuple[int, int, int],
+        rect: pygame.Rect,
+        *,
+        chinese_only: bool = False,
+    ) -> None:
+        if chinese_only:
+            surf = self.font_cjk_normal.render(label, True, color)
+            self.screen.blit(surf, (rect.x + 16, rect.centery - surf.get_height() // 2))
+            return
+        line_h = self.font.get_height()
+        y = rect.centery - line_h // 2
+        self._blit_mixed_line(
+            label,
+            color,
+            y,
+            align="left",
+            x=rect.x + 16,
+            latin_font=self.font,
+            max_w=rect.width - 32,
+        )
 
     def _text_segments(self, text: str) -> list[tuple[str, bool]]:
         segments: list[tuple[str, bool]] = []
@@ -423,6 +575,7 @@ class Renderer:
         align: str = "center",
         latin_font: pygame.font.Font | None = None,
         max_w: int | None = None,
+        x: int | None = None,
     ) -> None:
         if max_w is None:
             max_w = config.SCREEN_WIDTH - 24
@@ -444,15 +597,17 @@ class Renderer:
                     if seg
                 ]
                 total_w = sum(surf.get_width() for surf in surfaces)
-        if align == "right":
-            x = config.SCREEN_WIDTH - total_w - 12
+        if x is not None:
+            start_x = x
+        elif align == "right":
+            start_x = config.SCREEN_WIDTH - total_w - 12
         elif align == "left":
-            x = 12
+            start_x = 12
         else:
-            x = config.SCREEN_WIDTH // 2 - total_w // 2
+            start_x = config.SCREEN_WIDTH // 2 - total_w // 2
         for surf in surfaces:
-            self.screen.blit(surf, (x, y))
-            x += surf.get_width()
+            self.screen.blit(surf, (start_x, y))
+            start_x += surf.get_width()
 
     def _blit_feedback(self, text: str, color: tuple[int, int, int], y: int) -> None:
         self._blit_mixed_line(text, color, y, align="center")
@@ -465,12 +620,22 @@ class Renderer:
                 return font, surf
         return self.font, self.font.render(_truncate(text, 40), True, COLOR_CHAR)
 
-    def _fit_prompt(self, text: str) -> tuple[pygame.font.Font, pygame.Surface]:
+    def _fit_prompt(
+        self, text: str, *, max_height: int | None = None
+    ) -> tuple[pygame.font.Font, pygame.Surface]:
         max_w = config.SCREEN_WIDTH - 48
-        for font in (self.font_cjk, self.font_cjk_large, self.font_cjk_normal):
+        fonts = (self.font_cjk, self.font_cjk_large, self.font_cjk_normal)
+        smallest_fit: tuple[pygame.font.Font, pygame.Surface] | None = None
+        for font in fonts:
             surf = font.render(text, True, COLOR_CHAR)
-            if surf.get_width() <= max_w:
+            if surf.get_width() > max_w:
+                continue
+            if max_height is None or surf.get_height() <= max_height:
                 return font, surf
+            if smallest_fit is None or surf.get_height() < smallest_fit[1].get_height():
+                smallest_fit = (font, surf)
+        if smallest_fit is not None:
+            return smallest_fit
         return self.font_cjk_normal, self.font_cjk_normal.render(
             _truncate(text, 24), True, COLOR_CHAR
         )

@@ -64,7 +64,15 @@ setup-ssh-keys.bat
 3. Assign core **External - Ports**
 4. `pip3 install --user pygame` on the device
 
-Copy CJK fonts to `fonts/NotoSansTC-Regular.otf` if characters show as boxes.
+CJK fonts (required for ㄅㄆㄇ and Chinese characters on the handheld):
+
+```bash
+python scripts/download-fonts.py
+sync-anbernic.bat
+```
+
+Without `fonts/NotoSansCJKtc-Regular.otf` on the device, Bopomofo shows as empty boxes.
+Without `fonts/NotoSans-Regular.ttf`, pinyin tone marks (ǐ, ǎ, …) show as boxes.
 
 ## Project layout
 
@@ -72,6 +80,8 @@ Copy CJK fonts to `fonts/NotoSansTC-Regular.otf` if characters show as boxes.
 shilin-trainer/          # repo folder may still be named bopomofo locally
   main.py
   decks/
+  fonts/
+    NotoSansCJKtc-Regular.otf   # scripts/download-fonts.py (~16 MB, not in git)
   game/
     config.py            # PROJECT_NAME, PORT_SLUG
     cards.py
@@ -80,6 +90,8 @@ shilin-trainer/          # repo folder may still be named bopomofo locally
   port/
     shilin-trainer.sh    # → ROMS/Ports/ShilinTrainer.sh
     shilin-trainer.gptk
+  scripts/
+    download-fonts.py
 ```
 
 ## License

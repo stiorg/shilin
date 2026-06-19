@@ -122,14 +122,13 @@ class App:
         self._nav_cooldown = config.NAV_COOLDOWN
 
     def _menu_entries(self) -> tuple[list[str], list[str]]:
-        items = [f"Bopomofo — {self._srs_layout_label(self._bpm_pack_mode())}"]
+        items = [f"Bopomofo - {self._srs_layout_label(self._bpm_pack_mode())}"]
         actions = ["bpm"]
         deck = self.deck_store.get("last_deck", "")
         if deck and self._deck_ctx:
-            short = deck if len(deck) <= 14 else deck[:11] + "…"
             mode = DECK_MODE_LABELS[deck_mode(self.deck_store)]
             layout = self._srs_layout_label(self._deck_pack_mode())
-            items += [f"Characters ({short}) — {mode} — {layout}"]
+            items += [f"Characters - {mode} - {layout}"]
             actions += ["deck"]
         items += ["Choose Deck…", "Exit"]
         actions += ["pick_deck", "exit"]
@@ -201,6 +200,8 @@ class App:
                         continue
                     action = "confirm"
                 if action in ("quit", "back") or self.input_mgr.quit_combo_held():
+                    if not self.input_mgr.menu_confirm_ready():
+                        continue
                     if action == "quit" or self.input_mgr.quit_combo_held():
                         return None
                     if selected == len(items) - 1:
@@ -245,29 +246,33 @@ class App:
                             return None
                         return picked
 
+            deck_label = ""
+            if self.deck_store.get("last_deck") and self._deck_ctx:
+                deck_label = self.deck_store["last_deck"]
+
             self.renderer.draw_menu(
                 "SHILIN TRAINER",
                 items,
                 selected,
-                f"{config.PROJECT_NAME} — RG34XXSP / PC",
-                extra,
-                menu_hint,
+                extra=extra,
+                footer_hint=menu_hint,
+                deck_label=deck_label,
             )
             pygame.display.flip()
 
     def _menu_hint(self, actions: list[str], selected: int) -> str:
         parts: list[str] = []
         if 0 <= selected < len(actions) and actions[selected] in ("bpm", "deck"):
-            toggle = "L/R" if config.is_handheld() else "Space"
-            parts.append(f"{toggle} — Endless / 5-Pack")
+            toggle = "X/Y" if config.is_handheld() else "Space"
+            parts.append(f"{toggle} - Endless / 5-Pack")
         if 0 <= selected < len(actions) and actions[selected] == "deck":
-            parts.append("← → — Character mode")
+            parts.append("L/R - Character mode")
         if not parts:
             return ""
         if config.is_handheld():
-            parts.append("Start+Select — Exit | B — Back")
+            parts.append("Start+Select - Exit | B - Back")
             return " | ".join(parts)
-        parts.append("Esc — Back | Enter — Select")
+        parts.append("Esc - Back | Enter - Select")
         return " | ".join(parts)
 
     def _menu_nav_action(self, action: str, actions: list[str], selected: int) -> str | None:
@@ -277,6 +282,10 @@ class App:
             return "up" if action == "left" else "down"
         return None
 
+    def _leave_quiz(self, session: Any) -> None:
+        session.save()
+        self.input_mgr.arm_for_menu()
+
     def _handle_list_nav(self, action: str, selected: int, count: int) -> str | int:
         if action == "up":
             self._nav_cooldown = config.NAV_COOLDOWN
@@ -285,7 +294,7 @@ class App:
             self._nav_cooldown = config.NAV_COOLDOWN
             return (selected + 1) % count
         if action == "back":
-            if config.is_handheld() or selected == count - 1:
+            if selected == count - 1:
                 return "exit"
             return selected
         if action == "confirm":
@@ -429,10 +438,10 @@ class App:
             for event in pygame.event.get():
                 action = self.input_mgr.handle_event(event)
                 if action == "quit" or self.input_mgr.quit_combo_held():
-                    session.save()
+                    self._leave_quiz(session)
                     return
                 if action == "back":
-                    session.save()
+                    self._leave_quiz(session)
                     return
                 if feedback:
                     continue
@@ -457,16 +466,16 @@ class App:
                     elif action == "right":
                         drill.move_syllable(1)
 
-            if not feedback and self._nav_cooldown <= 0 and self.input_mgr.quiz_input_ready():
+            if self._nav_cooldown <= 0 and self.input_mgr.quiz_input_ready():
                 polled = self.input_mgr.menu_nav()
-                if polled == "confirm":
+                if polled == "back":
+                    self._leave_quiz(session)
+                    return
+                if not feedback and polled == "confirm":
                     feedback, next_drill = self._submit_tone_answer(session, drill, pack)
                     if next_drill is not None:
                         drill = next_drill
                     feedback_timer = config.FEEDBACK_DURATION
-                elif polled == "back":
-                    session.save()
-                    return
 
             level_label = f"Lv.{drill.level}" if drill.level > 1 else "New"
             fb_text = None
@@ -478,7 +487,7 @@ class App:
                 if feedback.correct:
                     fb_text = feedback.message
                     if feedback.submessage:
-                        fb_text += f" — {feedback.submessage}"
+                        fb_text += f" - {feedback.submessage}"
                 else:
                     correct_reading = drill.correct
                     your_reading = drill.reading()
@@ -553,10 +562,10 @@ class App:
             for event in pygame.event.get():
                 action = self.input_mgr.handle_event(event)
                 if action == "quit" or self.input_mgr.quit_combo_held():
-                    session.save()
+                    self._leave_quiz(session)
                     return
                 if action == "back":
-                    session.save()
+                    self._leave_quiz(session)
                     return
                 if feedback:
                     continue
@@ -584,17 +593,17 @@ class App:
                             selected = 0
                         feedback_timer = config.FEEDBACK_DURATION
 
-            if not feedback and self._nav_cooldown <= 0 and self.input_mgr.quiz_input_ready():
+            if self._nav_cooldown <= 0 and self.input_mgr.quiz_input_ready():
                 polled = self.input_mgr.menu_nav()
-                if polled == "confirm":
+                if polled == "back":
+                    self._leave_quiz(session)
+                    return
+                if not feedback and polled == "confirm":
                     feedback, next_q = self._submit_answer(session, selected, pack)
                     if next_q is not None:
                         question = next_q
                         selected = 0
                     feedback_timer = config.FEEDBACK_DURATION
-                elif polled == "back":
-                    session.save()
-                    return
 
             level_label = f"Lv.{question.level}" if question.level > 1 else "New"
             fb_text = None
@@ -602,7 +611,7 @@ class App:
             if feedback:
                 fb_text = feedback.message
                 if feedback.submessage:
-                    fb_text += f" — {feedback.submessage}"
+                    fb_text += f" - {feedback.submessage}"
                 fb_ok = feedback.correct
 
             deck_mode_name = getattr(getattr(session, "ctx", None), "mode", "standard")

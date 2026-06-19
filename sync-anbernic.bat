@@ -54,13 +54,28 @@ if exist "%~dp0decks" (
     echo       skip — no decks folder
 )
 
-echo [4/6] requirements.txt
+echo [4/7] fonts/
+if exist "%~dp0fonts\NotoSansCJKtc-Regular.otf" (
+    scp "%~dp0fonts\NotoSansCJKtc-Regular.otf" "%REMOTE%:%GAME_DIR%/fonts/" || goto :fail
+) else if exist "%~dp0fonts\NotoSansTC-Regular.otf" (
+    scp "%~dp0fonts\NotoSansTC-Regular.otf" "%REMOTE%:%GAME_DIR%/fonts/" || goto :fail
+) else (
+    echo       WARN — no CJK font in fonts/. Run: python scripts/download-fonts.py
+)
+
+if exist "%~dp0fonts\NotoSans-Regular.ttf" (
+    scp "%~dp0fonts\NotoSans-Regular.ttf" "%REMOTE%:%GAME_DIR%/fonts/" || goto :fail
+) else (
+    echo       WARN — no Latin font in fonts/. Run: python scripts/download-fonts.py
+)
+
+echo [5/7] requirements.txt
 scp "%~dp0requirements.txt" "%REMOTE%:%GAME_DIR%/" || goto :fail
 
-echo [5/6] port/shilin-trainer.gptk
+echo [6/7] port/shilin-trainer.gptk
 scp "%~dp0port\shilin-trainer.gptk" "%REMOTE%:%GAME_DIR%/port/" || goto :fail
 
-echo [6/6] ShilinTrainer.sh launcher
+echo [7/7] ShilinTrainer.sh launcher
 scp "%~dp0port\shilin-trainer.sh" "%REMOTE%:%LAUNCHER%" || goto :fail
 
 ssh "%REMOTE%" "chmod +x '%LAUNCHER%'" || goto :fail

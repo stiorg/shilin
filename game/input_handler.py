@@ -7,11 +7,13 @@ import pygame
 from game import config
 
 CONFIRM_KEYS = (pygame.K_RETURN, pygame.K_z, pygame.K_SPACE)
-CONFIRM_BUTTONS = (1, 0, 2, 3, 7)
-SELECT_BUTTONS = (6,)
+# RG34XX: 0=A 1=B 2=X 3=Y 4=L1 5=R1 6=Select 7=Start
+CONFIRM_BUTTONS = (0, 7)
+BACK_BUTTONS = (1, 6)
+SELECT_BUTTONS = BACK_BUTTONS
 START_BUTTONS = (7,)
-TOGGLE_KEYS = (pygame.K_SPACE,)
-TOGGLE_BUTTONS = (4, 5)
+TOGGLE_KEYS = (pygame.K_SPACE, pygame.K_x, pygame.K_y)
+TOGGLE_BUTTONS = (2, 3, 4, 5)
 
 # PC only — direct answer via number row
 PICK_KEYS: dict[int, int] = {
@@ -57,13 +59,22 @@ class InputManager:
             self.arm_for_menu()
 
     def arm_for_menu(self) -> None:
-        """Ignore held confirm until the key is released (menu / deck picker)."""
+        """Ignore held confirm/back until released (menu / deck picker)."""
         self._menu_confirm_armed = False
+
+    def _back_held(self) -> bool:
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            return True
+        for joy in self.joysticks:
+            if _any_button(joy, BACK_BUTTONS):
+                return True
+        return False
 
     def menu_confirm_ready(self) -> bool:
         if self._menu_confirm_armed:
             return True
-        if self._confirm_held():
+        if self._confirm_held() or self._back_held():
             return False
         self._menu_confirm_armed = True
         return True
@@ -145,7 +156,7 @@ class InputManager:
             self._held_buttons.add((_event_joy_id(event), event.button))
             if self._menu_mode and event.button in TOGGLE_BUTTONS:
                 return "toggle_pack"
-            if event.button in SELECT_BUTTONS:
+            if event.button in BACK_BUTTONS:
                 return "back"
             if event.button in CONFIRM_BUTTONS:
                 return "confirm"
@@ -173,9 +184,9 @@ class InputManager:
             return "back"
 
         for joy_idx, joy in enumerate(self.joysticks):
-            if self._button_held(joy_idx, joy, CONFIRM_BUTTONS[:4]):
+            if self._button_held(joy_idx, joy, CONFIRM_BUTTONS):
                 return "confirm"
-            if _any_button(joy, SELECT_BUTTONS):
+            if _any_button(joy, BACK_BUTTONS):
                 return "back"
         return None
 

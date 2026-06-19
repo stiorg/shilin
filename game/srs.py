@@ -67,7 +67,7 @@ class EndlessSession:
                 new_high = True
             return AnswerResult(
                 correct=True,
-                message=f"Correct! {q.char} → Lv.{self.intervals[q.char]}",
+                message=f"Correct! {q.char} -> Lv.{self.intervals[q.char]}",
                 submessage=f"Streak: {self.current_streak}",
                 new_high_streak=new_high,
             )
@@ -77,7 +77,7 @@ class EndlessSession:
             self.confusion_matrix[q.char].append(selected)
         self.intervals[q.char] = 1
         self.current_streak = 0
-        msg = f"Wrong — answer was '{q.correct}'"
+        msg = f"Wrong - answer was '{q.correct}'"
         sub = f"You picked '{selected}'"
         if streak_broken > 0:
             sub = f"Streak broken at {streak_broken}. {sub}"
@@ -152,7 +152,7 @@ class PackSession:
                 self.current_pack.remove(q.char)
             result = AnswerResult(
                 correct=True,
-                message=f"Correct! {q.char} → Lv.{self.intervals[q.char]}",
+                message=f"Correct! {q.char} -> Lv.{self.intervals[q.char]}",
             )
         else:
             if selected not in self.confusion_matrix[q.char]:
@@ -161,7 +161,7 @@ class PackSession:
             retry = True
             result = AnswerResult(
                 correct=False,
-                message=f"Wrong — answer was '{q.correct}'",
+                message=f"Wrong - answer was '{q.correct}'",
                 submessage=f"'{q.char}' stays in this pack",
             )
 

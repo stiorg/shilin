@@ -6,5 +6,10 @@ log.txt
 
 credentials.txt
 
+fonts/*.otf
+fonts/*.ttf
+fonts/*.ttc
+!fonts/.gitkeep
+
 bopomofo_srs_data.json
 flashcard_srs_data.json

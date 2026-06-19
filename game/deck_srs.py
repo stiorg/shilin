@@ -167,7 +167,7 @@ class DeckEndlessSession:
                 new_high = True
             return AnswerResult(
                 correct=True,
-                message=f"Correct! → Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
                 submessage=f"Streak: {self.current_streak}",
                 new_high_streak=new_high,
             )
@@ -181,7 +181,7 @@ class DeckEndlessSession:
             sub = f"Streak broken at {streak_broken}. {sub}"
         return AnswerResult(
             correct=False,
-            message=f"Wrong — answer was '{q.correct}'",
+            message=f"Wrong - answer was '{q.correct}'",
             submessage=sub,
             streak_broken=streak_broken,
         )
@@ -204,7 +204,7 @@ class DeckEndlessSession:
                 new_high = True
             return AnswerResult(
                 correct=True,
-                message=f"Correct! → Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
                 submessage=f"Streak: {self.current_streak}",
                 new_high_streak=new_high,
             )
@@ -303,7 +303,7 @@ class DeckPackSession:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
                 correct=True,
-                message=f"Correct! → Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
             )
         else:
             remember_mistake(self.srs, card_id, selected, mode=self.ctx.mode)
@@ -312,7 +312,7 @@ class DeckPackSession:
             front = self.ctx.by_id[card_id].front
             result = AnswerResult(
                 correct=False,
-                message=f"Wrong — answer was '{q.correct}'",
+                message=f"Wrong - answer was '{q.correct}'",
                 submessage=f"'{front}' stays in this pack",
             )
 
@@ -341,7 +341,7 @@ class DeckPackSession:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
                 correct=True,
-                message=f"Correct! → Lv.{self.srs['intervals'][card_id]}",
+                message=f"Correct! -> Lv.{self.srs['intervals'][card_id]}",
             )
         else:
             matrix = self.srs["confusion_matrix"].setdefault(card_id, [])
