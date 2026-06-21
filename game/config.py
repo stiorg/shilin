@@ -35,6 +35,11 @@ NAV_COOLDOWN = 0.2
 
 FPS = 60
 
+# Handheld: short tap only; long holds ignored. Quit needs deliberate combo hold.
+BUTTON_TAP_MIN_SECONDS = 0.04
+BUTTON_TAP_MAX_SECONDS = 0.45 if _handheld else 10.0
+QUIT_COMBO_HOLD_SECONDS = 1.25 if _handheld else 0.0
+
 
 def default_fullscreen() -> bool:
     return os.environ.get("MUOS") == "1" or bool(os.environ.get("DEVICE"))

@@ -43,7 +43,7 @@ echo.
 echo Testing passwordless login...
 ssh -o BatchMode=yes -o ConnectTimeout=5 "%REMOTE%" "echo OK"
 if errorlevel 1 (
-    echo WARN: key login failed — muOS may need sshd config change.
+    echo WARN: key login failed - muOS may need sshd config change.
     echo Try manually: ssh %REMOTE%
     exit /b 1
 )

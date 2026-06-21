@@ -8,7 +8,7 @@ import pygame
 
 from game import config
 from game.cards import list_deck_files, load_deck
-from game.data import BOPOMOFO_DICT, load_game_data, save_game_data
+from game.data import BOPOMOFO_DICT, all_time_high_streak, load_game_data, save_game_data
 from game.deck_modes import (
     DECK_MODE_LABELS,
     cycle_mode,
@@ -103,7 +103,7 @@ class App:
         return due_count(sched, ids, today_str())
 
     def _menu_extra(self) -> str:
-        high = self.game_data["all_time_high_streak"]
+        high = all_time_high_streak(self.game_data, self.deck_store)
         deck_count = len(list_deck_files())
         bpm_due = due_count(self.game_data, list(BOPOMOFO_DICT.keys()), today_str())
         if self._deck_ctx:
@@ -194,7 +194,8 @@ class App:
             cards = load_deck(deck_file)
             srs = deck_srs(self.deck_store, deck_file, cards)
             self._deck_ctx = DeckContext(
-                deck_file, cards, srs, self.deck_store, deck_mode(self.deck_store)
+                deck_file, cards, srs, self.deck_store, deck_mode(self.deck_store),
+                global_data=self.game_data,
             )
         except (OSError, ValueError):
             self._deck_ctx = None
@@ -318,7 +319,7 @@ class App:
         if not parts:
             return ""
         if config.is_handheld():
-            parts.append("Start+Select - Exit | B - Back")
+            parts.append("Hold Start+Select - Exit | B - Back")
             return " | ".join(parts)
         parts.append("Esc - Back | Enter - Select")
         return " | ".join(parts)
@@ -399,7 +400,8 @@ class App:
                             srs = deck_srs(self.deck_store, picked, cards)
                             save_store(self.deck_store)
                             self._deck_ctx = DeckContext(
-                                picked, cards, srs, self.deck_store, deck_mode(self.deck_store)
+                                picked, cards, srs, self.deck_store, deck_mode(self.deck_store),
+                                global_data=self.game_data,
                             )
                             return
                         except (OSError, ValueError) as exc:
@@ -422,7 +424,8 @@ class App:
                             srs = deck_srs(self.deck_store, picked, cards)
                             save_store(self.deck_store)
                             self._deck_ctx = DeckContext(
-                                picked, cards, srs, self.deck_store, deck_mode(self.deck_store)
+                                picked, cards, srs, self.deck_store, deck_mode(self.deck_store),
+                                global_data=self.game_data,
                             )
                             return
                         except (OSError, ValueError) as exc:
@@ -450,11 +453,31 @@ class App:
             self.renderer.draw_notice(title, message)
             pygame.display.flip()
 
+    def _wrong_feedback_note(self, feedback: AnswerResult) -> str:
+        if feedback.streak_broken:
+            return f"Streak broken at {feedback.streak_broken}"
+        sub = feedback.submessage or ""
+        if "pack" in sub.lower():
+            return "Stays in pack"
+        return ""
+
+    def _quiz_feedback_fields(
+        self, feedback: AnswerResult | None, correct_answer: str
+    ) -> tuple[str | None, bool | None, str, str]:
+        if feedback is None:
+            return None, None, "", ""
+        if feedback.correct:
+            text = feedback.message
+            if feedback.submessage:
+                text += f" - {feedback.submessage}"
+            return text, True, "", ""
+        return None, False, correct_answer, self._wrong_feedback_note(feedback)
+
     def _session_status(self, session: Any, pack: bool) -> str:
-        if pack:
-            return session.pack_label()[:48]
         parts: list[str] = []
-        if hasattr(session, "due_remaining"):
+        if pack:
+            parts.append(session.pack_label()[:48])
+        elif hasattr(session, "due_remaining"):
             parts.append(f"Due: {session.due_remaining}")
         streak = getattr(session, "current_streak", 0)
         if streak:
@@ -533,6 +556,7 @@ class App:
             level_label = f"Lv.{drill.level}" if drill.level > 1 else "New"
             fb_text = None
             fb_ok = None
+            fb_note = ""
             correct_reading = ""
             your_reading = ""
             if feedback:
@@ -543,8 +567,7 @@ class App:
                         fb_text += f" - {feedback.submessage}"
                 else:
                     correct_reading = drill.correct
-                    your_reading = drill.reading()
-                    fb_text = feedback.submessage or ""
+                    fb_note = self._wrong_feedback_note(feedback)
 
             self.renderer.draw_tone_quiz(
                 mode_label,
@@ -556,6 +579,7 @@ class App:
                 drill.selected,
                 fb_text,
                 fb_ok,
+                fb_note,
                 correct_reading,
                 your_reading,
             )
@@ -653,13 +677,9 @@ class App:
                     feedback_timer = config.FEEDBACK_DURATION
 
             level_label = f"Lv.{question.level}" if question.level > 1 else "New"
-            fb_text = None
-            fb_ok = None
-            if feedback:
-                fb_text = feedback.message
-                if feedback.submessage:
-                    fb_text += f" - {feedback.submessage}"
-                fb_ok = feedback.correct
+            fb_text, fb_ok, fb_answer, fb_note = self._quiz_feedback_fields(
+                feedback, question.correct
+            )
 
             deck_mode_name = getattr(getattr(session, "ctx", None), "mode", "standard")
             self.renderer.draw_quiz(
@@ -671,6 +691,8 @@ class App:
                 selected,
                 fb_text,
                 fb_ok,
+                fb_answer,
+                fb_note,
                 question.hint,
                 uses_chinese_choices(deck_mode_name),
                 self._deck_prompt_style(deck_mode_name),

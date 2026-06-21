@@ -18,7 +18,8 @@ COLOR_SELECT = (255, 210, 80)
 COLOR_SELECT_BG = (55, 65, 95)
 COLOR_OPTION = (36, 42, 62)
 COLOR_CORRECT = (80, 200, 120)
-COLOR_WRONG = (220, 90, 90)
+COLOR_WRONG = (255, 95, 90)
+COLOR_WRONG_PANEL = (52, 30, 36)
 COLOR_CHAR = (255, 245, 220)
 CHOICE_MAX_LEN = 34
 
@@ -178,10 +179,10 @@ class Renderer:
     def _handheld_hint(self, quiz: bool = False) -> str:
         if quiz:
             if config.is_handheld():
-                return "D-pad - Move | A - Confirm | B - Back | Start+Select - Exit"
+                return "D-pad - Move | A - Confirm | B - Back | Hold Start+Select - Exit"
             return "1-5 - Answer | D-pad+Enter - Select | Esc - Back"
         if config.is_handheld():
-            return "Start+Select - Exit | B - Back"
+            return "Hold Start+Select - Exit | B - Back"
         return "Esc - Back | Enter - Select"
 
     def draw_menu(
@@ -281,9 +282,69 @@ class Renderer:
             prompt_y = min_y
         return prompt_y, level_y
 
-    def _blit_level_label(self, level_label: str, y: int) -> None:
-        surf = self.font_small.render(level_label, True, COLOR_MUTED)
-        self.screen.blit(surf, (12, y))
+    def _wrap_text_lines(
+        self, text: str, font: pygame.font.Font, max_w: int, max_lines: int = 2
+    ) -> list[str]:
+        words = text.split()
+        if not words:
+            return [""]
+        lines: list[str] = []
+        current = ""
+        for word in words:
+            trial = f"{current} {word}".strip()
+            if font.size(trial)[0] <= max_w:
+                current = trial
+                continue
+            if current:
+                lines.append(current)
+            current = word
+            if len(lines) >= max_lines:
+                break
+        if current and len(lines) < max_lines:
+            lines.append(current)
+        if len(lines) > max_lines:
+            lines = lines[:max_lines]
+        if len(lines) == max_lines and len(" ".join(words)) > len(" ".join(lines)):
+            lines[-1] = _truncate(lines[-1], max(12, len(lines[-1]) - 4))
+        return lines or [_truncate(text, 40)]
+
+    def _draw_answer_wrong_panel(
+        self,
+        rect: pygame.Rect,
+        answer: str,
+        note: str = "",
+    ) -> None:
+        pygame.draw.rect(self.screen, COLOR_WRONG_PANEL, rect, border_radius=10)
+        pygame.draw.rect(self.screen, COLOR_WRONG, rect, 3, border_radius=10)
+
+        y = rect.y + 12
+        wrong = self.font_large.render("Wrong", True, COLOR_WRONG)
+        self.screen.blit(wrong, (rect.centerx - wrong.get_width() // 2, y))
+        y += wrong.get_height() + 10
+
+        label = self.font_small.render("Answer", True, COLOR_MUTED)
+        self.screen.blit(label, (rect.centerx - label.get_width() // 2, y))
+        y += label.get_height() + 6
+
+        line_h = self.font.get_height() + 4
+        max_w = rect.width - 28
+        for line in self._wrap_text_lines(answer, self.font, max_w, max_lines=2):
+            self._blit_mixed_line(
+                line,
+                COLOR_TEXT,
+                y,
+                align="center",
+                max_w=max_w,
+            )
+            y += line_h
+
+        if note:
+            note_surf = self.font_small.render(_truncate(note, 40), True, COLOR_MUTED)
+            note_y = rect.bottom - note_surf.get_height() - 10
+            self.screen.blit(
+                note_surf,
+                (rect.centerx - note_surf.get_width() // 2, note_y),
+            )
 
     def draw_tone_quiz(
         self,
@@ -296,6 +357,7 @@ class Renderer:
         selected_idx: int,
         feedback: str | None = None,
         feedback_ok: bool | None = None,
+        feedback_note: str = "",
         correct_reading: str = "",
         your_reading: str = "",
     ) -> None:
@@ -357,9 +419,14 @@ class Renderer:
             )
 
         if show_wrong_panel:
-            self._draw_tone_wrong_feedback(
-                correct_reading, your_reading, feedback or "", 200
+            panel_top = 196
+            panel_rect = pygame.Rect(
+                36,
+                panel_top,
+                config.SCREEN_WIDTH - 72,
+                config.SCREEN_HEIGHT - self._quiz_footer_reserve() - panel_top - 8,
             )
+            self._draw_tone_wrong_panel(panel_rect, correct_reading, feedback_note)
         elif feedback:
             color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
             self._blit_feedback(feedback, color, config.SCREEN_HEIGHT - 56)
@@ -398,36 +465,37 @@ class Renderer:
             x += surf.get_width() + gap
         return y + row_h + pad_y * 2
 
-    def _draw_tone_wrong_feedback(
-        self, correct_reading: str, your_reading: str, note: str, start_y: int
+    def _draw_tone_wrong_panel(
+        self,
+        rect: pygame.Rect,
+        correct_reading: str,
+        note: str = "",
     ) -> None:
-        y = start_y
-        label = self.font.render("Wrong", True, COLOR_WRONG)
-        self.screen.blit(label, (config.SCREEN_WIDTH // 2 - label.get_width() // 2, y))
+        pygame.draw.rect(self.screen, COLOR_WRONG_PANEL, rect, border_radius=10)
+        pygame.draw.rect(self.screen, COLOR_WRONG, rect, 3, border_radius=10)
+
+        y = rect.y + 12
+        label = self.font_large.render("Wrong", True, COLOR_WRONG)
+        self.screen.blit(label, (rect.centerx - label.get_width() // 2, y))
         y += label.get_height() + 12
 
-        if your_reading:
-            prefix = self.font.render("You entered: ", True, COLOR_MUTED)
-            entry = self._pinyin_font().render(your_reading, True, COLOR_WRONG)
-            total_w = prefix.get_width() + entry.get_width()
-            x = config.SCREEN_WIDTH // 2 - total_w // 2
-            self.screen.blit(prefix, (x, y))
-            self.screen.blit(entry, (x + prefix.get_width(), y))
-            y += max(prefix.get_height(), entry.get_height()) + 16
-
-        answer_label = self.font_small.render("Correct reading", True, COLOR_MUTED)
-        self.screen.blit(
-            answer_label,
-            (config.SCREEN_WIDTH // 2 - answer_label.get_width() // 2, y),
-        )
-        y += 22
+        cap = self.font_small.render("Correct reading", True, COLOR_MUTED)
+        self.screen.blit(cap, (rect.centerx - cap.get_width() // 2, y))
+        y += cap.get_height() + 8
 
         correct_parts = correct_reading.split()
-        y = self._draw_syllable_row(correct_parts, y + 4, COLOR_CORRECT, highlight=True) + 8
+        self._draw_syllable_row(correct_parts, y, COLOR_CORRECT, highlight=True)
 
         if note:
-            y += 26
-            self._blit_feedback(note, COLOR_MUTED, y)
+            note_surf = self.font_small.render(_truncate(note, 40), True, COLOR_MUTED)
+            self.screen.blit(
+                note_surf,
+                (rect.centerx - note_surf.get_width() // 2, rect.bottom - note_surf.get_height() - 10),
+            )
+
+    def _blit_level_label(self, level_label: str, y: int) -> None:
+        surf = self.font_small.render(level_label, True, COLOR_MUTED)
+        self.screen.blit(surf, (12, y))
 
     def draw_quiz(
         self,
@@ -439,6 +507,8 @@ class Renderer:
         selected: int,
         feedback: str | None = None,
         feedback_ok: bool | None = None,
+        feedback_answer: str = "",
+        feedback_note: str = "",
         prompt_hint: str = "",
         chinese_choices: bool = False,
         prompt_style: str = "chinese",
@@ -482,28 +552,42 @@ class Renderer:
         self._blit_level_label(level_label, level_y)
 
         opt_h, opt_gap, row_step = self._quiz_option_metrics(len(choices))
-        for i, choice in enumerate(choices):
-            y = choices_start + i * row_step
-            rect = pygame.Rect(60, y, config.SCREEN_WIDTH - 120, opt_h)
-            selected_row = i == selected
-            bg = COLOR_SELECT_BG if selected_row else COLOR_OPTION
-            pygame.draw.rect(self.screen, bg, rect, border_radius=8)
-            if selected_row:
-                pygame.draw.rect(self.screen, COLOR_SELECT, rect, 2, border_radius=8)
-            shown = _truncate(chinese_display(choice) if chinese_choices else choice)
-            if config.is_handheld():
-                prefix = "> " if selected_row else "  "
-                label = prefix + shown
-            else:
-                label = f"[{i + 1}] {shown}"
-            self._blit_choice_label(
-                label,
-                COLOR_SELECT if selected_row else COLOR_TEXT,
-                rect,
-                chinese_only=chinese_choices,
+        show_wrong = feedback_ok is False and bool(feedback_answer)
+        if show_wrong:
+            panel_rect = pygame.Rect(
+                36,
+                choices_start,
+                config.SCREEN_WIDTH - 72,
+                config.SCREEN_HEIGHT - self._quiz_footer_reserve() - choices_start - 8,
             )
+            self._draw_answer_wrong_panel(
+                panel_rect,
+                feedback_answer or "?",
+                feedback_note,
+            )
+        else:
+            for i, choice in enumerate(choices):
+                y = choices_start + i * row_step
+                rect = pygame.Rect(60, y, config.SCREEN_WIDTH - 120, opt_h)
+                selected_row = i == selected
+                bg = COLOR_SELECT_BG if selected_row else COLOR_OPTION
+                pygame.draw.rect(self.screen, bg, rect, border_radius=8)
+                if selected_row:
+                    pygame.draw.rect(self.screen, COLOR_SELECT, rect, 2, border_radius=8)
+                shown = _truncate(chinese_display(choice) if chinese_choices else choice)
+                if config.is_handheld():
+                    prefix = "> " if selected_row else "  "
+                    label = prefix + shown
+                else:
+                    label = f"[{i + 1}] {shown}"
+                self._blit_choice_label(
+                    label,
+                    COLOR_SELECT if selected_row else COLOR_TEXT,
+                    rect,
+                    chinese_only=chinese_choices,
+                )
 
-        if feedback:
+        if feedback and feedback_ok is not False:
             color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
             self._blit_feedback(feedback, color, config.SCREEN_HEIGHT - 56)
 

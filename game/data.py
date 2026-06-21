@@ -30,6 +30,9 @@ def load_game_data() -> dict:
         "pack_mode": False,
         "all_time_high_streak": 0,
         "intervals": {char: 1 for char in BOPOMOFO_DICT},
+        "ease_factors": {char: 2.5 for char in BOPOMOFO_DICT},
+        "repetitions": {char: 0 for char in BOPOMOFO_DICT},
+        "last_reviewed_at": {char: "" for char in BOPOMOFO_DICT},
         "confusion_matrix": {char: [] for char in BOPOMOFO_DICT},
     }
     if os.path.exists(DATA_FILE):
@@ -50,6 +53,17 @@ def load_game_data() -> dict:
 def save_game_data(data: dict) -> None:
     with open(DATA_FILE, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=4)
+
+
+def all_time_high_streak(game_data: dict, deck_store: dict | None = None) -> int:
+    """Global best streak across bopomofo and all character deck modes."""
+    high = int(game_data.get("all_time_high_streak", 0))
+    if not deck_store:
+        return high
+    for deck in deck_store.get("decks", {}).values():
+        for bucket in deck.get("modes", {}).values():
+            high = max(high, int(bucket.get("all_time_high_streak", 0)))
+    return high
 
 
 def generate_dynamic_choices(correct_answer: str, char: str, game_data: dict) -> list[str]:

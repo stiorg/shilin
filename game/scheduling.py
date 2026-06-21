@@ -1,11 +1,15 @@
-"""Calendar-based spaced repetition (Anki-style due dates)."""
+"""Calendar-based spaced repetition using the SuperMemo SM-2 algorithm."""
 
 from __future__ import annotations
 
 import random
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 MAX_INTERVAL_DAYS = 180
+DEFAULT_EASE_FACTOR = 2.5
+MIN_EASE_FACTOR = 1.3
+QUALITY_CORRECT = 4
+QUALITY_WRONG = 1
 
 
 def today_str() -> str:
@@ -20,13 +24,37 @@ def add_days(day: str, days: int) -> str:
     return (parse_day(day) + timedelta(days=days)).isoformat()
 
 
+def _infer_repetitions(interval: int) -> int:
+    """Best-effort SM-2 repetition count when migrating legacy interval data."""
+    if interval <= 1:
+        return 0
+    if interval <= 6:
+        return 1
+    return 2
+
+
+def _update_ease_factor(ease_factor: float, quality: int) -> float:
+    delta = 0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)
+    return max(MIN_EASE_FACTOR, ease_factor + delta)
+
+
+def review_timestamp() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
 def ensure_schedule(srs: dict, item_ids: list[str]) -> None:
-    """Ensure due dates exist; migrate legacy interval-only data."""
+    """Ensure due dates and SM-2 fields exist; migrate legacy interval-only data."""
     intervals = srs.setdefault("intervals", {})
     due = srs.setdefault("due", {})
+    ease_factors = srs.setdefault("ease_factors", {})
+    repetitions = srs.setdefault("repetitions", {})
+    last_reviewed = srs.setdefault("last_reviewed_at", {})
     today = today_str()
     for item_id in item_ids:
         intervals.setdefault(item_id, 1)
+        ease_factors.setdefault(item_id, DEFAULT_EASE_FACTOR)
+        repetitions.setdefault(item_id, _infer_repetitions(intervals[item_id]))
+        last_reviewed.setdefault(item_id, "")
         if item_id not in due:
             # Legacy intervals were review weights, not calendar spacing.
             # Treat unseen due entries as due today so scheduling starts cleanly.
@@ -35,6 +63,14 @@ def ensure_schedule(srs: dict, item_ids: list[str]) -> None:
 
 def interval_days(srs: dict, item_id: str) -> int:
     return int(srs["intervals"].get(item_id, 1))
+
+
+def ease_factor(srs: dict, item_id: str) -> float:
+    return float(srs.setdefault("ease_factors", {}).get(item_id, DEFAULT_EASE_FACTOR))
+
+
+def repetition_count(srs: dict, item_id: str) -> int:
+    return int(srs.setdefault("repetitions", {}).get(item_id, 0))
 
 
 def due_on(srs: dict, item_id: str) -> str:
@@ -79,19 +115,51 @@ def pick_due_id(srs: dict, item_ids: list[str], today: str | None = None) -> str
     return random.choices(due, weights=weights, k=1)[0]
 
 
-def schedule_correct(srs: dict, item_id: str, today: str | None = None) -> int:
+def sm2_schedule(
+    srs: dict,
+    item_id: str,
+    quality: int,
+    today: str | None = None,
+) -> int:
+    """Apply SuperMemo SM-2 for a review quality in 0..5. Returns new interval days."""
     today = today or today_str()
+    quality = max(0, min(5, quality))
+    ef = ease_factor(srs, item_id)
+    reps = repetition_count(srs, item_id)
     interval = interval_days(srs, item_id)
-    new_interval = min(max(interval * 2, 1), MAX_INTERVAL_DAYS)
+
+    if quality < 3:
+        reps = 0
+        new_interval = 1
+    else:
+        ef = _update_ease_factor(ef, quality)
+        if reps == 0:
+            new_interval = 1
+        elif reps == 1:
+            new_interval = 6
+        else:
+            new_interval = max(1, round(interval * ef))
+        reps += 1
+
+    new_interval = min(new_interval, MAX_INTERVAL_DAYS)
+    srs.setdefault("ease_factors", {})[item_id] = ef
+    srs.setdefault("repetitions", {})[item_id] = reps
     srs["intervals"][item_id] = new_interval
-    srs["due"][item_id] = add_days(today, new_interval)
+    if quality < 3:
+        # Keep failed cards in today's queue for same-session re-review.
+        srs["due"][item_id] = today
+    else:
+        srs["due"][item_id] = add_days(today, new_interval)
+    srs.setdefault("last_reviewed_at", {})[item_id] = review_timestamp()
     return new_interval
 
 
+def schedule_correct(srs: dict, item_id: str, today: str | None = None) -> int:
+    return sm2_schedule(srs, item_id, QUALITY_CORRECT, today)
+
+
 def schedule_wrong(srs: dict, item_id: str, today: str | None = None) -> None:
-    today = today or today_str()
-    srs["intervals"][item_id] = 1
-    srs["due"][item_id] = today
+    sm2_schedule(srs, item_id, QUALITY_WRONG, today)
 
 
 def due_menu_suffix(count: int) -> str:

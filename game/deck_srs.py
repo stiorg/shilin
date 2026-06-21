@@ -6,6 +6,7 @@ import random
 from dataclasses import dataclass, field
 
 from game.cards import Card
+from game.data import save_game_data
 from game.deck_modes import is_tone_mode, normalize_mode, requires_meaning
 from game.deck_store import (
     chinese_display,
@@ -35,6 +36,7 @@ class DeckContext:
     srs: dict
     store: dict
     mode: str = "standard"
+    global_data: dict | None = None
     by_id: dict[str, Card] = field(init=False)
     fronts: list[str] = field(init=False)
     backs: list[str] = field(init=False)
@@ -97,6 +99,32 @@ def _make_tone_drill(ctx: DeckContext, card: Card) -> ToneDrill:
 
 def _eligible_ids(ctx: DeckContext) -> list[str]:
     return [c.id for c in ctx.eligible_cards()]
+
+
+def _record_streak(
+    ctx: DeckContext,
+    schedule: dict,
+    current_streak: int,
+    max_streak_this_session: int,
+) -> tuple[int, bool]:
+    new_max = max(max_streak_this_session, current_streak)
+    schedule["all_time_high_streak"] = max(
+        int(schedule.get("all_time_high_streak", 0)),
+        new_max,
+    )
+    new_high = False
+    if ctx.global_data is not None:
+        global_high = int(ctx.global_data.get("all_time_high_streak", 0))
+        if new_max > global_high:
+            ctx.global_data["all_time_high_streak"] = new_max
+            new_high = True
+    return new_max, new_high
+
+
+def _save_deck_session(ctx: DeckContext) -> None:
+    if ctx.global_data is not None:
+        save_game_data(ctx.global_data)
+    ctx.save()
 
 
 def _pick_card_id(ctx: DeckContext) -> str:
@@ -196,12 +224,12 @@ class DeckEndlessSession:
         if selected == q.correct:
             self.current_streak += 1
             new_iv = schedule_correct(self.schedule, card_id, today_str())
-            new_high = False
-            if self.current_streak > self.max_streak_this_session:
-                self.max_streak_this_session = self.current_streak
-            if self.max_streak_this_session > self.schedule["all_time_high_streak"]:
-                self.schedule["all_time_high_streak"] = self.max_streak_this_session
-                new_high = True
+            self.max_streak_this_session, new_high = _record_streak(
+                self.ctx,
+                self.schedule,
+                self.current_streak,
+                self.max_streak_this_session,
+            )
             return AnswerResult(
                 correct=True,
                 message=f"Correct! -> {new_iv}d",
@@ -233,12 +261,12 @@ class DeckEndlessSession:
         if selected == correct:
             self.current_streak += 1
             new_iv = schedule_correct(self.schedule, card_id, today_str())
-            new_high = False
-            if self.current_streak > self.max_streak_this_session:
-                self.max_streak_this_session = self.current_streak
-            if self.max_streak_this_session > self.schedule["all_time_high_streak"]:
-                self.schedule["all_time_high_streak"] = self.max_streak_this_session
-                new_high = True
+            self.max_streak_this_session, new_high = _record_streak(
+                self.ctx,
+                self.schedule,
+                self.current_streak,
+                self.max_streak_this_session,
+            )
             return AnswerResult(
                 correct=True,
                 message=f"Correct! -> {new_iv}d",
@@ -261,7 +289,7 @@ class DeckEndlessSession:
         )
 
     def save(self) -> None:
-        self.ctx.save()
+        _save_deck_session(self.ctx)
 
 
 @dataclass
@@ -275,6 +303,8 @@ class DeckPackSession:
     pack_cleared: bool = False
     pack_rolled: bool = False
     all_done: bool = False
+    current_streak: int = 0
+    max_streak_this_session: int = 0
     _current_id: str | None = None
 
     def __post_init__(self) -> None:
@@ -343,22 +373,37 @@ class DeckPackSession:
         retry = False
 
         if selected == q.correct:
+            self.current_streak += 1
             new_iv = schedule_correct(self.schedule, card_id, today_str())
+            self.max_streak_this_session, new_high = _record_streak(
+                self.ctx,
+                self.schedule,
+                self.current_streak,
+                self.max_streak_this_session,
+            )
             if card_id in self.current_pack:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
                 correct=True,
                 message=f"Correct! -> {new_iv}d",
+                submessage=f"Streak: {self.current_streak}",
+                new_high_streak=new_high,
             )
         else:
+            streak_broken = self.current_streak
             remember_mistake(self.schedule, card_id, selected, mode=self.ctx.mode)
             schedule_wrong(self.schedule, card_id, today_str())
+            self.current_streak = 0
             retry = True
             front = self.ctx.by_id[card_id].front
+            sub = f"'{front}' stays in this pack"
+            if streak_broken > 0:
+                sub = f"Streak broken at {streak_broken}. {sub}"
             result = AnswerResult(
                 correct=False,
                 message=f"Wrong - answer was '{q.correct}'",
-                submessage=f"'{front}' stays in this pack",
+                submessage=sub,
+                streak_broken=streak_broken,
             )
 
         if not self.current_pack:
@@ -381,24 +426,39 @@ class DeckPackSession:
         retry = False
 
         if selected == correct:
+            self.current_streak += 1
             new_iv = schedule_correct(self.schedule, card_id, today_str())
+            self.max_streak_this_session, new_high = _record_streak(
+                self.ctx,
+                self.schedule,
+                self.current_streak,
+                self.max_streak_this_session,
+            )
             if card_id in self.current_pack:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
                 correct=True,
                 message=f"Correct! -> {new_iv}d",
+                submessage=f"Streak: {self.current_streak}",
+                new_high_streak=new_high,
             )
         else:
+            streak_broken = self.current_streak
             matrix = self.schedule["confusion_matrix"].setdefault(card_id, [])
             if selected not in matrix:
                 matrix.append(selected)
             schedule_wrong(self.schedule, card_id, today_str())
+            self.current_streak = 0
             retry = True
             front = self.ctx.by_id[card_id].front
+            sub = f"'{front}' stays in this pack"
+            if streak_broken > 0:
+                sub = f"Streak broken at {streak_broken}. {sub}"
             result = AnswerResult(
                 correct=False,
                 message="Wrong",
-                submessage=f"'{front}' stays in this pack",
+                submessage=sub,
+                streak_broken=streak_broken,
             )
 
         if not self.current_pack:
@@ -413,4 +473,4 @@ class DeckPackSession:
         return result
 
     def save(self) -> None:
-        self.ctx.save()
+        _save_deck_session(self.ctx)

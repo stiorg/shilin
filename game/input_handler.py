@@ -2,16 +2,19 @@
 
 from __future__ import annotations
 
+import time
+
 import pygame
 
 from game import config
 
 CONFIRM_KEYS = (pygame.K_RETURN, pygame.K_z, pygame.K_SPACE)
 # RG34XX: 0=A 1=B 2=X 3=Y 4=L1 5=R1 6=Select 7=Start
-CONFIRM_BUTTONS = (0, 7)
-BACK_BUTTONS = (1, 6)
-SELECT_BUTTONS = BACK_BUTTONS
-START_BUTTONS = (7,)
+HANDHELD_CONFIRM_BUTTONS = (0,)
+HANDHELD_BACK_BUTTONS = (1,)
+HANDHELD_QUIT_COMBO_BUTTONS = (6, 7)
+PC_CONFIRM_BUTTONS = (0, 7)
+PC_BACK_BUTTONS = (1, 6)
 TOGGLE_KEYS = (pygame.K_SPACE, pygame.K_x, pygame.K_y)
 TOGGLE_BUTTONS = (2, 3, 4, 5)
 
@@ -27,6 +30,14 @@ PICK_KEYS: dict[int, int] = {
 MENU_KEYS: dict[int, str] = {
     pygame.K_0: "exit",
 }
+
+
+def _confirm_buttons() -> tuple[int, ...]:
+    return HANDHELD_CONFIRM_BUTTONS if config.is_handheld() else PC_CONFIRM_BUTTONS
+
+
+def _back_buttons() -> tuple[int, ...]:
+    return HANDHELD_BACK_BUTTONS if config.is_handheld() else PC_BACK_BUTTONS
 
 
 def _event_joy_id(event: pygame.event.Event) -> int:
@@ -46,7 +57,9 @@ class InputManager:
     def __init__(self) -> None:
         self.joysticks: list[pygame.joystick.Joystick] = []
         self._held_buttons: set[tuple[int, int]] = set()
+        self._button_down_at: dict[tuple[int, int], float] = {}
         self._quit_combo_armed = True
+        self._quit_combo_started: float | None = None
         self._quiz_armed = False
         self._menu_mode = True
         self._menu_confirm_armed = False
@@ -67,7 +80,7 @@ class InputManager:
         if keys[pygame.K_ESCAPE]:
             return True
         for joy in self.joysticks:
-            if _any_button(joy, BACK_BUTTONS):
+            if _any_button(joy, _back_buttons()):
                 return True
         return False
 
@@ -87,7 +100,7 @@ class InputManager:
     def quiz_input_ready(self) -> bool:
         if self._quiz_armed:
             return True
-        if self._confirm_held():
+        if self._confirm_held() or self._back_held():
             return False
         self._quiz_armed = True
         return True
@@ -97,7 +110,7 @@ class InputManager:
         if any(keys[k] for k in CONFIRM_KEYS):
             return True
         for joy in self.joysticks:
-            if _any_button(joy, CONFIRM_BUTTONS):
+            if _any_button(joy, _confirm_buttons()):
                 return True
         return False
 
@@ -108,6 +121,22 @@ class InputManager:
             joy = pygame.joystick.Joystick(i)
             joy.init()
             self.joysticks.append(joy)
+
+    def _valid_tap_duration(self, duration: float) -> bool:
+        return (
+            config.BUTTON_TAP_MIN_SECONDS
+            <= duration
+            <= config.BUTTON_TAP_MAX_SECONDS
+        )
+
+    def _action_for_button_release(self, button: int, duration: float) -> str | None:
+        if not self._valid_tap_duration(duration):
+            return None
+        if button in _back_buttons():
+            return "back"
+        if button in _confirm_buttons():
+            return "confirm"
+        return None
 
     def handle_event(self, event: pygame.event.Event) -> str | None:
         if event.type == pygame.QUIT:
@@ -153,20 +182,38 @@ class InputManager:
             if hx == 1:
                 return "right"
         if event.type == pygame.JOYBUTTONDOWN:
-            self._held_buttons.add((_event_joy_id(event), event.button))
+            joy_id = _event_joy_id(event)
+            self._held_buttons.add((joy_id, event.button))
             if self._menu_mode and event.button in TOGGLE_BUTTONS:
                 return "toggle_pack"
-            if event.button in BACK_BUTTONS:
+            if config.is_handheld():
+                if event.button in _back_buttons() or event.button in _confirm_buttons():
+                    self._button_down_at[(joy_id, event.button)] = time.monotonic()
+                    return None
+            if event.button in _back_buttons():
                 return "back"
-            if event.button in CONFIRM_BUTTONS:
+            if event.button in _confirm_buttons():
                 return "confirm"
         if event.type == pygame.JOYBUTTONUP:
-            self._held_buttons.discard((_event_joy_id(event), event.button))
+            joy_id = _event_joy_id(event)
+            self._held_buttons.discard((joy_id, event.button))
+            if config.is_handheld():
+                started = self._button_down_at.pop((joy_id, event.button), None)
+                if started is not None:
+                    return self._action_for_button_release(
+                        event.button,
+                        time.monotonic() - started,
+                    )
         if event.type == pygame.JOYDEVICEADDED:
             self._refresh_joysticks()
         if event.type == pygame.JOYDEVICEREMOVED:
             removed = _event_joy_id(event)
             self._held_buttons = {pair for pair in self._held_buttons if pair[0] != removed}
+            self._button_down_at = {
+                pair: value
+                for pair, value in self._button_down_at.items()
+                if pair[0] != removed
+            }
             self._refresh_joysticks()
         return None
 
@@ -176,19 +223,43 @@ class InputManager:
         return any(pair[0] == joy_idx and pair[1] in indices for pair in self._held_buttons)
 
     def menu_nav(self) -> str | None:
-        """Poll confirm/back only — navigation is edge-triggered via events."""
+        """Poll keyboard confirm/back. Handheld gamepad uses tap-on-release events only."""
         keys = pygame.key.get_pressed()
         if any(keys[k] for k in CONFIRM_KEYS):
             return "confirm"
         if keys[pygame.K_ESCAPE]:
             return "back"
 
+        if config.is_handheld():
+            return None
+
         for joy_idx, joy in enumerate(self.joysticks):
-            if self._button_held(joy_idx, joy, CONFIRM_BUTTONS):
+            if self._button_held(joy_idx, joy, _confirm_buttons()):
                 return "confirm"
-            if _any_button(joy, BACK_BUTTONS):
+            if _any_button(joy, _back_buttons()):
                 return "back"
         return None
+
+    def _handheld_quit_combo_ready(self) -> bool:
+        combo = HANDHELD_QUIT_COMBO_BUTTONS
+        held = any(
+            joy.get_numbuttons() > max(combo)
+            and all(joy.get_button(index) for index in combo)
+            for joy in self.joysticks
+        )
+        if not held:
+            self._quit_combo_started = None
+            return False
+
+        now = time.monotonic()
+        if self._quit_combo_started is None:
+            self._quit_combo_started = now
+            return False
+        if now - self._quit_combo_started < config.QUIT_COMBO_HOLD_SECONDS:
+            return False
+
+        self._quit_combo_started = None
+        return True
 
     def quit_combo_held(self) -> bool:
         keys = pygame.key.get_pressed()
@@ -197,6 +268,12 @@ class InputManager:
                 self._quit_combo_armed = False
                 return True
             return False
+
+        if config.is_handheld():
+            if self._handheld_quit_combo_ready():
+                return True
+            return False
+
         for joy in self.joysticks:
             if joy.get_numbuttons() > 7 and joy.get_button(6) and joy.get_button(7):
                 if self._quit_combo_armed:

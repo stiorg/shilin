@@ -40,6 +40,9 @@ def _fresh_mode_bucket(card_ids: list[str]) -> dict:
     return {
         "all_time_high_streak": 0,
         "intervals": {card_id: 1 for card_id in card_ids},
+        "ease_factors": {card_id: 2.5 for card_id in card_ids},
+        "repetitions": {card_id: 0 for card_id in card_ids},
+        "last_reviewed_at": {card_id: "" for card_id in card_ids},
         "confusion_matrix": {card_id: [] for card_id in card_ids},
     }
 
@@ -70,6 +73,9 @@ def mode_schedule(srs: dict, mode: str, card_ids: list[str]) -> dict:
     bucket = modes[mode]
     for card_id in card_ids:
         bucket["intervals"].setdefault(card_id, 1)
+        bucket.setdefault("ease_factors", {}).setdefault(card_id, 2.5)
+        bucket.setdefault("repetitions", {}).setdefault(card_id, 0)
+        bucket.setdefault("last_reviewed_at", {}).setdefault(card_id, "")
         bucket["confusion_matrix"].setdefault(card_id, [])
     ensure_schedule(bucket, card_ids)
     return bucket
