@@ -6,6 +6,7 @@ import random
 from dataclasses import dataclass, field
 
 from game.data import BOPOMOFO_DICT, generate_dynamic_choices, save_game_data
+from game.mastery import record_review
 from game.scheduling import (
     due_count,
     ensure_schedule,
@@ -83,6 +84,7 @@ class EndlessSession:
             if self.max_streak_this_session > self.game_data["all_time_high_streak"]:
                 self.game_data["all_time_high_streak"] = self.max_streak_this_session
                 new_high = True
+            record_review(self.game_data, True)
             return AnswerResult(
                 correct=True,
                 message=f"Correct! {q.char} -> {new_iv}d",
@@ -95,6 +97,7 @@ class EndlessSession:
             self.confusion_matrix[q.char].append(selected)
         schedule_wrong(self.game_data, q.char, today_str())
         self.current_streak = 0
+        record_review(self.game_data, False)
         msg = f"Wrong - answer was '{q.correct}'"
         sub = f"You picked '{selected}'"
         if streak_broken > 0:
@@ -169,6 +172,7 @@ class PackSession:
             new_iv = schedule_correct(self.game_data, q.char, today_str())
             if q.char in self.current_pack:
                 self.current_pack.remove(q.char)
+            record_review(self.game_data, True)
             result = AnswerResult(
                 correct=True,
                 message=f"Correct! {q.char} -> {new_iv}d",
@@ -178,6 +182,7 @@ class PackSession:
                 self.confusion_matrix[q.char].append(selected)
             schedule_wrong(self.game_data, q.char, today_str())
             retry = True
+            record_review(self.game_data, False)
             result = AnswerResult(
                 correct=False,
                 message=f"Wrong - answer was '{q.correct}'",

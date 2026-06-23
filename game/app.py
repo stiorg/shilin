@@ -21,6 +21,13 @@ from game.deck_modes import (
 from game.deck_srs import DeckContext, DeckEndlessSession, DeckPackSession, ToneDrill
 from game.deck_store import deck_mode, deck_srs, load_store, mode_schedule, save_store
 from game.input_handler import InputManager
+from game.mastery import (
+    format_score_line,
+    graph_series,
+    invalidate_available_cache,
+    mastery_stats,
+    snapshot_mastery,
+)
 from game.renderer import Renderer
 from game.scheduling import due_count, due_menu_suffix, ensure_schedule, today_str
 from game.srs import AnswerResult, EndlessSession, PackSession
@@ -35,6 +42,10 @@ class App:
         self.deck_store = load_store()
         self._nav_cooldown = 0.0
         self._deck_ctx: DeckContext | None = None
+        self._menu_cache_valid = False
+        self._cached_menu_items: list[str] = []
+        self._cached_menu_actions: list[str] = []
+        self._cached_menu_extra = ""
 
     def run(self) -> None:
         while True:
@@ -47,6 +58,8 @@ class App:
                 self._start_deck_session(self._deck_pack_mode())
             elif action == "pick_deck":
                 self._run_deck_picker()
+            elif action == "progress":
+                self._run_progress()
 
     def _tick_cooldown(self, dt: float) -> None:
         self._nav_cooldown = max(0.0, self._nav_cooldown - dt)
@@ -63,11 +76,13 @@ class App:
     def _toggle_bpm_pack_mode(self) -> None:
         self.game_data["pack_mode"] = not self._bpm_pack_mode()
         save_game_data(self.game_data)
+        self._invalidate_menu_cache()
         self._nav_cooldown = config.NAV_COOLDOWN
 
     def _toggle_deck_pack_mode(self) -> None:
         self.deck_store["pack_mode"] = not self._deck_pack_mode()
         save_store(self.deck_store)
+        self._invalidate_menu_cache()
         self._nav_cooldown = config.NAV_COOLDOWN
 
     def _show_caught_up(self) -> None:
@@ -102,17 +117,61 @@ class App:
         sched = mode_schedule(ctx.srs, ctx.mode, ids)
         return due_count(sched, ids, today_str())
 
-    def _menu_extra(self) -> str:
+    def _invalidate_menu_cache(self) -> None:
+        self._menu_cache_valid = False
+
+    def _format_menu_extra(self, stats: dict) -> str:
         high = all_time_high_streak(self.game_data, self.deck_store)
-        deck_count = len(list_deck_files())
         bpm_due = due_count(self.game_data, list(BOPOMOFO_DICT.keys()), today_str())
         if self._deck_ctx:
             deck_due = self._deck_due_count()
-            return (
-                f"Due today: {bpm_due} bopomofo, {deck_due} cards"
+            due_part = f"{bpm_due} bpm, {deck_due} cards"
+        else:
+            due_part = f"{bpm_due} bopomofo"
+        if config.is_handheld():
+            if stats["studied"] == 0:
+                mastery_part = "Mastery: -"
+            else:
+                mastery_part = f"Mastery: {stats['score']:.0f}%"
+            return f"{mastery_part}  |  Due: {due_part}  |  Streak: {high}"
+        mastery = format_score_line(self.game_data, self.deck_store, stats)
+        deck_count = len(list_deck_files())
+        if self._deck_ctx:
+            due_line = (
+                f"Due today: {due_part}"
                 f"  |  Streak: {high}  |  Decks: {deck_count}"
             )
-        return f"Due today: {bpm_due} bopomofo  |  Streak: {high}  |  Decks: {deck_count}"
+        else:
+            due_line = f"Due today: {due_part}  |  Streak: {high}  |  Decks: {deck_count}"
+        return f"{mastery}\n{due_line}"
+
+    def _refresh_menu_cache(self) -> None:
+        ensure_schedule(self.game_data, list(BOPOMOFO_DICT.keys()))
+        stats = mastery_stats(self.game_data, self.deck_store)
+        snapshot_mastery(self.game_data, self.deck_store, stats)
+        bpm_due = due_count(self.game_data, list(BOPOMOFO_DICT.keys()), today_str())
+        layout = self._srs_layout_label(self._bpm_pack_mode())
+        items = [f"Bopomofo - {layout}{due_menu_suffix(bpm_due)}"]
+        actions = ["bpm"]
+        deck = self.deck_store.get("last_deck", "")
+        if deck and self._deck_ctx:
+            deck_due = self._deck_due_count()
+            mode = DECK_MODE_LABELS[deck_mode(self.deck_store)]
+            deck_layout = self._srs_layout_label(self._deck_pack_mode())
+            items += [f"Characters - {mode} - {deck_layout}{due_menu_suffix(deck_due)}"]
+            actions += ["deck"]
+        items += ["Choose Deck…", "Progress", "Exit"]
+        actions += ["pick_deck", "progress", "exit"]
+        self._cached_menu_items = items
+        self._cached_menu_actions = actions
+        self._cached_menu_extra = self._format_menu_extra(stats)
+        self._menu_cache_valid = True
+
+    def _menu_extra(self) -> str:
+        return self._cached_menu_extra
+
+    def _menu_entries(self) -> tuple[list[str], list[str]]:
+        return self._cached_menu_items, self._cached_menu_actions
 
     def _start_deck_session(self, pack: bool) -> None:
         ctx = self._deck_ctx
@@ -166,24 +225,8 @@ class App:
         if self._deck_ctx is not None:
             self._deck_ctx.mode = self.deck_store["deck_mode"]
         save_store(self.deck_store)
+        self._invalidate_menu_cache()
         self._nav_cooldown = config.NAV_COOLDOWN
-
-    def _menu_entries(self) -> tuple[list[str], list[str]]:
-        ensure_schedule(self.game_data, list(BOPOMOFO_DICT.keys()))
-        bpm_due = due_count(self.game_data, list(BOPOMOFO_DICT.keys()), today_str())
-        layout = self._srs_layout_label(self._bpm_pack_mode())
-        items = [f"Bopomofo - {layout}{due_menu_suffix(bpm_due)}"]
-        actions = ["bpm"]
-        deck = self.deck_store.get("last_deck", "")
-        if deck and self._deck_ctx:
-            deck_due = self._deck_due_count()
-            mode = DECK_MODE_LABELS[deck_mode(self.deck_store)]
-            deck_layout = self._srs_layout_label(self._deck_pack_mode())
-            items += [f"Characters - {mode} - {deck_layout}{due_menu_suffix(deck_due)}"]
-            actions += ["deck"]
-        items += ["Choose Deck…", "Exit"]
-        actions += ["pick_deck", "exit"]
-        return items, actions
 
     def _ensure_deck(self) -> None:
         deck_file = self.deck_store.get("last_deck", "")
@@ -206,6 +249,8 @@ class App:
         if picked == "pick_deck":
             self._run_deck_picker()
             self._ensure_deck()
+            invalidate_available_cache()
+            self._invalidate_menu_cache()
             self.input_mgr.arm_for_menu()
             return "menu"
         if picked == "deck" and not self._deck_ctx:
@@ -219,6 +264,9 @@ class App:
     def _run_menu(self) -> str | None:
         self.input_mgr.set_menu_mode(True)
         self._ensure_deck()
+        self._invalidate_menu_cache()
+        self._refresh_menu_cache()
+        save_game_data(self.game_data)
         items, actions = self._menu_entries()
         selected = 0
         clock = pygame.time.Clock()
@@ -226,7 +274,9 @@ class App:
         while True:
             dt = clock.tick(config.FPS) / 1000.0
             self._tick_cooldown(dt)
-            items, actions = self._menu_entries()
+            if not self._menu_cache_valid:
+                self._refresh_menu_cache()
+                items, actions = self._menu_entries()
             menu_hint = self._menu_hint(actions, selected)
 
             for event in pygame.event.get():
@@ -333,6 +383,9 @@ class App:
 
     def _leave_quiz(self, session: Any) -> None:
         session.save()
+        self._invalidate_menu_cache()
+        self._refresh_menu_cache()
+        save_game_data(self.game_data)
         self.input_mgr.arm_for_menu()
 
     def _handle_list_nav(self, action: str, selected: int, count: int) -> str | int:
@@ -451,6 +504,31 @@ class App:
                 if action in ("quit", "back", "confirm") or self.input_mgr.quit_combo_held():
                     return
             self.renderer.draw_notice(title, message)
+            pygame.display.flip()
+
+    def _run_progress(self) -> None:
+        self.input_mgr.set_menu_mode(True)
+        snapshot_mastery(self.game_data, self.deck_store)
+        save_game_data(self.game_data)
+        clock = pygame.time.Clock()
+        while True:
+            dt = clock.tick(config.FPS) / 1000.0
+            self._tick_cooldown(dt)
+
+            for event in pygame.event.get():
+                action = self.input_mgr.handle_event(event)
+                if action in ("quit", "back", "confirm") or self.input_mgr.quit_combo_held():
+                    return
+
+            stats = mastery_stats(self.game_data, self.deck_store)
+            series = graph_series(self.game_data)
+            self.renderer.draw_progress(
+                stats["score"],
+                stats["studied"],
+                stats["available"],
+                stats.get("due_studied", 0),
+                series,
+            )
             pygame.display.flip()
 
     def _wrong_feedback_note(self, feedback: AnswerResult) -> str:

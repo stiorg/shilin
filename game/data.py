@@ -26,6 +26,8 @@ DATA_FILE = os.path.join(ROOT, "bopomofo_srs_data.json")
 
 
 def load_game_data() -> dict:
+    from game.mastery import ensure_mastery
+
     default_data = {
         "pack_mode": False,
         "all_time_high_streak": 0,
@@ -34,6 +36,7 @@ def load_game_data() -> dict:
         "repetitions": {char: 0 for char in BOPOMOFO_DICT},
         "last_reviewed_at": {char: "" for char in BOPOMOFO_DICT},
         "confusion_matrix": {char: [] for char in BOPOMOFO_DICT},
+        "daily_log": {},
     }
     if os.path.exists(DATA_FILE):
         try:
@@ -43,10 +46,12 @@ def load_game_data() -> dict:
                     if "confusion_matrix" not in data:
                         data["confusion_matrix"] = {char: [] for char in BOPOMOFO_DICT}
                     ensure_schedule(data, list(BOPOMOFO_DICT.keys()))
+                    ensure_mastery(data)
                     return data
         except (OSError, json.JSONDecodeError):
             pass
     ensure_schedule(default_data, list(BOPOMOFO_DICT.keys()))
+    ensure_mastery(default_data)
     return default_data
 
 

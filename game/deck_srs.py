@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 
 from game.cards import Card
 from game.data import save_game_data
+from game.mastery import record_review
 from game.deck_modes import is_tone_mode, normalize_mode, requires_meaning
 from game.deck_store import (
     chinese_display,
@@ -121,6 +122,11 @@ def _record_streak(
     return new_max, new_high
 
 
+def _track_review(ctx: DeckContext, correct: bool) -> None:
+    if ctx.global_data is not None:
+        record_review(ctx.global_data, correct)
+
+
 def _save_deck_session(ctx: DeckContext) -> None:
     if ctx.global_data is not None:
         save_game_data(ctx.global_data)
@@ -230,6 +236,7 @@ class DeckEndlessSession:
                 self.current_streak,
                 self.max_streak_this_session,
             )
+            _track_review(self.ctx, True)
             return AnswerResult(
                 correct=True,
                 message=f"Correct! -> {new_iv}d",
@@ -241,6 +248,7 @@ class DeckEndlessSession:
         remember_mistake(self.schedule, card_id, selected, mode=self.ctx.mode)
         schedule_wrong(self.schedule, card_id, today_str())
         self.current_streak = 0
+        _track_review(self.ctx, False)
         sub = f"You picked '{selected}'"
         if streak_broken > 0:
             sub = f"Streak broken at {streak_broken}. {sub}"
@@ -267,6 +275,7 @@ class DeckEndlessSession:
                 self.current_streak,
                 self.max_streak_this_session,
             )
+            _track_review(self.ctx, True)
             return AnswerResult(
                 correct=True,
                 message=f"Correct! -> {new_iv}d",
@@ -278,6 +287,7 @@ class DeckEndlessSession:
         remember_mistake(self.schedule, card_id, selected, mode=self.ctx.mode)
         schedule_wrong(self.schedule, card_id, today_str())
         self.current_streak = 0
+        _track_review(self.ctx, False)
         sub = f"You entered '{selected}'"
         if streak_broken > 0:
             sub = f"Streak broken at {streak_broken}"
@@ -381,6 +391,7 @@ class DeckPackSession:
                 self.current_streak,
                 self.max_streak_this_session,
             )
+            _track_review(self.ctx, True)
             if card_id in self.current_pack:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
@@ -394,6 +405,7 @@ class DeckPackSession:
             remember_mistake(self.schedule, card_id, selected, mode=self.ctx.mode)
             schedule_wrong(self.schedule, card_id, today_str())
             self.current_streak = 0
+            _track_review(self.ctx, False)
             retry = True
             front = self.ctx.by_id[card_id].front
             sub = f"'{front}' stays in this pack"
@@ -434,6 +446,7 @@ class DeckPackSession:
                 self.current_streak,
                 self.max_streak_this_session,
             )
+            _track_review(self.ctx, True)
             if card_id in self.current_pack:
                 self.current_pack.remove(card_id)
             result = AnswerResult(
@@ -449,6 +462,7 @@ class DeckPackSession:
                 matrix.append(selected)
             schedule_wrong(self.schedule, card_id, today_str())
             self.current_streak = 0
+            _track_review(self.ctx, False)
             retry = True
             front = self.ctx.by_id[card_id].front
             sub = f"'{front}' stays in this pack"

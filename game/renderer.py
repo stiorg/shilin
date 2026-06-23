@@ -198,12 +198,14 @@ class Renderer:
         self.clear()
         pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
 
-        title_surf = self.font_large.render(title, True, COLOR_TEXT)
-        y = 28
+        compact = config.is_handheld() and len(items) >= 5
+        title_font = self.font if compact else self.font_large
+        title_surf = title_font.render(title, True, COLOR_TEXT)
+        y = 16 if compact else 28
         self.screen.blit(
             title_surf, (config.SCREEN_WIDTH // 2 - title_surf.get_width() // 2, y)
         )
-        y += title_surf.get_height() + 10
+        y += title_surf.get_height() + (6 if compact else 10)
 
         if deck_label:
             shown = _truncate(deck_label, 44)
@@ -211,25 +213,39 @@ class Renderer:
             self.screen.blit(
                 deck_surf, (config.SCREEN_WIDTH // 2 - deck_surf.get_width() // 2, y)
             )
-            y += deck_surf.get_height() + 8
+            y += deck_surf.get_height() + 4
         elif subtitle:
             sub = self.font_small.render(subtitle, True, COLOR_MUTED)
             self.screen.blit(sub, (config.SCREEN_WIDTH // 2 - sub.get_width() // 2, y))
-            y += sub.get_height() + 8
+            y += sub.get_height() + 4
 
+        extra_font = self.font_small if compact else self.font
         if extra:
-            extra_surf = self.font.render(extra, True, COLOR_SELECT)
-            self.screen.blit(
-                extra_surf, (config.SCREEN_WIDTH // 2 - extra_surf.get_width() // 2, y)
-            )
-            y += extra_surf.get_height() + 10
+            for line in extra.split("\n"):
+                extra_surf = extra_font.render(line, True, COLOR_SELECT)
+                self.screen.blit(
+                    extra_surf,
+                    (config.SCREEN_WIDTH // 2 - extra_surf.get_width() // 2, y),
+                )
+                y += extra_surf.get_height() + 2
+            y += 4
 
-        start_y = y + 4
+        footer_reserve = 34
+        menu_bottom = config.SCREEN_HEIGHT - footer_reserve
+        start_y = y + 2
+        gap = config.OPTION_GAP
         row_h = config.OPTION_HEIGHT
         if len(items) > 4:
-            row_h = max(36, config.OPTION_HEIGHT - 10)
+            row_h = max(32, config.OPTION_HEIGHT - 12)
+        available_h = max(0, menu_bottom - start_y)
+        needed = len(items) * (row_h + gap) - gap
+        if needed > available_h and len(items) > 0:
+            gap = max(2, gap - 2)
+            row_h = max(28, (available_h + gap) // len(items) - gap)
+
+        item_font = self.font_small if row_h < 40 else self.font
         for i, label in enumerate(items):
-            y = start_y + i * (row_h + config.OPTION_GAP)
+            y = start_y + i * (row_h + gap)
             rect = pygame.Rect(80, y, config.SCREEN_WIDTH - 160, row_h)
             selected_row = i == selected
             bg = COLOR_SELECT_BG if selected_row else COLOR_OPTION
@@ -237,10 +253,110 @@ class Renderer:
             if selected_row:
                 pygame.draw.rect(self.screen, COLOR_SELECT, rect, 2, border_radius=8)
             prefix = "> " if selected_row else "  "
-            text = self.font.render(prefix + label, True, COLOR_SELECT if selected_row else COLOR_TEXT)
+            text = item_font.render(
+                prefix + label, True, COLOR_SELECT if selected_row else COLOR_TEXT
+            )
             self.screen.blit(text, (rect.x + 16, rect.centery - text.get_height() // 2))
 
         hint = self.font_small.render(footer_hint or self._handheld_hint(), True, COLOR_MUTED)
+        self.screen.blit(hint, (config.SCREEN_WIDTH // 2 - hint.get_width() // 2, config.SCREEN_HEIGHT - 28))
+
+    def draw_progress(
+        self,
+        score: float,
+        studied: int,
+        available: int,
+        due_studied: int,
+        series: list[tuple[str, float]],
+    ) -> None:
+        self.clear()
+        pygame.draw.rect(self.screen, COLOR_HUD, (0, 0, config.SCREEN_WIDTH, config.HUD_HEIGHT))
+
+        compact = config.is_handheld()
+        title_font = self.font_small if compact else self.font_large
+        score_font = self.font if compact else self.font_large
+        title_y = 14 if compact else 20
+
+        title_surf = title_font.render("PROGRESS", True, COLOR_TEXT)
+        self.screen.blit(
+            title_surf, (config.SCREEN_WIDTH // 2 - title_surf.get_width() // 2, title_y)
+        )
+
+        if studied == 0:
+            score_text = "-"
+            score_color = COLOR_MUTED
+        else:
+            score_text = f"{score:.0f}%"
+            score_color = COLOR_SELECT
+        score_y = title_y + title_surf.get_height() + (4 if compact else 8)
+        score_surf = score_font.render(score_text, True, score_color)
+        self.screen.blit(
+            score_surf, (config.SCREEN_WIDTH // 2 - score_surf.get_width() // 2, score_y)
+        )
+
+        stats = f"{studied} studied  |  {available} available"
+        if studied and due_studied:
+            stats += f"  |  {due_studied} due"
+        stats_font = self.font_small if compact else self.font
+        stats_y = score_y + score_surf.get_height() + (4 if compact else 12)
+        stats_surf = stats_font.render(stats, True, COLOR_MUTED)
+        self.screen.blit(
+            stats_surf, (config.SCREEN_WIDTH // 2 - stats_surf.get_width() // 2, stats_y)
+        )
+
+        chart_left = 56
+        chart_right = config.SCREEN_WIDTH - 56
+        chart_top = stats_y + stats_surf.get_height() + (10 if compact else 16)
+        chart_bottom = config.SCREEN_HEIGHT - 72
+        chart_w = chart_right - chart_left
+        chart_h = chart_bottom - chart_top
+
+        pygame.draw.rect(
+            self.screen,
+            COLOR_OPTION,
+            (chart_left, chart_top, chart_w, chart_h),
+            border_radius=6,
+        )
+        for pct in (25, 50, 75):
+            gy = chart_bottom - int(chart_h * pct / 100)
+            pygame.draw.line(
+                self.screen, (48, 54, 78), (chart_left + 4, gy), (chart_right - 4, gy), 1
+            )
+
+        if series and any(v > 0 for _d, v in series):
+            points: list[tuple[int, int]] = []
+            n = len(series)
+            for i, (_day, value) in enumerate(series):
+                x = chart_left + 4 + int(i * (chart_w - 8) / max(n - 1, 1))
+                y = chart_bottom - 4 - int((chart_h - 8) * min(value, 100) / 100)
+                points.append((x, y))
+            if len(points) >= 2:
+                pygame.draw.lines(self.screen, COLOR_CORRECT, False, points, 2)
+            for x, y in points:
+                pygame.draw.circle(self.screen, COLOR_SELECT, (x, y), 3)
+
+            label_y = chart_top + 6
+            start_lbl = self.font_small.render(series[0][0], True, COLOR_MUTED)
+            end_lbl = self.font_small.render(series[-1][0], True, COLOR_MUTED)
+            self.screen.blit(start_lbl, (chart_left + 8, label_y))
+            self.screen.blit(end_lbl, (chart_right - 8 - end_lbl.get_width(), label_y))
+            y100 = self.font_small.render("100", True, COLOR_MUTED)
+            y0 = self.font_small.render("0", True, COLOR_MUTED)
+            self.screen.blit(y100, (chart_left - y100.get_width() - 4, chart_top - 2))
+            self.screen.blit(y0, (chart_left - y0.get_width() - 4, chart_bottom - y0.get_height()))
+        else:
+            empty = self.font.render("Study cards to build your graph", True, COLOR_MUTED)
+            self.screen.blit(
+                empty,
+                (config.SCREEN_WIDTH // 2 - empty.get_width() // 2, chart_top + chart_h // 2 - 10),
+            )
+
+        caption = self.font_small.render("Mastery (30 days) - studied cards only", True, COLOR_MUTED)
+        self.screen.blit(
+            caption, (config.SCREEN_WIDTH // 2 - caption.get_width() // 2, chart_bottom + 10)
+        )
+
+        hint = self.font_small.render(self._handheld_hint(), True, COLOR_MUTED)
         self.screen.blit(hint, (config.SCREEN_WIDTH // 2 - hint.get_width() // 2, config.SCREEN_HEIGHT - 28))
 
     def _tone_hint(self) -> str:

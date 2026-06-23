@@ -14,7 +14,8 @@ if ROOT not in sys.path:
 
 from game.config import PORT_SLUG
 from game.data import BOPOMOFO_DICT, DATA_FILE as BOPOMOFO_FILE
-from game.deck_store import DATA_FILE as FLASHCARD_FILE
+from game.deck_store import DATA_FILE as FLASHCARD_FILE, load_store
+from game.mastery import snapshot_mastery
 from game.progress_sync import (
     default_bopomofo_data,
     default_flashcard_store,
@@ -50,6 +51,8 @@ def run_merge(
     local_fc = load_json_file(local_fc_path, default_flashcard_store())
     remote_fc = load_json_file(remote_fc or "", default_flashcard_store())
     merged_fc, fc_stats = merge_flashcard_store(local_fc, remote_fc)
+
+    snapshot_mastery(merged_bpm, merged_fc)
 
     _write_json(local_bpm_path, merged_bpm)
     _write_json(local_fc_path, merged_fc)

@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Literal
 
+from game.mastery import DAILY_LOG_KEY, merge_daily_log
 from game.scheduling import ensure_schedule, parse_day
 
 Side = Literal["local", "remote"]
@@ -214,6 +215,10 @@ def merge_bopomofo(local: dict, remote: dict, item_ids: list[str]) -> tuple[dict
         int(remote.get("all_time_high_streak", 0)),
         int(merged.get("all_time_high_streak", 0)),
     )
+    merged[DAILY_LOG_KEY] = merge_daily_log(
+        local.get(DAILY_LOG_KEY, {}),
+        remote.get(DAILY_LOG_KEY, {}),
+    )
     return merged, stats
 
 
@@ -279,6 +284,7 @@ def default_bopomofo_data(item_ids: list[str]) -> dict:
         "repetitions": {item_id: 0 for item_id in item_ids},
         "last_reviewed_at": {item_id: "" for item_id in item_ids},
         "confusion_matrix": {item_id: [] for item_id in item_ids},
+        "daily_log": {},
     }
 
 
