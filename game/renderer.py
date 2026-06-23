@@ -496,9 +496,14 @@ class Renderer:
             (config.SCREEN_WIDTH // 2 - prompt_surf.get_width() // 2, prompt_y),
         )
 
-        self._blit_level_label(level_label, level_y)
-
         show_wrong_panel = feedback_ok is False and correct_reading
+        show_feedback = bool(feedback and feedback_ok is not False and not show_wrong_panel)
+
+        if show_feedback:
+            color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
+            self._blit_feedback(feedback or "", color, level_y)
+        else:
+            self._blit_level_label(level_label, level_y)
 
         if not show_wrong_panel:
             toned = [build_reading([syl], [tone]) for syl, tone in zip(syllables, tones)]
@@ -543,9 +548,6 @@ class Renderer:
                 config.SCREEN_HEIGHT - self._quiz_footer_reserve() - panel_top - 8,
             )
             self._draw_tone_wrong_panel(panel_rect, correct_reading, feedback_note)
-        elif feedback:
-            color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
-            self._blit_feedback(feedback, color, config.SCREEN_HEIGHT - 56)
 
         hint = self.font_small.render(self._tone_hint(), True, COLOR_MUTED)
         self.screen.blit(hint, (config.SCREEN_WIDTH // 2 - hint.get_width() // 2, config.SCREEN_HEIGHT - 28))
@@ -640,6 +642,7 @@ class Renderer:
         )
 
         hint_lines = 1 if prompt_hint else 0
+        show_feedback = bool(feedback and feedback_ok is not False)
         max_prompt_h, choices_start = self._quiz_max_prompt_height(
             len(choices), hint_lines=hint_lines
         )
@@ -665,7 +668,11 @@ class Renderer:
                 (config.SCREEN_WIDTH // 2 - hint_surf.get_width() // 2, hint_y),
             )
 
-        self._blit_level_label(level_label, level_y)
+        if show_feedback:
+            color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
+            self._blit_feedback(feedback or "", color, level_y)
+        else:
+            self._blit_level_label(level_label, level_y)
 
         opt_h, opt_gap, row_step = self._quiz_option_metrics(len(choices))
         show_wrong = feedback_ok is False and bool(feedback_answer)
@@ -702,10 +709,6 @@ class Renderer:
                     rect,
                     chinese_only=chinese_choices,
                 )
-
-        if feedback and feedback_ok is not False:
-            color = COLOR_CORRECT if feedback_ok else COLOR_WRONG
-            self._blit_feedback(feedback, color, config.SCREEN_HEIGHT - 56)
 
         hint = self.font_small.render(self._handheld_hint(quiz=True), True, COLOR_MUTED)
         self.screen.blit(hint, (config.SCREEN_WIDTH // 2 - hint.get_width() // 2, config.SCREEN_HEIGHT - 28))
