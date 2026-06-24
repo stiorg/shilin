@@ -149,12 +149,13 @@ def generate_meaning_choices(correct: str, card_id: str, srs: dict, pool: list[s
         if len(choices) == 5:
             break
 
-    answers = [a for a in pool if a not in choices]
-    random.shuffle(answers)
-    for pick in answers:
-        choices.append(pick)
-        if len(choices) == 5:
-            break
+    if len(choices) < 5:
+        answers = [a for a in pool if a not in choices]
+        random.shuffle(answers)
+        for pick in answers:
+            choices.append(pick)
+            if len(choices) == 5:
+                break
 
     random.shuffle(choices)
     return choices[:5]
@@ -174,12 +175,13 @@ def generate_choices(correct: str, card_id: str, srs: dict, pool: list[str]) -> 
             choices.append(mistake)
         if len(choices) == 5:
             break
-    answers = [a for a in pool if a and a not in choices]
-    random.shuffle(answers)
-    for pick in answers:
-        choices.append(pick)
-        if len(choices) == 5:
-            break
+    if len(choices) < 5:
+        answers = [a for a in pool if a and a not in choices]
+        random.shuffle(answers)
+        for pick in answers:
+            choices.append(pick)
+            if len(choices) == 5:
+                break
     random.shuffle(choices)
     return choices[:5]
 
@@ -200,12 +202,13 @@ def generate_reverse_choices(correct: str, card_id: str, srs: dict, pool: list[s
         if len(choices) == 5:
             break
 
-    answers = [a for a in pool if a not in choices]
-    random.shuffle(answers)
-    for pick in answers:
-        choices.append(pick)
-        if len(choices) == 5:
-            break
+    if len(choices) < 5:
+        answers = [a for a in pool if a not in choices]
+        random.shuffle(answers)
+        for pick in answers:
+            choices.append(pick)
+            if len(choices) == 5:
+                break
 
     random.shuffle(choices)
     return choices[:5]
