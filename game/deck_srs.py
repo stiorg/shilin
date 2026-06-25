@@ -49,6 +49,9 @@ class DeckContext:
         self.fronts = [c.front for c in self.cards]
         self.backs = [c.back for c in self.cards]
         self.meanings = [c.meaning for c in self.cards if c.meaning]
+        random.shuffle(self.fronts)
+        random.shuffle(self.backs)
+        random.shuffle(self.meanings)
 
     def eligible_cards(self) -> list[Card]:
         if requires_meaning(self.mode):

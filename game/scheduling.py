@@ -97,13 +97,27 @@ def due_count(srs: dict, item_ids: list[str], today: str | None = None) -> int:
 
 
 def sorted_due_ids(srs: dict, item_ids: list[str], today: str | None = None) -> list[str]:
-    """Most overdue first, then shorter intervals."""
+    """Most overdue first, then shorter intervals; shuffle within equal priority."""
     today = today or today_str()
 
-    def sort_key(item_id: str) -> tuple[int, int, str]:
-        return (-overdue_days(srs, item_id, today), interval_days(srs, item_id), item_id)
+    def sort_key(item_id: str) -> tuple[int, int]:
+        return (-overdue_days(srs, item_id, today), interval_days(srs, item_id))
 
-    return sorted(due_ids(srs, item_ids, today), key=sort_key)
+    keyed = sorted(
+        ((sort_key(item_id), item_id) for item_id in due_ids(srs, item_ids, today)),
+        key=lambda pair: pair[0],
+    )
+    result: list[str] = []
+    index = 0
+    while index < len(keyed):
+        key = keyed[index][0]
+        group: list[str] = []
+        while index < len(keyed) and keyed[index][0] == key:
+            group.append(keyed[index][1])
+            index += 1
+        random.shuffle(group)
+        result.extend(group)
+    return result
 
 
 def pick_due_id(srs: dict, item_ids: list[str], today: str | None = None) -> str | None:
