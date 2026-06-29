@@ -33,7 +33,7 @@ if not exist "%KEY%" (
 
 echo.
 echo Copying public key to %REMOTE% ^(enter root password one last time^)...
-type "%PUB%" | ssh "%REMOTE%" "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+type "%PUB%" | ssh -o StrictHostKeyChecking=accept-new "%REMOTE%" "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 if errorlevel 1 (
     echo FAILED. Check IP, SSH enabled on device, and password.
     exit /b 1
@@ -41,7 +41,7 @@ if errorlevel 1 (
 
 echo.
 echo Testing passwordless login...
-ssh -o BatchMode=yes -o ConnectTimeout=5 "%REMOTE%" "echo OK"
+ssh -o BatchMode=yes -o ConnectTimeout=5 -o StrictHostKeyChecking=accept-new "%REMOTE%" "echo OK"
 if errorlevel 1 (
     echo WARN: key login failed - muOS may need sshd config change.
     echo Try manually: ssh %REMOTE%

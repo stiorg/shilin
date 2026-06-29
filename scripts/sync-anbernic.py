@@ -124,23 +124,48 @@ def collect_entries(root: Path) -> list[SyncEntry]:
     return entries
 
 
-def run_ssh(remote: str, command: str, *, timeout: int | None = None) -> subprocess.CompletedProcess[str]:
-    cmd = ["ssh", remote, command]
+SSH_OPTS = [
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+]
+
+
+def _ssh_cmd(remote: str, command: str, *, timeout: int | None = None) -> list[str]:
+    cmd = ["ssh", *SSH_OPTS]
     if timeout is not None:
-        cmd = [
-            "ssh",
-            "-o",
-            "BatchMode=yes",
-            "-o",
-            f"ConnectTimeout={timeout}",
-            remote,
-            command,
-        ]
+        cmd.extend(["-o", f"ConnectTimeout={timeout}"])
+    cmd.extend([remote, command])
+    return cmd
+
+
+def _scp_cmd(*args: str) -> list[str]:
+    return ["scp", *SSH_OPTS, *args]
+
+
+def run_ssh(remote: str, command: str, *, timeout: int | None = None) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
-        cmd,
+        _ssh_cmd(remote, command, timeout=timeout),
         capture_output=True,
         text=True,
         check=False,
+    )
+
+
+def _connection_error(remote: str, host: str, detail: str) -> ConnectionError:
+    first_line = detail.splitlines()[0] if detail else "connection failed"
+    lower = detail.lower()
+    if "host key verification failed" in lower:
+        if "offending" in lower or "changed" in lower:
+            hint = f"Host key changed for {host}. Run: ssh-keygen -R {host}"
+        else:
+            hint = f"Unknown host key for {host}. Run setup-ssh-keys.bat once."
+        return ConnectionError(f"Cannot reach {remote} ({first_line}). {hint}")
+    return ConnectionError(
+        f"Cannot reach {remote} ({first_line}). "
+        "Check Wi-Fi, SSH on the device, and DEVICE_IP in credentials.txt "
+        "(or pass the new IP: sync-anbernic.bat <ip>)."
     )
 
 
@@ -149,17 +174,12 @@ def check_connection(remote: str, *, timeout: int = 5) -> None:
     result = run_ssh(remote, "echo OK", timeout=timeout)
     if result.returncode != 0:
         detail = (result.stderr or result.stdout or "connection failed").strip()
-        first_line = detail.splitlines()[0] if detail else "connection failed"
-        raise ConnectionError(
-            f"Cannot reach {remote} ({first_line}). "
-            "Check Wi-Fi, SSH on the device, and DEVICE_IP in credentials.txt "
-            "(or pass the new IP: sync-anbernic.bat <ip>)."
-        )
+        raise _connection_error(remote, remote.split("@", 1)[-1], detail)
 
 
 def run_scp(local: Path, remote_target: str) -> None:
     result = subprocess.run(
-        ["scp", str(local), remote_target],
+        _scp_cmd(str(local), remote_target),
         capture_output=True,
         text=True,
         check=False,
@@ -214,7 +234,7 @@ def pull_progress(remote: str, root: Path) -> None:
             ("flashcard_srs_data.json", remote_fc),
         ):
             subprocess.run(
-                ["scp", f"{remote}:{GAME_DIR}/{name}", str(dest)],
+                _scp_cmd(f"{remote}:{GAME_DIR}/{name}", str(dest)),
                 capture_output=True,
                 check=False,
             )

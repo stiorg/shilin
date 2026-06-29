@@ -44,12 +44,12 @@ if not "%~1"=="" set "CHECK_ARGS=--ip %~1"
 python "%~dp0scripts\sync-anbernic.py" --check-only %CHECK_ARGS% || goto :fail
 
 echo [1/4] Fetch progress from device...
-scp "%REMOTE%:%GAME_DIR%/bopomofo_srs_data.json" "%REMOTE_BPM%" >nul 2>&1
+scp -o BatchMode=yes -o StrictHostKeyChecking=accept-new "%REMOTE%:%GAME_DIR%/bopomofo_srs_data.json" "%REMOTE_BPM%" >nul 2>&1
 if errorlevel 1 (
     echo       no remote bopomofo_srs_data.json yet - treating as empty
     del "%REMOTE_BPM%" >nul 2>&1
 )
-scp "%REMOTE%:%GAME_DIR%/flashcard_srs_data.json" "%REMOTE_FC%" >nul 2>&1
+scp -o BatchMode=yes -o StrictHostKeyChecking=accept-new "%REMOTE%:%GAME_DIR%/flashcard_srs_data.json" "%REMOTE_FC%" >nul 2>&1
 if errorlevel 1 (
     echo       no remote flashcard_srs_data.json yet - treating as empty
     del "%REMOTE_FC%" >nul 2>&1
@@ -59,8 +59,8 @@ echo [2/4] Merge card progress (PC + device)...
 python "%~dp0scripts\sync-progress.py" --remote-bpm "%REMOTE_BPM%" --remote-fc "%REMOTE_FC%" || goto :fail
 
 echo [3/4] Push merged progress to device...
-scp "%~dp0bopomofo_srs_data.json" "%REMOTE%:%GAME_DIR%/" || goto :fail
-scp "%~dp0flashcard_srs_data.json" "%REMOTE%:%GAME_DIR%/" || goto :fail
+scp -o BatchMode=yes -o StrictHostKeyChecking=accept-new "%~dp0bopomofo_srs_data.json" "%REMOTE%:%GAME_DIR%/" || goto :fail
+scp -o BatchMode=yes -o StrictHostKeyChecking=accept-new "%~dp0flashcard_srs_data.json" "%REMOTE%:%GAME_DIR%/" || goto :fail
 
 echo [4/4] Cleanup temp files...
 del "%REMOTE_BPM%" >nul 2>&1
