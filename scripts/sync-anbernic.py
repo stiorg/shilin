@@ -124,13 +124,37 @@ def collect_entries(root: Path) -> list[SyncEntry]:
     return entries
 
 
-def run_ssh(remote: str, command: str) -> subprocess.CompletedProcess[str]:
+def run_ssh(remote: str, command: str, *, timeout: int | None = None) -> subprocess.CompletedProcess[str]:
+    cmd = ["ssh", remote, command]
+    if timeout is not None:
+        cmd = [
+            "ssh",
+            "-o",
+            "BatchMode=yes",
+            "-o",
+            f"ConnectTimeout={timeout}",
+            remote,
+            command,
+        ]
     return subprocess.run(
-        ["ssh", remote, command],
+        cmd,
         capture_output=True,
         text=True,
         check=False,
     )
+
+
+def check_connection(remote: str, *, timeout: int = 5) -> None:
+    """Fail fast when the handheld is unreachable or credentials are wrong."""
+    result = run_ssh(remote, "echo OK", timeout=timeout)
+    if result.returncode != 0:
+        detail = (result.stderr or result.stdout or "connection failed").strip()
+        first_line = detail.splitlines()[0] if detail else "connection failed"
+        raise ConnectionError(
+            f"Cannot reach {remote} ({first_line}). "
+            "Check Wi-Fi, SSH on the device, and DEVICE_IP in credentials.txt "
+            "(or pass the new IP: sync-anbernic.bat <ip>)."
+        )
 
 
 def run_scp(local: Path, remote_target: str) -> None:
@@ -250,6 +274,11 @@ def main() -> int:
         action="store_true",
         help="Do not pull progress from the device first",
     )
+    parser.add_argument(
+        "--check-only",
+        action="store_true",
+        help="Test SSH connection and exit",
+    )
     args = parser.parse_args()
     root = args.root.resolve()
 
@@ -262,11 +291,28 @@ def main() -> int:
         host = args.ip
     remote = f"{user}@{host}"
 
+    if args.check_only:
+        try:
+            check_connection(remote)
+        except ConnectionError as exc:
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 1
+        print(f"OK: {remote} is reachable")
+        return 0
+
     print()
     print(f"Syncing code to {remote}")
     print(f"  target   {GAME_DIR}/")
     print(f"  launcher {LAUNCHER}")
     print("  progress never pushed from this script")
+    print()
+
+    try:
+        check_connection(remote)
+    except ConnectionError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+    print(f"  connected to {host}")
     print()
 
     normalize_shell_scripts(root)

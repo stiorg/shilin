@@ -39,6 +39,10 @@ echo   merge rule: per card, latest review wins
 echo   code/UI is not deployed - use sync-anbernic.bat for that
 echo.
 
+set "CHECK_ARGS="
+if not "%~1"=="" set "CHECK_ARGS=--ip %~1"
+python "%~dp0scripts\sync-anbernic.py" --check-only %CHECK_ARGS% || goto :fail
+
 echo [1/4] Fetch progress from device...
 scp "%REMOTE%:%GAME_DIR%/bopomofo_srs_data.json" "%REMOTE_BPM%" >nul 2>&1
 if errorlevel 1 (
@@ -70,5 +74,5 @@ exit /b 0
 
 :fail
 echo.
-echo SYNC FAILED. Check Wi-Fi, SSH, and that the game is closed on both devices.
+echo SYNC FAILED. Check Wi-Fi, SSH, DEVICE_IP in credentials.txt, or pass the new IP: sync-progress.bat ^<ip^>
 exit /b 1
